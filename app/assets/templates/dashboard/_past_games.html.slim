@@ -1,0 +1,46 @@
+div ng-show='!futureGames'
+  ' PAST GAMES (PERSONAL)
+  p
+  select ng-model='currentSeason' ng-options='season for season in prior_games | getValidSeasons'
+  .game-info ng-repeat='game in prior_games | filterBySeason:currentSeason'
+    .row
+      .col-md-6.col-sm-6
+        .previous-game.panel.panel-default
+          .panel-heading.clearfix.text-uppercase
+            h3.panel-title.pull-left Round {{ ::game.round }}
+
+          .panel-body ng-show='showLastGame(user)'
+
+            h4.game-date
+              span.text-center
+                span.icon_calendar
+                | {{ ::game.start_date_s }}
+            .row.teams
+              .col-md-6.col-sm-6.col-xs-6
+                a.club-logo.home-team href="#"
+                  img.img-rounded.img-responsive ng-src='{{ clubLogo(game.home_team) }}'
+
+
+              .col-md-6.col-sm-6.col-xs-6
+                a.club-logo href="#"
+                  img.img-rounded.img-responsive ng-src='{{ clubLogo(game.away_team) }}'
+
+              span.final-score
+                span.score ng-class='homeWinner(game)' {{ ::game.home_team_score }}
+                span.score ng-class='awayWinner(game)' {{ ::game.away_team_score }}
+
+            .row
+              .col-md-6.col-sm-6.col-xs-6.text-center
+                h4.club-name
+                  a href="#" {{ game.home_team.club.name }}
+              .col-md-6.col-sm-6.col-xs-6.text-center
+                h4.club-name
+                  a href="#" {{ game.away_team.club.name }}
+
+            hr
+
+            div
+              button.btn.btn-default> Edit stats
+              a.btn.btn-danger ng-href='/#/users/{{ ::user.id }}/games/{{ ::game.id }}/played' Match Details &gt;
+
+  div ng-show='prior_games | filterBySeasonEmpty:currentSeason' No games found for this season or year ({{ ::currentSeason }}). Pick another season or year from the list.

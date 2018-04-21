@@ -1,0 +1,22 @@
+div ng-controller='PlayerProfileCtrl'
+  div ng-include="'dashboard/_empty-navigation.html'"
+
+  section#primary-content
+    ng-include src="'player_profiles/_reg-menu.html'"
+
+    .container-fluid
+      .alert.alert-success role="alert"
+        strong Thanks for your details
+      p
+        |  We have everything we need from you for now. We will track down your team's league schedule, finalise your
+        |  profile set up and be in touch via the email address you entered. Our aim is to have you up and running with
+        |  your profile before this weekend's game.
+      p
+        |  Congratulations, you're a step closer to taking control of your football records and memories, and reaching
+        |  your potential with Champ Tracker.
+      p
+        | Any questions please don't hesitate to
+        a< href='http://blog.champtracker.com/contact-us/' contact us
+        | .
+
+    div ng-include="'dashboard/_footer.html'"

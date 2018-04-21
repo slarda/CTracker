@@ -1,0 +1,215 @@
+// user profile specific styles
+
+.user-profile {
+	fieldset {
+		margin-bottom: $defaultPadding;
+		legend {
+			font-size: 18px;
+		}
+	}
+	.panel {
+		// @include transition( 0.3s ease );
+		&.sample-bg {
+			@media screen and ( min-width: $screen-lg-min ) {
+				background: url( '../img/sample-panel-bg.jpg' ) no-repeat right top $white;
+			}
+		}
+	}
+
+	.user-selection {
+		// border: 1px solid $borderGrey;
+		margin-bottom: $defaultMargin;
+		@include border-radius( $defaultRadius );
+		ul {
+			> li {
+				vertical-align: middle;
+				position: relative;
+				padding: 3px 0;
+				&:before {
+					display: inline-block;
+					font-family: ElegantIcons;
+					content: '\35';
+					color: $lightGrey;
+					padding: 0 5px;
+				}
+				&:nth-child(1),
+				&:nth-child(2), {
+					&:before {
+						display: none;
+					}
+				}
+			}
+		}
+		.club-logo {
+			max-width: 100px;
+			padding: 10px;
+		}
+	}
+
+	.breadcrumb {
+		padding-left: 100px;
+		position: relative;
+		@media screen and ( min-width: $screen-sm-min ) {
+			padding-left: 15px;
+		}
+		li {
+			display: block;
+			clear: left;
+			padding: 3px 0;
+			position: relative;
+			&:first-child {
+				position: absolute;
+				max-width: $img-width-sm2;
+				left: 0;
+				top: 10px;
+				padding: 0;
+				@media screen and ( min-width: $screen-sm-min ) {
+					position: relative;
+					left: auto;
+					vertical-align: middle;
+					top: auto;
+				}
+			}
+			@media screen and ( min-width: $screen-sm-min ) {
+				display: inline-block;
+				clear: none;
+			}
+		}
+		.club-logo,
+		.brand-logo {
+			
+			@media screen and ( min-width: $screen-sm-min ) {
+				position: relative;
+				float: none;
+			}
+		}
+		.brand-logo {
+			padding: 10px; // same padding as club logos
+		}
+	}
+
+	.form-footer {
+		width: auto;
+		float: none;
+		border-top: 1px solid $borderGrey;
+		margin-top: 20px;
+		padding-top: 20px;
+		@media screen and ( min-width: $screen-md-min ) {
+			margin-left: -20px;
+			margin-right: -20px;
+			padding-left: 20px;
+			padding-right: 20px;
+		}
+		[class*="icon_"] {
+			margin-right: 5px;
+		}
+		input[type="submit"] {
+
+		}
+	}
+
+	.breadcrumb {
+
+	}
+}
+
+
+// Due to breadcrumbs on gear profile pages
+.user-profile .breadcrumb li {
+  vertical-align: middle;
+}
+
+// Close button on gear items
+.user-profile .breadcrumb .close {
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  right: 15px;
+  vertical-align: middle;
+}
+
+// Issue with breadcrumbs in Safari with single breadcrumb (on a small device screen)
+.user-profile .breadcrumb {
+  //@media screen and ( min-width: $screen-sm-min ) {
+  padding-left: 15px;
+  //}
+  li {
+    &:first-child {
+      //@media screen and ( min-width: $screen-sm-min ) {
+      position: relative;
+      left: auto;
+      vertical-align: middle;
+      top: auto;
+      //}
+    }
+  }
+}
+
+//@media screen and (min-width: 768px) {
+.user-profile .breadcrumb li {
+  display: inline-block;
+  clear: none;
+}
+//}
+
+// Ensure model name wraps correctly
+.user-profile .model-name, .user-profile .dummy-centred {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.user-profile .dummy-centred {
+  height: 100%;
+}
+
+
+@media screen and (min-width: 1210px) {
+  .user-profile .model-name {
+    max-width: 840px;
+  }
+}
+
+@media screen and (min-width: 480px) and (max-width: 1210px) {
+  .user-profile .model-name {
+    max-width: 390px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .user-profile .model-name {
+    max-width: 150px;
+  }
+}
+
+// Fixes for gear page
+.user-profile .breadcrumb .close {
+  right: 10px;
+}
+
+.user-profile .club-breadcrumb {
+  padding-left: 15px;
+}
+
+.user-profile .club-breadcrumb li {
+  display: inline-block;
+  clear: none;
+}
+
+.club-breadcrumb > li:before {
+  display: inline-block;
+  font-family: ElegantIcons;
+  content: '\35';
+}
+
+.user-profile .carousel-inner img {
+  vertical-align: middle;
+}
+
+.carousel-inner {
+	>.item {
+		// @include transition( all 0.25s ease );
+		@include transition-duration( 0.3s );
+		@include transition-timing-function( ease );
+		@include transform( translateZ( 0 ) );
+	}
+}

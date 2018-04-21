@@ -1,0 +1,54 @@
+.app-registration.login
+  nav.navbar.navbar-invert.navbar-fixed-top
+    .container-fluid
+      .navbar-header
+        button.navbar-toggle.collapsed type='button' data-toggle='collapse' data-target='#bs-example-navbar-collapse-1' aria-expanded='false'
+          span.sr-only Toggle Navigation
+          span.icon-bar
+          span.icon-bar
+          span.icon-bar
+      div style='text-align:center'
+        img src='/img/CT-logo-1x.png' width=250 height=50
+  .header
+    .heading Find Your Club
+  .body.find-your-club
+    .container
+      /ng-controller='ClubListCtrl'
+      #warning
+      div ng-controller='TeamCtrl'
+        div ng-show='teamVisible'
+          h1[] {{ club.name }}
+
+          .club-details
+            .logo
+              img ng-src='{{ clubLogo(club.logo.url) }}'
+            .location
+              div[] {{ club.location.address1 }}
+              div ng-show='club.location.address2.length > 0' {{ club.location.address2 }}
+              div ng-show='club.location.address3.length > 0' {{ club.location.address3 }}
+              div[] {{ ::club.location.suburb }}, {{ ::club.location.state }}, {{ ::club.location.zipcode }}
+
+          h5.sub-head2 Selected team
+          div
+            ' {{ team.league.name }}
+          h5 W / L / D
+          .win-loss-draw[] {{ current_stat.win }} / {{ current_stat.lose }} / {{ current_stat.draw }}
+
+          .table-heading
+            .players Signed up players
+            .stats M
+            .stats G
+            .stats YC
+            .stats RC
+
+          .table-row ng-repeat='player in team.players'
+            div[] {{ player.first_name }} {{ player.last_name }}
+
+          p &nbsp;
+
+        div ng-show='!teamVisible'
+          ' No team selected.
+          a href='#/clubs/find' Go back
+
+        a.btn.btn-default href='#/clubs/find' &lt; Back
+        button.btn.btn-primary ng-click='confirmTeam()' Confirm team &gt;

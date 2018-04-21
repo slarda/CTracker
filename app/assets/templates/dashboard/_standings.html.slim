@@ -1,0 +1,81 @@
+// LADDER GOES HERE
+.row
+  section.section-header.col-lg-12
+    h4.section-title
+      .btn-group.inline-block style='margin-left:0px'
+        button.btn.btn-primary.btn-sm.dropdown-toggle aria-expanded="false" data-toggle="dropdown" type="button" ng-class="statYearSelected()"
+          | {{ ::current_stat.season }}
+          span.arrow_carrot-down< aria-hidden='true'
+        ul.dropdown-menu role="menu"
+          li ng-repeat='stat in season_stats'
+            a ng-click='setCurrentStatStandings(stat)' {{ ::stat.season }}
+
+    p
+      strong
+        | {{ standings.league }}
+
+.row.standings ng-if='standings.no_standings'
+  .col-xs-12
+    .panel.panel-default
+      .panel-body
+        p Sorry there are no Standings for this league.
+        /p
+          | If this isn't the case, please&nbsp;
+          a href="http://blog.champtracker.com/contact-us/" contact us
+          | .
+
+.row.standings ng-if='!standings.no_standings'
+  .col-xs-12
+    .panel.panel-default
+      .panel-body.np
+        .table-responsive
+          table.table
+            /.table-hover
+            thead
+              tr
+                th
+                  label #
+                  small #
+                th.team-name
+                  label Team
+                  small Team
+                th
+                  label Played
+                  small P
+                th
+                  label GD
+                  small GD
+                th
+                  label Points
+                  small PTS
+                th
+                  label Win
+                  small W
+                th
+                  label Draw
+                  small D
+                th
+                  label Loss
+                  small L
+                th
+                  label GF
+                  small GF
+                th
+                  label GA
+                  small GA
+
+            tbody
+              tr ng-repeat='standing in standings.listings' ng-class='highlightTeamInStandings(standing)'
+                th[] {{ standing.id }}
+                td.team-name
+                  /a href="#"
+                  | {{ standing.name }}
+                td[] {{ standing.played }}
+                td[] {{ standing.gd }}
+                th[] {{ standing.points }}
+                td[] {{ standing.win }}
+                td[] {{ standing.draw }}
+                td[] {{ standing.loss }}
+                td[] {{ standing.gf }}
+                td[] {{ standing.ga }}
+

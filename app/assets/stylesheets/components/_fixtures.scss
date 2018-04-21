@@ -1,0 +1,350 @@
+// fixture specific styles
+
+.fixture, #game-data-modal {
+
+    @media screen and ( max-width: $screen-xs-max ) {
+      .form-group label {
+        margin-top: 5px;
+      }
+    }
+
+	.faux-table-body {
+		/* @media screen and ( min-width: $screen-sm-min ) {
+			[class*="col-"] {
+				top: 17px;
+			}
+		}
+		@media screen and ( min-width: $screen-lg-min ) {
+			[class*="col-"] {
+				top: 35px;
+			}
+		} */
+	}
+	.faux-table-container {
+		.faux-table-body {
+			> .row {
+				position: relative;
+				overflow: hidden;
+				/*
+				&:before,
+				&:after {
+					
+				}
+				&:before {
+					cursor: pointer;
+					display: block;
+					content: '';
+					vertical-align: middle;
+					line-height: 100px;
+					text-align: center;
+					position: absolute;
+					width: 66.66667%;
+					height: 100%;
+					left: 100%;
+					top: 0;
+					bottom: 0;
+					background: rgba( $white, 0.8 );
+					color: $ct_primaryRed;
+					text-decoration: underline;
+				}
+				&:after {
+					position: absolute;
+					display: inline-block;
+					content: 'edit stats';
+					background: $ct_primaryRed;
+					color: $white;
+					margin: 0 auto;
+					z-index: 100;
+					font-weight: bold;
+					left: 66.66667%;
+					text-align: center;
+					padding: 6px 12px;
+					z-index: 5;
+					text-transform: uppercase;
+					@include border-radius( $defaultRadius );
+					@include transition( 0.4s ease );
+					
+				}*/
+				
+				@media screen and ( min-width: $screen-md-min ) {
+					padding-top: 30px;
+					padding-bottom: 0;
+				}
+				&:hover {
+					&:after {
+						top: 0;
+						@include transform( translateX( -50% ) );
+					}
+
+				}
+			}
+		}
+	}
+
+	.roundNum {
+		vertical-align: middle;
+		text-transform: uppercase;
+		text-align: left;
+		.badge {
+			height: 26px;
+			line-height: 26px;
+			margin-bottom: 12px;
+			font-weight: 500;
+			padding: 0 12px;
+			@include border-radius( 13px );
+			.text {
+				display: inline-block;
+				&:after {
+					// insert a normal space after the text
+					content: '\00a0';
+				}
+			}
+			@media screen and ( min-width: $screen-sm-min ) {
+				width: 26px;
+				margin: 0;
+				padding: 0;
+				.text {
+					display: none;
+				}
+			}
+		}
+		@media screen and ( min-width: $screen-sm-min ) {
+			text-align: center;
+		}
+	}
+	.date {
+		line-height: 26px;
+		float: none;
+		@media screen and ( min-width: $screen-sm-min ) {
+			float: none;
+			line-height: 20px;
+		}
+	}
+	.home-team,
+	.away-team {
+		float: left;
+		clear: left;
+		@media screen and ( min-width: $screen-sm-min ) {
+			clear: none;
+			// line-height: 64px;
+		}
+		@media screen and ( min-width: $screen-sm-min ) {
+			// line-height: 82px;
+		}
+		.club-logo {
+			display: inline-block;
+			width: 42px;
+			margin-right: 8px;
+			vertical-align: middle;
+			
+			@media screen and ( min-width: $screen-sm-min ) {
+				width: 64px;
+				// margin: -17px 0 17px;
+				margin-top: -15px;
+			}
+			@media screen and ( min-width: $screen-lg-min ) {
+				width: 82px;
+				// margin: -35px 0 35px;
+				margin-top: -24px;
+			}
+		}
+	}
+	.home-team {
+		text-align: left;
+		@media screen and ( min-width: $screen-sm-min ) {
+			text-align: right;
+		}
+		.club-logo {
+			@media screen and ( min-width: $screen-sm-min ) {
+				text-align: right;
+				float: right;
+				margin-right: 0;
+				margin-left: 10px;
+			}
+		}
+	}
+	.away-team {
+		.club-logo {
+			@media screen and ( min-width: $screen-sm-min ) {
+				float: left;
+				margin-right: 10px;
+			}
+		}
+	}
+
+    .team-name {
+      @media screen and (max-width: $screen-xs-max) {
+        display: inline-block;
+        vertical-align: middle;
+        width: 160px;
+      }
+
+      @media screen and (min-width: $screen-sm-min) {
+        display: inline-block;
+        vertical-align: middle;
+        width: 98px;
+      }
+
+    }
+
+	.final-score {
+		position: relative;
+		float: right;
+		line-height: 40px;
+		> span {
+			display: block;
+			height: 32px;
+			line-height: 32px;
+			@include border-radius( $defaultRadius );
+			.score {
+				width: 100%;
+				display: block;
+				padding: 0;
+				@media screen and ( min-width: $screen-sm-min ) {
+					width: auto;
+					display: inline-block;
+					&:first-child {
+						&:after {
+							display: inline-block;
+							content: ':';
+							margin: 0 4px;
+							line-height: 28px;
+							color: $white;
+						}
+					}
+				}
+                @media screen and ( max-width: $screen-xs-max ) {
+                  display: inline-block;
+                  vertical-align: middle;
+                  line-height: 42px;
+                }
+
+			}
+		}
+		@media screen and ( min-width: $screen-sm-min ) {
+			float: left;
+			// line-height: 64px;
+			> span {
+				width: auto;
+				height: 26px;
+				line-height: 26px;
+				display: inline-block;
+				padding: 0 12px;
+				color: $white;
+				background: $charcoal;
+				// overflow: hidden;
+				// @include border-radius( 13px );
+			}
+		}
+		@media screen and ( min-width: $screen-lg-min ) {
+			// line-height: 82px;
+		}
+		.vs,
+		.winner {
+			font-weight: 600;
+		}
+	}
+
+	.single-item {
+
+	}
+	.faux-table-footer {
+		.actions {
+			@include horizontal-list( 5px );
+			.btn {
+				min-width: 110px;
+			}
+		}
+	}
+}
+
+.fixture-table {
+	.table {
+		border-bottom: 2px solid $borderGrey;
+		margin-bottom: $contentPaddingMobile;
+		&:last-child {
+			border-bottom: none;
+			margin-bottom: 0;
+		}
+		
+		> thead {
+			> tr {
+				> th {
+					font-weight: normal;
+					border: none;
+					.date {
+						margin-left: 10px;
+					}
+					address {
+						margin-bottom: 10px;
+					}
+				}
+			}
+			.badge {
+				text-transform: uppercase;
+			}
+		}
+		> tbody {
+			> tr {
+				> td {
+					border: none;
+					vertical-align: middle;
+					img {
+						min-width: 32px;
+						margin: 0 auto;
+					}
+					@media screen and ( min-width: $screen-sm-min ) {
+						img {
+							max-width: 64px;
+							margin: 0 auto;
+						}
+					}
+					@media screen and ( min-width: $screen-md-min ) {
+						img {
+							max-width: 82px;
+							margin: 0 auto;
+						}
+					}
+				}
+			}
+
+			.team-name {
+				width: 30%;
+			}
+			.team-logo {
+				width: 16%;
+			}
+			.badge {
+				padding: 5px 10px;
+				font-weight: normal;
+				@include border-radius( $defaultRadius );
+				.score {
+					font-weight: 300;
+				}
+				.winner {
+					font-weight: 600;
+				}
+				@media screen and ( min-width: $screen-md-min ) {
+					font-size: 18px;
+				}
+			}
+		}
+	}
+	> tfoot {
+		> tr {
+			> td {
+				
+			}
+		}
+	}
+}
+
+// Show club scores on game data modal
+#game-data-modal {
+  .team-name {
+    font-size: 10px;
+    text-align: center;
+    line-height: 13px;
+    display: inline-block;
+  }
+}

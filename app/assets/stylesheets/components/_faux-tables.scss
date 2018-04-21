@@ -1,0 +1,72 @@
+// faux tables
+
+.faux-table-container {
+	> .row {
+		margin-left: 0;
+		margin-right: 0;
+	}
+	.faux-table-header,
+	.faux-table.body {
+		> .row {
+			padding: 10px 0;
+			[class*="col-"],
+			[class^="col-"] {
+				padding-left: 10px;
+				padding-right: 10px;
+				@media screen and ( min-width: $screen-md-min ) {
+					padding-left: 15px;
+					padding-right: 15px;
+				}
+			}
+		}
+	}
+	.faux-table-header {
+		display: none;
+	    border-bottom: 1px solid $borderGrey;
+	    text-transform: uppercase;
+	    @media screen and ( min-width: $screen-sm-min ) {
+	    	display: block;
+	    }
+	    label {
+	    	margin-bottom: 0;
+	    }
+	}
+	.faux-table-body {
+		> .row {
+			position: relative;
+			border-width: 1px;
+			border-style: solid;
+			border-color: $borderGrey transparent transparent;
+			padding: 10px 0;
+			@include transition( 0.2s ease );
+			&.is-active {
+				border-color: $ct_green;
+			}
+			@media screen and ( min-width: $screen-sm-min ) {
+				padding: 15px 0;
+			}
+		}
+		[class*="col-"],
+		[class^="col-"] {
+			@media screen and ( min-width: $screen-sm-min ) {
+				vertical-align: middle;
+				height: 100%;
+			}
+		}
+	}
+	.faux-table-footer {
+		clear: both;
+		padding: 10px 15px;
+	}
+	// adds hover style to rows in faux table
+	&.hover-rows {
+		.faux-table-body {
+			> .row {
+				&:hover {
+					// background: rgba( $ct_green, 0.02 );
+					border-color: $ct_green;
+				}
+			}
+		}
+	}
+}

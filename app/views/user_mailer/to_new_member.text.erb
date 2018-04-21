@@ -1,0 +1,20 @@
+Hello <%= @user.first_name %> and welcome to ChampTracker!
+
+Admin Link: http://app.champtracker.com/admin/users/<%=@user.id%>
+
+Name: <%= @user.first_name %> <%= @user.middle_name %> <%= @user.last_name %>
+Involvement: <= @user.involvement >
+Gender: <%= @user.gender %>
+DOB: <%= @user.dob %>
+Email: <%= @user.email %>
+
+Country: <%= @user.nationality %>
+Club Name: <%= @user.entered_club_name %>
+Team Name: <%= @user.entered_team_name %>
+League Name: <%= @user.entered_league_name %>
+Website: <%= @user.entered_website %>
+Other Info: <%= @user.entered_additional_info %>
+
+Agreed to terms: <%= @user.agree_terms %>
+
+- The ChampTracker Team

@@ -1,0 +1,8 @@
+div ng-controller='DashboardCtrl'
+  div ng-include="'dashboard/_navigation.html'"
+  div ng-include="'dashboard/_topbar.html'"
+
+  section#primary-content
+    .container-fluid
+      div ng-controller='TeamCtrl'
+        ' Team page - {{ ::team.name }} at club {{ ::team.club.name }}

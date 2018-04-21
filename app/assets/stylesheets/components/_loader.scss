@@ -1,0 +1,113 @@
+// loader
+
+.loader-inner {
+    height: 100px;
+    width: 100px;
+    position: relative;
+    // background: url( '../img/ct-star.png' ) 50% 50% no-repeat $white;
+    // background-size: 25%;
+    margin: 0 0 60px;
+    &:before {
+    	display: block;
+    	position: absolute;
+    	left: 0;
+    	width: 100%;
+    	line-height: 100px;
+    	text-transform: uppercase;
+    	content: 'loading';
+    	color: $charcoal;
+    	font-size: 10px;
+    	text-align: center;
+    	font-weight: 600;
+    }
+}
+
+.loader-line-wrap {
+    box-sizing: border-box;
+    left: 0;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    height: 50px;
+    width: 100px;
+    @include transform-origin( 50% 100% );
+    @include transform( translateZ( 0 ) );
+    // @include animation( spin 1.5s cubic-bezier(.175, .885, .32, 1.275) infinite );
+    @include animation( spin 1s cubic-bezier(0.63, 0.13, 0.31, 0.88) infinite );
+}
+.loader-line {
+    border: 4px solid transparent;
+    border-radius: 100%;
+    box-sizing: border-box;
+    height: 50px;
+    left: 0;
+    margin: 0 auto;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100px;
+}
+.loader-line-wrap:nth-child(1) { 
+	@include animation-delay(50ms) 
+}
+.loader-line-wrap:nth-child(2) {
+	@include animation-delay(150ms);
+	.loader-line {
+		border-width: 3px;
+	}
+}
+.loader-line-wrap:nth-child(3) {
+	@include animation-delay(250ms);
+	.loader-line {
+		border-width: 2px;
+	}
+}
+.loader-line-wrap:nth-child(4) {
+	@include animation-delay(350ms);
+	.loader-line {
+		border-width: 1px;
+	}
+}
+
+.loader-line-wrap:nth-child(1) .loader-line {
+    border-color: $ct_primaryRed;
+    height: 90px;
+    width: 90px;
+    top: 5px;
+}
+.loader-line-wrap:nth-child(2) .loader-line {
+    border-color: rgba($ct_primaryRed, 0.7);
+    height: 74px;
+    width: 74px;
+    top: 13px;
+}
+.loader-line-wrap:nth-child(3) .loader-line {
+    border-color: rgba($ct_primaryRed, 0.4);
+    height: 58px;
+    width: 58px;
+    top: 21px;
+}
+.loader-line-wrap:nth-child(4) .loader-line {
+    border-color: rgba($ct_primaryRed, 0.1);
+    height: 42px;
+    width: 42px;
+    top: 29px;
+}
+
+@keyframes spin {
+    0%, 15% {
+		@include transform( rotate(0) );
+	}
+	100% {
+		@include transform( rotate( 360deg ) );
+	}
+}
+
+@include keyframes( spin ) {
+    0%, 15% {
+		@include transform( rotate(0) );
+	}
+	100% {
+		@include transform( rotate( 360deg ) );
+	}
+}

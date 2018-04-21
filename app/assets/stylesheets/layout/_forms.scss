@@ -1,0 +1,293 @@
+// Form control styling
+
+
+/*
+ * Remove default fieldset styles.
+ */
+
+fieldset {
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+/*
+ * Allow only vertical resizing of textareas.
+ */
+
+textarea {
+    resize: vertical;
+}
+
+label {
+	cursor: pointer !important;
+	display: block;
+	position: relative;
+	font-weight: 500;
+	.optional-field  {
+		font-weight: normal;
+		color: $mediumGrey;
+	}
+	.note {
+		color: $charcoal;
+	}
+	[class*="icon_"] {
+		margin-top: 3px;
+	}
+}
+
+input[type="text"],
+input[type="email"],
+input[type="phone"],
+input[type="password"],
+input[type="tel"],
+input[type="number"],
+input[type="url"] {
+	@include appearance(none);
+	
+}
+
+input[type="submit"],
+button[type="submit"] {
+	// min-height: 40px;
+}
+
+.form-control,
+.radio label {
+	color: $charcoal !important;
+	border-width: 2px;
+	// border: 2px solid $lightGrey;
+	@include border-radius($defaultRadius);
+	// @include placeholder($mediumGrey !important);
+	@include input-placeholder {
+        color: tint( $black, 66% );
+    }
+
+}
+.form-control {
+	height: 40px;
+	padding: 6px 8px;
+	@include box-shadow(none);
+	&:focus {
+		border-color: $ct_lightBlue;
+		outline: 0;
+		@include box-shadow(none);
+	}
+}
+.form-group {
+	margin-bottom: $buffer / 2; // 15px
+	&.checkbox-group,
+	&.radio-group {
+		padding-top: 8px;		// 6px vertical padding + 2px for border
+		label {
+			&:first-child {
+				cursor: default !important;
+			}
+		}
+	}
+}
+
+.radio-inline,
+.checkbox-inline {
+	margin: 0 16px 8px 0 !important;
+	display: block;
+	@media screen and ( min-width: $screen-xs-min ) {
+		display: inline-block;
+	}
+}
+
+.radio,
+.radio-inline,
+.checkbox,
+.checkbox-inline {
+	padding-left: 0;
+	@include single-transition(border 0.3s ease);
+	@include transition-duration(0.3s);
+	&.is-checked {
+		// border-color: $mediumGrey;
+		color: $ct_lightBlue !important;
+	}
+	input[type=radio],
+	input[type=checkbox] {
+		margin-left: 0;
+		margin-right: 5px;
+		display: none;
+		position: relative;
+		
+		+ span {
+			&:hover {
+				&:before {
+					border-color: darken( #ccc, 20% );
+				}
+			}
+		}
+		+ span {
+			position: relative;
+			padding-left: 22px;
+			&:before,
+			&:after {
+				@include transform( translateZ( 0 ) );
+				@include transition( 0.3s cubic-bezier(0.63, 0.13, 0.31, 0.88) );
+			}
+			&:before {
+				position: absolute;
+				left: 0;
+				top: 0;
+				border: 2px solid #ccc;
+				width: 17px;
+				height: 17px;
+				display: inline-block;
+				content: '';
+			}
+			&:after {
+				position: absolute;
+				width: 5px;
+				height: 5px;
+				display: inline-block;
+				content: '';
+				background: $ct_lightBlue;
+				left: 6px;
+				top: 6px;
+				opacity: 0;
+				@include transform( scale( 3 ) );
+			}
+		}
+		&:checked {
+			+ span {
+				color: $ct_lightBlue;
+				&:before {
+					border-color: $ct_lightBlue;
+				}
+				&:after {
+					opacity: 1;
+					@include border-radius( 50px );
+					@include transform( scale( 1 ) );
+				}
+			}
+		}
+	}
+	input[type=radio] {
+		+ span {
+			&:before {
+				@include border-radius( 50px );			// some large number for future-proofing
+			}
+		}
+		
+	}
+	
+	input[type=checkbox] {
+		+ span {
+			overflow: hidden;
+			&:before {
+				@include border-radius( $defaultRadius );
+			}
+			&:after {
+				font-family: 'ElegantIcons';
+				content: '\4e';
+				color: $ct_lightBlue;
+				font-size: 12px;
+				background: transparent;
+				left: 2px;
+				top: -11px;
+				@include border-radius( none );
+				@include transform( scale( 1 ) );
+				// @include transform-origin( );
+			}
+		}
+		&:checked {
+			+ span {
+				position: relative;
+				&:after {
+					top: 1px;
+					opacity: 1;
+				}
+			}
+		}
+	}
+}
+
+
+// input group addons
+.input-group-addon {
+	border-width: 2px;
+	background: $almostWhite;
+}
+
+.help-block {
+	margin-top: 0;
+	color: $mediumGrey;
+}
+
+::-moz-placeholder {
+	opacity: 1;
+}
+
+// for older browsers that don't support HTML5 placeholder input elements attribute
+.placeholder {
+	color: $lightGrey;
+}
+
+.help-text,
+.help-block {
+	color: tint( $black, 50% );
+	font-size: 12px;
+	margin-top: 5px;
+}
+
+.help-block {
+	font-size: 12px;
+	+ .help-text {
+		margin-top: 0;
+	}
+}
+
+@media screen and (min-width: 992px) {
+	.form-group {
+		margin-bottom: $buffer; // 40px
+	}
+}
+
+// Angular specific form validation styles
+
+.form-group {
+	&.has-error {
+		label {
+			color: $alert-danger;
+		}
+		.form-control {
+			border-color: $alert-danger;
+			&:focus {
+				@include box-shadow(none);
+			}
+		}
+		input[type="text"],
+		input[type="email"],
+		input[type="phone"],
+		input[type="password"],
+		input[type="tel"],
+		input[type="number"],
+		input[type="url"],
+		select,
+		textarea {
+			+ p {
+				&.help-block {
+					margin-top: 6px;
+					margin-bottom: 8px;
+					&.has-error {
+						color: $alert_danger;
+					}
+				}
+			}
+		}
+	}
+}
+
+.form-footer {
+	.btn {
+		margin-right: 10px;
+		&.pull-right {
+			margin-left: 10px;
+			margin-right: 0;
+		}
+	}
+}

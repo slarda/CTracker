@@ -1,0 +1,441 @@
+//@import "compass";
+@import "compass";
+@import "compass/css3/flexbox";
+
+// LIBRARIES
+@import "libraries/variables";
+@import "libraries/mixins";
+
+@import 'bootstrap-sprockets';
+
+  // Core variables and mixins
+  @import "bootstrap/variables";
+  @import "bootstrap/mixins";
+
+  // Reset and dependencies
+  @import "bootstrap/normalize";
+  @import "bootstrap/print";
+  @import "bootstrap/glyphicons";
+
+  // Core CSS
+  @import "bootstrap/scaffolding";
+  @import "bootstrap/type";
+  //@import "bootstrap/code";
+  @import "bootstrap/grid";
+  @import "bootstrap/tables";
+  @import "bootstrap/forms";
+  @import "bootstrap/buttons";
+
+  // Components
+  //@import "bootstrap/component-animations";
+  @import "bootstrap/dropdowns";
+  @import "bootstrap/button-groups";
+  @import "bootstrap/input-groups";
+  @import "bootstrap/navs";
+  @import "bootstrap/navbar";
+  //@import "bootstrap/breadcrumbs";
+  //@import "bootstrap/pagination";
+  //@import "bootstrap/pager";
+  @import "bootstrap/labels";
+  @import "bootstrap/badges";
+  //@import "bootstrap/jumbotron";
+  //@import "bootstrap/thumbnails";
+  @import "bootstrap/alerts";
+  //@import "bootstrap/progress-bars";
+  //@import "bootstrap/media";
+  @import "bootstrap/list-group";
+  @import "bootstrap/panels";
+  //@import "bootstrap/responsive-embed";
+  //@import "bootstrap/wells";
+  @import "bootstrap/close";
+
+  // Components w/ JavaScript
+  @import "bootstrap/modals";
+  @import "bootstrap/tooltip";
+  @import "bootstrap/popovers";
+  @import "bootstrap/carousel";
+
+  // Utility classes
+  @import "bootstrap/utilities";
+  //@import "bootstrap/responsive-utilities";
+
+@import "bootstrap/component-animations";
+
+//
+//
+//// 3rd PARTY VENDOR
+//@import "vendor/bootstrap";
+
+@import "reset";						// load after bootstrap to re-use some of their variables (i.e. for responsive breakpoint vars)
+
+
+// MAIN LAYOUTS
+@import "layout/bootstrap-columns-new";
+@import "layout/application-header";
+@import "layout/sidebar-left";
+@import "layout/main-navigation";
+@import "layout/primary-content";
+@import "layout/forms";
+@import "layout/footer";
+
+
+// COMPONENT SPECIFIC STYLES
+@import "components/elegant-icons";
+@import "components/ct-icons";
+
+@import "components/alert";
+@import "components/add-edit-element";
+@import "components/badge";
+@import "components/breadcrumb";
+@import "components/buttons";					// include button group styling
+@import "components/club-info";					// general club information
+@import "components/carousel";
+@import "components/club-logo";                 // club logo specific styles
+@import "components/dropdown-menu";
+@import "components/panels";
+@import "components/dashboard-components";    // contains player profile, player stats and prev/next info - TODO Add your gear, news (TBD)
+@import "components/section-header";
+@import "components/social-elements";
+@import "components/fixtures";
+@import "components/hr";
+@import "components/player-tips";
+@import "components/modals";
+@import "components/news";
+@import "components/typography";
+@import "components/faux-tables";
+@import "components/tables";
+@import "components/to-top";
+@import "components/home-ground";				// home ground address and location map
+
+@import "components/loader";
+@import "components/page-content-nav";
+@import "components/user-profile";
+@import "components/standings";
+
+@import "libraries/utilities";
+@import "libraries/animation";
+
+// SECTION/PAGE SPECIFIC STYLES
+
+@import "components/alert";						// alert styles
+// @import "components/modals";
+
+@import "sections/login";						// Login page specific styles
+@import "sections/registration";				// User registration
+
+// Required for angular-ui bootstrap
+.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
+
+// Warnings
+#warning {
+  position: fixed;
+  top: 20px;
+  left: 10%;
+  right: 10%;
+  z-index: 1000;
+  text-align: center;
+}
+
+// Hand pointer
+.hand-pointer {
+  cursor: pointer;
+  cursor: hand;
+}
+
+// Tidy up logos
+.game-info .club-logo {
+  max-width: 104px;
+}
+
+.error {
+  color: red;
+}
+
+// Underline for win-loss-draw
+.win.first {
+  border-bottom: 1px #a2d425 solid;
+}
+
+.loss.first {
+  border-bottom: 1px #ed3837 solid;
+}
+
+.draw.first {
+  border-bottom: 1px #f8bf34 solid;
+}
+
+@media screen and (max-width: 768px) {
+  .fixture .final-score > span {
+    line-height: 42px;
+  }
+}
+
+// Fixes for modal scrolling on mobile
+body.modal-open {
+  position: fixed;
+  overflow: hidden;
+}
+
+// For game data modal
+.gray-label {
+  color: #aaa;
+  font-weight: normal;
+}
+
+// Ratings are red stars
+.rating-dropdown {
+  i.glyphicon-star, i.glyphicon-star-empty {
+    color: #ed3837;
+    font-size: 16px;
+    margin-right: 1px;
+  }
+}
+
+// "did you play in this game"
+.did-you-play {
+  .dyp {
+    line-height: 1.1;
+  }
+
+  .radio-inline {
+    margin: 0 16px 0px 0 !important;
+    display: inline;
+  }
+}
+
+
+#hide-tab-headings ul.nav.nav-tabs {
+  border-bottom: none;
+
+  li {
+    display: none;
+  }
+}
+
+//@media screen and (min-width: 768px) {
+  .breadcrumb > li + li:before {
+    display: inline-block;
+    font-family: ElegantIcons;
+    content: '\35';
+  }
+//}
+
+
+.breadcrumb > li + li.no-breadcrumb:before {
+  content: '';
+}
+
+#user-profile-form .close:hover {
+  color: #ed3837;
+  font-weight: normal;
+  opacity: 0.8;
+}
+
+// Animation for save buttons
+.opaque {
+  &.ng-hide-add {
+    -webkit-transition: all linear 0.5s;
+    transition: all linear 0.5s;
+    opacity: 1;
+  }
+
+  &.ng-hide-add-active {
+    opacity: 0;
+  }
+}
+
+.opaque-inverted {
+  &.ng-hide-remove {
+    -webkit-transition: all ease-in 0.5s;
+    transition: all ease-in 0.5s;
+    display: inline;
+  }
+
+  &.ng-hide-remove-active {
+    display: none;
+  }
+
+}
+
+.fade-in-out {
+  transition: 0.3s linear all;
+  opacity: 1;
+}
+
+.fade-in-out.ng-hide {
+  opacity: 0;
+}
+
+
+
+.standings-my-team {
+  background-color: #f2f4f6;
+}
+
+// Fixes for login button
+#application-header .login-button {
+  margin-right: 20px;
+  a {
+    color: white;
+  }
+}
+
+
+.inline-no-float {
+  float: none;
+  vertical-align: middle;
+  display: inline-block;
+}
+
+.no-padding {
+  padding: 0
+}
+
+// Gear can't see links
+.cant-see {
+  font-size: 13px;
+  color: #00a5d7;
+  font-weight: normal;
+
+  &.in-footer {
+    line-height: 41px;
+    margin-right: 20px;
+  }
+}
+
+// Schedule game stats icons
+.game-stats-goals {
+  font-size: 16px;
+  line-height: 20px;
+  vertical-align: middle;
+  margin-right: 5px;
+}
+
+.game-stats-penalties {
+  font-size: 20px;
+  line-height: 20px;
+  vertical-align: middle;
+  margin-right: 5px;
+}
+
+.game-stats-assists {
+  font-size: 18px;
+  line-height: 20px;
+  vertical-align: middle;
+  margin-right: 5px;
+}
+
+.game-stats-cards.player-stats {
+  display: inline-block;
+  vertical-align: top;
+  position: relative;
+  width: 20px;
+
+  .stat-card-red, .stat-card-yellow {
+    display: inline-block;
+
+    .card {
+      left: 2px;
+
+      .foreground {
+        width: 15px !important;
+        height: 20px !important;
+        top: 2px;
+      }
+
+      .background {
+        width: 12px !important;
+        height: 16px !important;
+        left: 7px;
+        top: 7px;
+      }
+    }
+  }
+}
+
+@media screen and ( max-width: $screen-xs-max ) {
+
+  .faux-table-footer .rating-dropdown {
+    .glyphicon-star, .glyphicon-star-empty {
+      top: 3px;
+      font-size: 14px;
+    }
+  }
+
+  .game-stats-cards.player-stats {
+    vertical-align: top;
+    width: 15px;
+
+    .stat-card-red, .stat-card-yellow {
+
+      .card {
+          left: 10px;
+
+        .foreground {
+          top: 0px;
+          width: 13px !important;
+          height: 18px !important;
+        }
+
+        .background {
+          left: 7px;
+          top: 5px;
+          width: 11px !important;
+          height: 14px !important;
+        }
+      }
+    }
+  }
+
+  .game-stats-goals, .game-stats-assists {
+    font-size: 13px;
+  }
+
+  .team-stats table tr th {
+    width: 140px;
+  }
+
+  .share-element ul, .social-platforms ul {
+    .facebook, .twitter, .google-plus, .instagram, .youtube, .linkedin, .snapchat, .tumblr {
+      font-size: 28px;
+    }
+
+    .social_snapchat_square:before {
+      width: 28px;
+      height: 28px;
+      line-height: 28px;
+    }
+  }
+
+}
+
+@media screen and ( min-width: $screen-sm-min ) and ( max-width: $screen-sm-max ) {
+  .game-stats-cards.player-stats {
+    .stat-card-red, .stat-card-yellow {
+      .card {
+        left: 10px;
+      }
+    }
+  }
+}
+
+
+
+
+// Smaller club icons on profile page
+#pane-playing-profile .club-logo {
+  max-width: 100px;
+  padding: 10px;
+}
+
+@media screen and ( max-width: $screen-sm-max ) {
+  .player-profile .club-logo {
+    max-width: 76px;
+    padding: 15px 3px 3px 3px;
+  }
+
+  #pane-playing-profile .club-logo {
+    max-width: 51px;
+    padding: 3px;
+  }
+}

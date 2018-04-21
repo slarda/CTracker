@@ -1,0 +1,10 @@
+div ng-controller='DashboardCtrl'
+
+  section#primary-content style="padding: 0"
+    .container-fluid
+      #warning
+
+      div ng-include="'dashboard/_profile.html'"
+      div ng-include="'dashboard/_player-stats.html'"
+
+    div ng-include="'dashboard/_footer.html'"

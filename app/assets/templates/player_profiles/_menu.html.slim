@@ -1,0 +1,32 @@
+nav.page-content-nav
+  ul.nav.list-inline.h-nav
+    li ng-class="is_active('personal')"
+      a ng-href="#/users/{{ ::current_user.id }}/player_profiles/personal"
+        span Personal info
+
+    li ng-class="is_active('profile')"
+      a ng-href="#/users/{{ ::current_user.id }}/player_profiles/profile"
+        span Playing profile
+
+    li ng-class="is_active('gear')" ng-if="current_user.role != 'coach'"
+      a ng-href="#/users/{{current_user.id}}/player_profiles/gear"
+        span Gear
+
+    /li role="presentation"
+      a ng-href="#/users/{{current_user.id}}/player_profiles/alerts" aria-controls="pane-alert-samples" role="tab"
+        span Alerts
+
+
+/nav.pro-menu.navbar.navbar-default
+  .container-fluid
+    .navbar-header
+    .collapse.navbar-collapse#pro-menu
+      ul.nav.navbar-nav
+        li ng-class="is_active('personal')"
+          a href='#/users/{{ user.id }}/player_profiles/personal' Personal
+        li ng-class="is_active('profile')"
+          a href='#/users/{{ user.id }}/player_profiles/profile' Playing Profile
+        li ng-class="is_active('gear')"
+          a href='#/users/{{ user.id }}/player_profiles/gear' Gear
+        li ng-class="is_active('account')"
+          a href='#/users/{{ user.id }}/player_profiles/account' Account

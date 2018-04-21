@@ -1,0 +1,30 @@
+// section headers
+.section-header {
+	margin-bottom: 10px;
+	.section-title {
+		font-size: 14px;
+		font-weight: 500;
+		.glyphicon {
+			margin-left: 5px;
+			vertical-align: baseline;
+		}
+	}
+	label {
+		display: inline-block;
+	}
+	.pipe {
+		margin: 0 12px;
+		&:before {
+			content: '';
+			border-left: 1px solid rgba( $black, 0.3 );
+			height: 10px;
+			display: inline-block;
+		}
+	}
+	.btn-group {
+		margin-left: 15px;
+		> .btn-group {
+			margin-left: 0;
+		}
+	}
+}

@@ -1,0 +1,34 @@
+// dropdown menu styles
+
+.dropdown-menu {
+	border: none;
+	background: $white;
+	color: $ct_primaryRed;
+	margin-top: 12px;
+	> li {
+		> a {
+			border-bottom: none;
+			color: $ct_primaryRed;
+			@include transition( 0.3s ease );
+			&:hover {
+				color: $baseFontColour;
+				background: $borderGrey;
+			}
+			[class*=""] {
+
+			}
+		}
+	}
+	&:before {
+		content: '';
+		position: absolute;
+		left: 50%;
+		top: -12px;
+		width: 12px;
+		height: 12px;
+		margin-left: -6px;
+		border: 6px solid $white;
+		border-width: 6px;
+		border-color: transparent transparent $white;
+	}
+}

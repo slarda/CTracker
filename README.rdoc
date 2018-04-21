@@ -1,0 +1,28 @@
+== Champ Tracker
+
+= Basic Setup
+
+```
+git clone https://github.com/wtfiwtz/champtracker
+cd champtracker/ctbe
+bundle install
+rake db:create
+rake db:migrate
+rake db:seed
+rails s
+```
+
+Then visit http://localhost:3000
+
+= Run tests
+
+```
+rspec
+```
+
+= Deployment
+
+```
+cd champtracker/ctbe
+cap staging deploy
+```

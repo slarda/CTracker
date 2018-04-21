@@ -1,0 +1,246 @@
+div ng-controller='GameCtrl'
+  div ng-include="'dashboard/_navigation.html'"
+
+  section#primary-content
+    .container-fluid
+
+      // Game information and match details
+      .game-info.row vertilize-container=true
+
+        .col-md-6.col-sm-6
+          .previous-game.panel.panel-default vertilize=true
+            .panel-heading.clearfix
+              h3.panel-title.pull-left Round {{ ::game.round }}
+              .share-element.pull-right ng-class="{'is-active': share_visible}"
+                ul.share-action
+
+                  li.text-uppercase
+                    a ng-href='#/users/{{ ::user.id }}/schedule'
+                      | Full Schedule
+                ul.sharing-options
+                  li.facebook
+                    a href="#"
+                      span.social_facebook_square
+                      span.sr-only Facebook
+                  li.twitter
+                    a href="#"
+                      span.social_twitter_square
+                      span.sr-only Twitter
+                  li.google-plus
+                    a href="#"
+                      span.social_googleplus_square
+                      span.sr-only Facebook
+
+            .panel-body
+              h4.game-date
+                span.text-center
+                  span.icon_calendar
+                  | {{ ::game.start_date_s }}
+              .row.teams
+                .col-md-6.col-sm-6.col-xs-6
+                  a.club-logo.home-team ng-href='#/clubs/{{ ::game.home_team.club.id }}'
+                    img.img-rounded.img-responsive ng-src='{{ clubLogo(game.home_team) }}'
+
+                .col-md-6.col-sm-6.col-xs-6
+                  a.club-logo ng-href='#/clubs/{{ ::game.away_team.club.id }}'
+                    img.img-rounded.img-responsive ng-src='{{ clubLogo(game.away_team) }}'
+
+                span.final-score
+                  span.score ng-class='homeWinner(game)' {{ game.home_team_score }}
+                  span.score ng-class='awayWinner(game)' {{ game.away_team_score }}
+
+              .row
+                .col-md-6.col-sm-6.col-xs-6.text-center
+                  h4.club-name
+                    a ng-href='#/clubs/{{ ::game.home_team.club.id }}' {{ game.home_team.name }}
+                .col-md-6.col-sm-6.col-xs-6.text-center
+                  h4.club-name
+                    a ng-href='#/clubs/{{ ::game.away_team.club.id }}' {{ game.away_team.name }}
+
+              hr
+
+              .row
+                section.game-location.col-lg-6.col-md-6.col-sm-6
+                  h5.section-title.text-center.text-uppercase
+                    | game location
+                  address
+                    span.cticon.cticon-location-marker
+                    span.text-left
+                      div[] {{ ::game.venue.address1 }}
+                      div[] {{ ::game.venue.address2 }}
+                      div[] {{ ::game.venue.suburb }} {{ ::game.venue.state }} {{ ::game.venue.zipcode }}
+                  h5.text-center.text-uppercase
+                    a.hand-pointer ng-click='openMap(game)' data-backdrop="static"  View map
+
+                section.weather-forecast.col-lg-6.col-md-6.col-sm-6
+                  h5.section-title.text-center.text-uppercase weather forecast
+                  .temperature.text-center ng-if='forecast.temperature'
+                    span.cticon ng-class='forecast.icon_class'
+                    | {{ ::forecast.temperature }}
+                    sup &deg;
+                  h5.forecast-description.text-center.text-uppercase
+                    | {{ ::forecast.description }}
+
+        .col-md-6.col-sm-6 ng-show='show_game_stats'
+          .panel.panel-default vertilize=true
+            .panel-heading.clearfix
+              h3.panel-title.pull-left[] {{ whosMatchStats() }} game stats
+            .panel-body
+              .row.team-stats
+                .col-md-12
+                  table.table
+                    tbody
+                      tr ng-if='!isCoach()'
+                        th Minutes Played
+                        td[] {{ game_data.minutes_played }}
+                      tr ng-if='isGoalkeeper()'
+                        th Penalties Saved
+                        td[] {{ game_data.specialized.penalty_saves }}
+                      tr ng-if='!isGoalkeeper() && !isCoach()'
+                        th Goals Scored
+                        td[] {{ game_data.goals }}
+                      /tr ng-if='isCoach()'
+                      /  th Goals Scored
+                      /  td[] {{ teamGoalsScored() }}
+                      /tr ng-if='isCoach()'
+                      /  th Goals Conceded
+                      /  td[] {{ teamGoalsConceded() }}
+                      tr ng-if='!isGoalkeeper() && !isCoach()'
+                        th Assists
+                        td[] {{ game_data.specialized.assists }}
+                      tr
+                        th Yellow Cards
+                        td[] {{ game_data.specialized.yellow_cards }}
+                      tr
+                        th Red Cards
+                        td[] {{ game_data.specialized.red_cards }}
+
+                      tr ng-show='game_data.show_rating'
+                        th Performance Rating
+                        td.rating-dropdown
+                          rating ng-model='game_data.rating' readonly='true' ng-show='game_data.rating !== null'
+
+                      tr ng-show='game_data.game_links.length > 0 && containsImage(game_data.game_links)'
+                        th Game Photos
+                        td
+                          div ng-repeat='link in game_data.game_links'
+                            a ng-href="{{ link.url }}" target='_blank' ng-if='isPhoto(link)' {{ linkTitle(link) }}
+
+                      tr ng-show='game_data.game_links.length > 0 && containsVideo(game_data.game_links)'
+                        th Game Video
+                        td
+                          div ng-repeat='link in game_data.game_links' ng-if='isUnknownVideo(link)'
+                            a ng-href="{{ link.url }}" target='_blank' {{ linkTitle(link) }}
+
+                      tr ng-repeat='link in game_data.game_links' ng-if='game_data.game_links.length > 0 && containsVideo(game_data.game_links)'
+                        td colspan=2 ng-if='isYoutubeVideo(link)'
+                          youtube-embed data-url="{{ link.url }}" width="100%"
+                        td colspan=2 ng-if='isVimeoVideo(link)'
+                          vimeo-embed data-url="{{ link.url }}" width="100%"
+                        td colspan=2 ng-if='isFacebookVideo(link) && (isMobile || isTablet)'
+                          a ng-href="{{ facebookVideoUrl(link) }}" target='_blank' {{ linkTitle(link) }}
+
+                      tr ng-repeat='link in game_data.game_links' ng-if='isFacebookVideo(link) && !isMobile && !isTablet'
+                        td colspan=2
+                          facebook-video-embed data-url="{{ link.url }}" width="100%"
+
+                      tr ng-show='game_data.notes.length > 0'
+                        th colspan=2 Game Notes
+                      tr
+                        td colspan=2 {{ game_data.notes }}
+
+
+
+            .panel-footer ng-if='user.current'
+              button.btn.pull-right ng-click='openIndividualGameData2(game,user)' ng-class='addOrEditClass' class="" {{ addOrEditStats }}
+
+      .row ng-if='your_player_results.length > 0'
+        .col-lg-12
+          .panel.panel-default.equal-height
+            .panel-heading.clearfix
+              h3.panel-title.pull-left[] {{ your_team }}
+            .panel-body
+              table.table.table-hover
+                thead
+                  tr
+                    th.text-center
+                      | #
+                    th
+                      | Player
+                    th.text-center
+                      | Goals
+                    th.text-center
+                      | Assists
+                    th.text-center
+                      | YC
+                    th.text-center
+                      | RC
+
+                tbody
+                  tr ng-repeat='result in your_player_results'
+                    td.text-center
+                      | {{ ::result.player.active_sport_profile.player_no }}
+                    th
+                      a ng-href="#/users/{{ ::result.player.id }}/dashboard"
+                        | {{ ::result.player.first_name }} {{ ::result.player.last_name }}
+                    td.text-center
+                      | {{ ::result.goals }}
+                    td.text-center
+                      | {{ ::result.specialized.assists }}
+                    td.text-center
+                      | {{ ::result.specialized.yellow_cards }}
+                    td.text-center
+                      | {{ ::result.specialized.red_cards }}
+
+      .row ng-if='their_player_results.length > 0'
+        .col-lg-12
+          .panel.panel-default.equal-height
+            .panel-heading.clearfix
+              h3.panel-title.pull-left[] {{ their_team }}
+            .panel-body
+              table.table.table-hover
+                thead
+                  tr
+                    th.text-center
+                      | #
+                    th
+                      | Player
+                    th.text-center
+                      | Goals
+                    th.text-center
+                      | Assists
+                    th.text-center
+                      | YC
+                    th.text-center
+                      | RC
+
+                tbody
+                  tr ng-repeat='result in their_player_results'
+                    td.text-center
+                      | {{ ::result.player.active_sport_profile.player_no }}
+                    th
+                      a ng-href="#/users/{{ ::result.player.id }}/dashboard"
+                        | {{ ::result.player.first_name }} {{ ::result.player.last_name }}
+                    td.text-center
+                      | {{ ::result.goals }}
+                    td.text-center
+                      | {{ ::result.specialized.assists }}
+                    td.text-center
+                      | {{ ::result.specialized.yellow_cards }}
+                    td.text-center
+                      | {{ ::result.specialized.red_cards }}
+
+
+      /! Sample game location map
+      div ng-include="''"
+      #sampleMap.modal.fade aria-hidden="true" aria-labelledby="myLargeModalLabel" role="dialog" tabindex="-1" data-modal-type="map"
+        .modal-dialog.modal-lg
+          .modal-content
+            .modal-header
+              button.close aria-label="Close" data-dismiss="modal" type="button"
+                span aria-hidden="true" &times;
+                h4#myModalLabel.modal-title Game location map
+            .modal-body.np
+              #map-canvas
+
+    div ng-include="'dashboard/_footer.html'"

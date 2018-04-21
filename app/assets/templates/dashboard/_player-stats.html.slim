@@ -1,0 +1,155 @@
+// Playing Carrer
+.player-stats.row
+  section.section-header.col-lg-12
+
+    h4.section-title.pull-left.text-uppercase Playing Career
+    /! This is a nested button group with dropdown
+
+  .stat-games-played.col-md-12.col-sm-12
+    // games played - actual stat TBD
+    .row
+      .col-lg-12
+        .panel.panel-default.equal-height
+          .panel-body
+            table.table.table-hover
+              thead
+                tr
+                  th.text-center
+                    | Year
+                  th.text-center
+                    | Club
+                  th.text-center
+                    | Team
+                  th.text-center
+                    | Played
+                  th.text-center
+                    | Goals
+                  th.text-center
+                    | Assists
+                  th.text-center
+                    .player-stats.game-stats-cards
+                      .stat-card-yellow
+                        .card
+                          span.foreground
+                          span.background
+                  th.text-center
+                    .player-stats.game-stats-cards
+                      .stat-card-red
+                        .card
+                          span.foreground
+                          span.background
+                  th.text-center
+                    | Champisions or Runners Up
+                  th.text-center
+                    | Action
+
+
+              tbody
+                tr ng-repeat='career in playing_careers'
+                  td.text-center
+                    | {{ career.season }}
+                  td.text-center
+                    a.club-logo.np ng-href='#/clubs/{{ career.club_id }}'
+                      img ng-src="{{ career.club_logo }}" class="img-responsive" width="30px"
+                  td.text-center
+                    | {{ career.team }}
+                  td.text-center
+                    | {{ career.games }}
+                  td.text-center
+                    | {{ career.goals }}
+                  td.text-center
+                    | {{ career.assists }}
+                  td.text-center
+                    | {{ career.yellow_cards }}
+                  td.text-center
+                    | {{ career.red_cards }}
+                  td
+                  td.text-center
+                    a ng-href='#/seasons/{{ season_id }}' Add Season
+
+
+
+// Main player awards
+.player-stats.row
+  section.section-header.col-lg-12
+
+    h4.section-title.pull-left.text-uppercase Awards
+    /! This is a nested button group with dropdown
+
+    button.btn.btn-default.pull-right ng-click='openAwardModal({})' Add Award
+
+  .stat-games-played.col-md-12.col-sm-12
+    // games played - actual stat TBD
+    .row
+      .col-lg-12
+        .panel.panel-default.equal-height
+          .panel-body
+            table.table.table-hover
+              thead
+                tr
+                  th.text-center
+                    | Year
+                  th.text-center
+                    | Club
+                  th.text-center
+                    | Team
+                  th.text-center
+                    | Award
+                  th.text-center
+                    | Action
+
+
+              tbody
+                tr ng-repeat='award in user.awards'
+                  td.text-center
+                    | {{ award.year }}
+                  td.text-center
+                    a.club-logo.np ng-href='#/clubs/{{ award.club_id }}'
+                      img ng-src="{{ award.club_logo }}" class="img-responsive" width="30px"
+                  td.text-center
+                    | {{ award.team_name }}
+                  td.text-center
+                    | {{ award.award }}
+                  td.text-center
+                    button.btn.btn-default ng-click='openAwardModal(award)' Edit Award
+
+
+// Highlights Video
+.game-info.row vertilize-container=true ng-if='user.highlights_video'
+  .col-md-6.col-sm-6
+    .previous-game.panel.panel-default vertilize=true
+      .panel-heading.clearfix
+        h3.panel-title.pull-left Highlights Video
+
+      .panel-body
+        .row
+          div ng-if='user.highlights_video.kind == "youtube"'
+            youtube-embed data-url="{{ user.highlights_video.url }}" width="100%"
+          div ng-if='user.highlights_video.kind == "vimeo"'
+            vimeo-embed data-url="{{ user.highlights_video.url }}" width="100%"
+          div ng-if='user.highlights_video.kind == "facebook" && (isMobile || isTablet)'
+            a ng-href="{{ user.highlights_video.url }}" target='_blank' {{ linkTitle(user.highlights_video.url) }}
+
+// Media Sections
+.row
+  section.section-header.col-lg-12
+
+    h4.section-title.pull-left.text-uppercase In the Media
+
+    button.btn.btn-default.pull-right ng-click='openMediaModal({})' Add Media
+
+  .col-md-12.col-sm-12
+    .row
+      .col-sm-4 ng-repeat='media in user.media_sections'
+        article.news-item
+          .panel.panel-default
+            .panel-body.np
+              picture
+                a ng-href="{{ media.external_link }}" target="_blank"
+                  img.img-responsive ng-src="{{ media.image_url }}"
+              .news-content
+                h4.title
+                  a ng-href="{{ media.external_link }}" target="_blank"
+                    | {{ media.title }}
+                div
+                  | {{ media.description }}

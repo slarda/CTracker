@@ -1,0 +1,58 @@
+// primary content
+
+#primary-content {
+    width: auto;
+    overflow: hidden;
+    
+    padding: 140px 0 40px;
+    @media screen and ( min-width: $screen-sm-min ) {
+        padding-top: 122px;
+    }
+    @media screen and ( min-width: $screen-md-min ) {
+        padding: 122px 0 60px 260px;
+    }
+    
+    > .container-fluid {
+        padding: 0 $contentPaddingMobile;
+        margin: 0 auto;
+        
+        @media screen and ( min-width: $screen-md-min ) {
+            max-width: 1170px;
+            padding: 0 $contentPaddingDesktop;
+            margin: 0 auto;
+        }
+    }
+    .page-header {
+    	position: fixed;
+    	margin: 0 0 0 260px;
+    	padding: 0;
+    	left: 0;
+    	top: 0;
+    	right: 0;
+    	height: 96px;
+    	background: $white;
+    	@include box-shadow( 0 0 3px rgba( 0,0,0,0.2 ) );
+    }
+    a {
+        &.edit,
+        &.share,
+        &.action {
+            text-decoration: none;
+            color: $ct_primaryRed;
+            label {
+                margin: 0;
+                border-bottom: 1px solid rgba( $ct_primaryRed, 0.2 );
+                @include transition( border-bottom 0.3s ease );
+            }
+            .glyphicon {
+                font-size: 18px;
+                vertical-align: middle;
+            }
+            &:hover {
+                label {
+                    border-color: rgba( $ct_primaryRed, 0.7 );
+                }
+            }
+        }
+    }
+}

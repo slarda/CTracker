@@ -1,0 +1,20 @@
+aside#sidebar-left.navmenu.navmenu-default aria-expanded="true" collapse='navCollapsed' ng-class="toggleSidebarClass(navCollapsed)"
+
+header#application-header.navbar.navbar-fixed-top role='navigation'
+  .branding
+    /button.navbar-toggle.pull-left ng-init="navCollapsed = true" ng-click="navCollapsed = !navCollapsed" ng-class="toggleButtonClass(navCollapsed)"
+      span.sr-only Toggle navigation
+      span.icon-bar.line1
+      span.icon-bar.line2
+      span.icon-bar.line3
+    a.navmenu-brand
+      / ng-href='#/users/{{ ::current_user.id }}/dashboard'
+      img src="/img/CT-logo-2x.png" class="img-responsive" alt="Champ Tracker logo"
+  .header-content.clearfix
+
+    h1.section-title.pull-left
+      |  {{ ::page_title }}
+
+    .collapse.navbar-collapse ng-class="!navCollapsed && 'in'"
+      .pull-right.login-button ng-show='user_logged_out'
+        a.btn.btn-primary href="/user_sessions/new" Signup or Login

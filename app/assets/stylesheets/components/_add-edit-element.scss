@@ -1,0 +1,73 @@
+// Add / edit club modal
+
+.add-edit-element {
+	.user-selections {
+		font-size: 11px;
+		font-weight: normal;
+	}
+
+	.list-group {
+		.list-group-item {
+			padding-right: 40px;
+			vertical-align: middle;
+			width: 100%;
+			display: block;
+			@include clearfix;
+			@include transition( 0.3s ease );
+
+			img {
+				// max-width: $img-width-xs;
+				max-width: $img-width-sm2;
+				padding: 0;
+				margin-right: 10px;
+				@media screen and ( min-width: $screen-md-min ) {
+					max-width: $img-width-sm2;
+				}
+			}
+			.club-logo {
+				max-width: $img-width-xs;
+				@media screen and ( min-width: $screen-md-min ) {
+					max-width: $img-width-sm;
+				}
+			}
+			.arrow_carrot-left,
+			.arrow_carrot-right {
+				font-size: 24px;
+				color: $ct_lightBlue;
+				@include transition( 0.3s ease );
+			}
+			.arrow_carrot-right {
+				position: absolute;
+				right: 15px;
+				top: 50%;
+				margin-top: -12px;
+
+			}
+			.arrow_carrot-left {
+				margin: -2px 5px 0 0;
+				vertical-align: middle;
+			}
+
+			&:hover {
+				background: $almostWhite;
+				.arrow_carrot-left {
+					@include transform( translateX( -5px ) );
+				}
+				.arrow_carrot-right {
+					@include transform( translateX( 5px ) );
+				}
+			}
+		}
+	}
+}
+
+.add-edit-element {
+  .list-group-item.selected {
+    background-color: $ct_lightBlue;
+    color: white;
+
+    &:hover {
+      background-color: darken($ct_lightBlue, 5%);
+    }
+  }
+}

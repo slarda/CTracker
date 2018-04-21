@@ -1,0 +1,443 @@
+doctype 5
+html lang="en"
+	head
+    	/! Meta, title, CSS, favicons, etc.
+		meta charset="utf-8" /
+		meta content="IE=edge" http-equiv="X-UA-Compatible" /
+		meta content="width=device-width, initial-scale=1" name="viewport" /
+    	title My Champ Tracker
+    	
+    	link href="css/animate.min.css" media="screen" rel="stylesheet" type="text/css" /
+    	link href="//fonts.googleapis.com/css?family=Roboto:100,300,400,500,700" rel="stylesheet" type="text/css" /
+    	link href="css/custom.css" media="screen" rel="stylesheet" type="text/css" /
+    	/! included everything for development only, customise later
+    	script src="js/modernizr.custom.36994.js"
+    	script src="https://maps.googleapis.com/maps/api/js"
+	body
+		header#application-header.navbar.navbar-fixed-top
+			.branding
+				button.navbar-toggle.collapsed data-target=".navbar-collapse" data-toggle="collapse" type="button" 
+					span.sr-only Toggle navigation
+					span.icon-bar.line1
+					span.icon-bar.line2
+					span.icon-bar.line3
+
+				a.navmenu-brand href="#"
+					img src="img/sample-branding-2x.png" class="img-responsive" alt="Brand name"
+			.header-content.clearfix
+				h1.section-title.pull-left 
+					a.nav-prev.btn.btn-default.btn-large href="#" aria-label="Previous"
+						span.glyphicon.glyphicon-chevron-left
+					|  Match details
+
+				ul.player-menu.nav.navbar-nav.navbar-right
+					li.dropdown.user-profile
+						a.dropdown-toggle data-toggle="dropdown" href="#"
+							| Evan 
+							span Kraloglou
+							span.arrow_carrot-down aria-hidden="true"
+							span.player-photo
+								img src="img/sample-player-1-sm.jpg" class="img-responsive pull-right img-circle" alt="player name" width="50" /
+						ul.dropdown-menu.dropdown-persist role="menu"
+							li
+							    a href="#" 
+									span.glyphicon.glyphicon-cog aria-hidden="true" 
+									|  Account Settings
+							li
+								a href="#" 
+									span.glyphicon.glyphicon-off aria-hidden="true" 
+									|  Logout
+
+		aside#sidebar-left.navmenu.navmenu-default.navbar-collapse aria-expanded="true"
+
+			nav#navbar role="navigation"
+				ul.nav.navbar-nav
+					li.active
+						a href="#" 
+							span class="icon_datareport"
+							| Dashboard
+					li
+						a href="#"
+							span class="icon_documents_alt"
+							| News
+					li
+						a href="#"
+							span class="icon_datareport"
+							| Results
+					li
+						a href="#"
+							span class="icon_question_alt2"
+							| Hints &amp; tips
+					li
+						a href="#"
+							span class="icon_heart_alt"
+							| Health
+					li
+						a href="#"
+							span class="icon_calendar"
+							| Calendar
+					li
+						a href="#"
+							span class="icon_easel"
+							| Performance
+					li
+						a href="#"
+							span class="icon_ribbon_alt"
+							| My Achievements
+					li
+						a href="#"
+							span class="icon_star_alt"
+							| Training Goals
+					li.menu-divider
+					li
+						a href="#"
+							span class="icon_cog"
+							| Settings
+					li
+						a href="#"
+							span class="icon_profile"
+							| Profile
+					li
+						a href="#"
+							span class="arrow_carrot-right"
+							| View Feature Tour
+    	section#primary-content
+			.container-fluid
+
+				// Game information and match details
+				.game-info.row.equal-heights
+
+					.col-md-6.col-sm-6
+						.previous-game.panel.panel-default.equal-height
+							.panel-heading.clearfix
+								h3.panel-title.pull-left Last Game
+								.share-element.pull-right
+									ul.share-action
+										li.text-uppercase
+											a href="#"
+												| Share 
+												span.glyphicon.glyphicon-share-alt aria-hidden="true"
+									ul.sharing-options
+										li.facebook
+											a href="#"
+												span.social_facebook_square
+												span.sr-only Facebook
+										li.twitter
+											a href="#"
+												span.social_twitter_square
+												span.sr-only Twitter
+										li.google-plus
+											a href="#"
+												span.social_googleplus_square
+												span.sr-only Facebook
+
+							.panel-body
+								h4.game-date
+									span.text-center
+										span.icon_calendar 
+										| Sun, 1 Mar, 2015 @ 11:30am
+								.row.teams
+									.col-md-6.col-sm-6.col-xs-6
+										a.club-logo.home-team href="#"
+											img.img-rounded.img-responsive src="img/club-logos/sample-club-logo-3.png"
+
+									.col-md-6.col-sm-6.col-xs-6
+										a.club-logo href="#"
+											img.img-rounded.img-responsive src="img/club-logos/sample-club-logo-1.png"
+
+									span.final-score
+										span.score.winner 2
+										span.score 1
+
+								.row
+									.col-md-6.col-sm-6.col-xs-6.text-center
+										h4.club-name
+											a href="#" Oakleigh Cannons FC
+									.col-md-6.col-sm-6-col-xs-6.text-center
+										h4.club-name
+											a href="#" Golburn Valley Suns FC
+
+								hr
+
+								.row
+									section.game-location.col-lg-6.col-md-6.col-sm-6
+										h5.section-title.text-center.text-uppercase
+											| game location
+										address
+											span.cticon.cticon-location-marker
+											span.text-left
+												| Jack Edwards Reserve
+												br/
+												| Edward Street, Oakleigh
+												br/
+												| Victoria, 3166
+										h5.text-center.text-uppercase
+											a href="#" data-toggle="modal" data-target="#sampleMap" data-backdrop="static" View map
+
+									section.weather-forecast.col-lg-6.col-md-6.col-sm-6
+										h5.section-title.text-center.text-uppercase weather forecast
+										.temperature.text-center
+											span.cticon.cticon-cloud-rain-sun
+											| 21
+											sup &deg;
+										h5.forecast-description.text-center.text-uppercase 
+											| rain clearing
+
+					.col-md-6.col-sm-6
+						.panel.panel-default.equal-height
+							.panel-heading.clearfix
+								h3.panel-title.pull-left My match stats
+								.share-element.pull-right
+									ul.share-action
+										li.text-uppercase
+											a href="#"
+												| Share 
+												span.glyphicon.glyphicon-share-alt aria-hidden="true"
+									ul.sharing-options
+										li.facebook
+											a href="#"
+												span.social_facebook_square
+												span.sr-only Facebook
+										li.twitter
+											a href="#"
+												span.social_twitter_square
+												span.sr-only Twitter
+										li.google-plus
+											a href="#"
+												span.social_googleplus_square
+												span.sr-only Facebook
+							.panel-body
+								.row.team-stats
+									.col-md-12
+										table.table
+											tbody
+												tr
+													th
+														| Minutes Played
+													td
+														| 22 min
+												tr
+													th
+														| Goals Scored
+													td
+														| 2
+												tr
+													th
+														| Assists
+													td
+														| -
+												tr
+													th
+														| Yellow Cards
+													td
+														| 2
+												tr
+													th
+														| Red Cards
+													td
+														| 1
+												tr
+													th
+														| Boots Worn
+													td
+														img.img-responsive.img-width-md src="img/gear/boots-sample.jpg" alt="Nike Elastico Superfly - Soft Ground - Midnight Fog/White/Volt"
+														span.caption
+															| Nike Elastico Superfly - Soft Ground
+
+							.panel-footer
+								button.btn.btn-default type="button" role="button" Edit stats
+								button.btn.btn-primary.pull-right type="button" role="button" data-toggle="modal" data-target="#gameData" data-backdrop="static" class="" Add stats
+
+				.row
+					.col-lg-12
+						.panel.panel-default.equal-height
+							.panel-heading.clearfix
+								h3.panel-title.pull-left Player stats
+								.share-element.pull-right
+									ul.share-action
+										li.text-uppercase
+											a href="#"
+												| Share 
+												span.glyphicon.glyphicon-share-alt aria-hidden="true"
+									ul.sharing-options
+										li.facebook
+											a href="#"
+												span.social_facebook_square
+												span.sr-only Facebook
+										li.twitter
+											a href="#"
+												span.social_twitter_square
+												span.sr-only Twitter
+										li.google-plus
+											a href="#"
+												span.social_googleplus_square
+												span.sr-only Facebook
+							.panel-body
+								table.table.table-hover
+									thead
+										tr
+											th.text-center
+												| #
+											th
+												| Player
+											th.text-center
+												| Goals
+											th.text-center
+												| Assists
+											th.text-center
+												| YC
+											th.text-center
+												| RC
+
+									tbody
+										tr
+											td.text-center
+												| 4
+											th
+												a href="#"
+													| Firstname Lastname
+											td.text-center
+												| 2
+											td.text-center
+												| 5
+											td.text-center
+												| 2
+											td.text-center
+												| 1
+										tr
+											td.text-center
+												| 22
+											th
+												a href="#"
+													| Firstname Lastname
+											td.text-center
+												| -
+											td.text-center
+												| 5
+											td.text-center
+												| 2
+											td.text-center
+												| 1
+										tr
+											td.text-center
+												| 11
+											th
+												a href="#"
+													| Firstname Lastname
+											td.text-center
+												| -
+											td.text-center
+												| 5
+											td.text-center
+												| 2
+											td.text-center
+												| 1
+										tr
+											td.text-center
+												| 13
+											th
+												a href="#"
+													| Firstname Lastname
+											td.text-center
+												| 1
+											td.text-center
+												| 5
+											td.text-center
+												| 2
+											td.text-center
+												| 1
+										tr
+											td.text-center
+												| 3
+											th
+												a href="#"
+													| Firstname Lastname
+											td.text-center
+												| -
+											td.text-center
+												| 5
+											td.text-center
+												| 2
+											td.text-center
+												| 1
+
+		
+
+			/! Sample game location map
+			#sampleMap.modal.fade aria-hidden="true" aria-labelledby="myLargeModalLabel" role="dialog" tabindex="-1" data-modal-type="map"
+				.modal-dialog.modal-lg
+			    	.modal-content
+			      		.modal-header
+			        		button.close aria-label="Close" data-dismiss="modal" type="button" 
+			          			span aria-hidden="true" &times;
+			          		h4#myModalLabel.modal-title Game location map
+			      		.modal-body.np
+			      			#map-canvas
+			
+			/! Form to add match data
+			#gameData.modal.fade aria-hidden="true" aria-labelledby="myLargeModalLabel" role="dialog" tabindex="-1"
+				.modal-dialog.
+			    	.modal-content
+			      		.modal-header
+			        		button.close aria-label="Close" data-dismiss="modal" type="button" 
+			          			span aria-hidden="true" &times;
+			          		h4#myModalLabel.modal-title Enter match details
+			          	form
+			      			.modal-body
+			      				.row
+				      				.form-group.clearfix
+										.col-md-12
+											label for="inlineRadio1"  Did you play in this game?
+											div
+												label.radio-inline for="inlineRadio1" 
+													input#inlineRadio1 name="serviceType" type="radio" value="yes" /
+													| Yes
+												label.radio-inline for="inlineRadio2" 
+													input#inlineRadio2 name="serviceType" type="radio" value="no" /
+													| No
+
+			      				.row
+				      				.form-group.clearfix
+			      			      		.col-md-4.col-sm-4.col-xs-12
+			      			        		label for="numeric1"  Goals scored
+			      			        		input#numeric1.form-control type="number" min="0" step="1" placeholder="0" /
+			      			      		.col-md-4.col-sm-4.col-xs-12
+			      			        		label for="numeric2"  Penalty goals
+			      			        		input#numeric2.form-control type="number" min="0" step="1" placeholder="0" /
+			      			      		.col-md-4.col-sm-4.col-xs-12
+			      			        		label for="numeric3"  Assists
+			      			        		input#numeric3.form-control type="number" min="0" step="1" placeholder="0" /
+								.row
+				      			  	.form-group.clearfix
+			      			      		.col-md-4.col-sm-6.col-xs-12
+			      			        		label for="yellowCards"  Yellow cards
+			      			        		input#yellowCards.form-control type="number" /
+			      			      		.col-md-4.col-sm-6.col-xs-12
+			      			        		label for="redCards"  Red cards
+			      			        		input#redCards.form-control type="number" /
+								.row
+				      			    .form-group.clearfix
+			      			  			.col-md-6.col-sm-6
+			      			    			label for="optionsBoots"  What boots did you wear?
+			      			   				select#optionsBoots.form-control
+			      			   					option value="1"  Boot 1
+			      			      				option value="2"  Boot 2
+			      			     				option value="3"  Boot 3
+		      			  	.modal-footer
+		      			    	button.btn.btn-default data-dismiss="modal" type="button"  Close
+		      			    	button.btn.btn-primary type="submit"  Save changes
+
+		/ footer.footer
+		/ 	.container.fluid
+		/ 		.row
+		/ 			.col-md-6.col-sm-6.text-center
+		/ 				p Here's my footer
+		/ 			.col-md-6.col-sm-6.text-center
+		/ 				P Here's my footer
+		/! overlay for main navigation
+		.nav-content-overlay
+		
+		script src="//code.jquery.com/jquery-1.11.2.min.js"
+		script src="js/bootstrap.min.js"
+		script src="js/jquery.easypiechart.min.js"
+		script src="js/scripts.js"

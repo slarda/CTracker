@@ -1,0 +1,119 @@
+// application header
+
+#application-header {
+	background: rgba( $white, 0.96 );
+	color: $white;
+	left: 0;
+	right: 0;
+	top: 0;
+	z-index: index( $elements, applicationHeader );
+	height: auto;
+	@include box-shadow( 0 0 6px rgba( $black, 0.12 ) );
+	@include transition( $defaultTransitionTiming ease );
+	&:after {
+		display: none;
+		@media screen and ( min-width: $screen-md-min ) {
+			display: block;
+			content: '';
+			position: absolute;
+			left: $navbarWidth;
+			right: 0;
+			bottom: -1px;
+			width: 100%;
+			height: 1px;
+			background: $borderGrey;
+		}
+	}
+	@media screen and ( min-width: $screen-md-min ) {	// > 992px
+		height: $headerHeight;
+		line-height: $headerHeight;
+		@include box-shadow( none );
+	}
+
+	a {
+		color: $ct_primaryRed;
+	}
+
+	.branding {
+		position: relative;
+		text-align: center;
+        height: $headerHeight / 2;
+        background: $black;
+        padding: 14px 0 0;
+		height: $headerHeight / 2;
+        @media screen and ( min-width: $screen-md-min ) {
+        	float: left;
+            height: $headerHeight;
+            color: $white;
+            margin-bottom: 15px;
+            width: $navbarWidth;
+            padding: 25px 0 0;
+        }
+        .navmenu-brand {
+        	position: relative;
+        	color: $white;
+        	display: block;
+        	width: 126px;
+        	height: 28px;
+        	margin: -3px auto 0;
+        	@media screen and ( min-width: $screen-md-min ) {	// > 992px
+        		margin: 0 15px;
+        		margin-top: 0;
+        		width: 230px;
+        	}
+        }  
+    }
+    .nav-prev {
+		width: 28px;
+		height: 28px;
+		line-height: 28px;
+		margin: -3px 5px 0 0;
+		padding: 0px;
+		@media screen and ( min-width: $screen-md-min ) {
+			width: 38px;
+			height: 38px;
+			line-height: 38px;
+			margin: -6px 8px 0 0;
+		}
+    }
+	.section-title {
+		position: relative;
+		display: inline;
+		color: $baseFontColour;
+		font-weight: 300;
+		font-size: 18px;
+		float: left;
+		margin: 0 0 0 $contentPaddingMobile;
+		line-height: $headerHeight / 2;
+		@media screen and ( min-width: $screen-md-min ) {	// > 992px
+			font-size: 36px;
+			line-height: $headerHeight;
+			margin: 0 0 0 60px;
+		}
+	}
+	.player-menu {
+		display: none;
+		@media screen and ( min-width: $screen-md-min ) {
+			display: block;
+			> li {
+				min-height: 100px;
+				line-height: 100px;
+			}
+			.dropdown-toggle {
+				height: $headerHeight;
+			}
+			.player-photo {
+				display: inline-block;
+				margin: 0 20px 0 12px;
+				vertical-align: middle;
+				overflow: hidden;
+				width: 50px;
+				height: 50px;
+				@include border-radius( 100px );
+			}
+		}
+		.dropdown-toggle {
+			line-height: 70px;
+		}
+	}
+}

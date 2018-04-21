@@ -1,0 +1,1 @@
+json.partial! 'games/game_players', game_players: @game

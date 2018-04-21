@@ -1,0 +1,10 @@
+div ng-controller='ArticleListCtrl'
+
+  div ng-include="'dashboard/_navigation.html'"
+
+  section#primary-content
+    .container-fluid
+      #warning
+
+      div ng-repeat='article in articles'
+        div ng-include='articleUrl(article)'

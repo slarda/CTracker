@@ -1,0 +1,35 @@
+div ng-controller='DashboardCtrl'
+  div ng-include="'dashboard/_navigation.html'"
+
+  section#primary-content
+    .container-fluid
+
+      div style='border:solid 1px gray;border-radius:5px' ng-show='showTeamGame(user.team)'
+        ' NEXT GAME
+        div
+          ' {{ ::user.team.future_games[0].start_date_s }}
+        div
+          img ng-src='{{ clubLogo(user.team.future_games[0].home_team) }}' ng-class='isAwayClass(user.team.future_games[0],false)' width=50 height=50
+          ' VS
+          img ng-src='{{ clubLogo(user.team.future_games[0].away_team) }}' ng-class='isAwayClass(user.team.future_games[0],true)' width=50 height=50
+        div
+          button.btn.btn-default style='border:solid 1px red;color:red' ng-click='showMatchDetails()' Match Details &gt;
+
+      div
+        div
+          b Upcoming Games
+        .row ng-repeat='next in user.team.future_games'
+          .col-xs-2
+            img ng-src='{{ clubLogo(otherTeam(next)) }}' width=100 height=100
+          .col-xs-10
+            div
+              ' vs.
+              b[] {{ ::otherTeamName(next) }}
+            div
+              ' {{ ::next.start_date_s }}
+
+        div style='text-align:center'
+          button.btn.btn-danger Full schedule
+
+
+

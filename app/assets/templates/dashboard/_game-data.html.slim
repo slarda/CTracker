@@ -1,0 +1,191 @@
+div#game-data-modal
+  .modal-header
+    button.close aria-label="Close" type="button" ng-click='cancel()'
+      span aria-hidden="true" &times;
+    h4#myModalLabel.modal-title Enter match stats
+
+  form.modal-body name='form' stop-event='touchend'
+    .row
+      .form-group.clearfix
+        .col-md-12.did-you-play
+          input type='hidden' ng-model='data.sport'
+          label.dyp for="inlineRadio1"  Did you {{ playedOrCoached() }} this game?
+          div
+            label.radio-inline for="inlineRadio1"
+              input#inlineRadio1 name="serviceType" type="radio" ng-model='data.played_game' value='true'
+              span
+              | Yes
+            label.radio-inline for="inlineRadio2"
+              input#inlineRadio2 name="serviceType" type="radio" ng-model='data.played_game' value='false'
+              span
+              | No
+
+    .row ng-if="data.prior_score"
+      .form-group.clearfix
+
+        .home-team.col-sm-3.col-xs-10
+          span.club-logo
+            img.img-responsive ng-src='{{ clubLogo(data.game.home_team) }}' alt="Responsive image"
+          span.team-name[] {{ data.game.home_team.name }}
+
+        .final-score.col-sm-2.text-center.col-xs-2
+          span
+            span.score ng-class='homeWinner(data.game)' {{ ::data.game.home_team_score }}
+            span.score ng-class='awayWinner(data.game)' {{ ::data.game.away_team_score }}
+
+        .away-team.col-sm-3.col-xs-10
+          span.club-logo
+            img.img-responsive ng-src='{{ clubLogo(data.game.away_team) }}' alt="Responsive image"
+          span.team-name[] {{ data.game.away_team.name }}
+
+    .row ng-if="isRep(100) && !data.prior_score"
+      .form-group.clearfix
+        .home-team.col-sm-3.col-xs-10
+          span.club-logo
+            img.img-responsive ng-src='{{ clubLogo(data.game.home_team) }}' alt="Responsive image"
+          span.team-name[] {{ data.game.home_team.name }}
+
+        .final-score.col-sm-2.text-center.col-xs-2
+          span.vs VS
+
+        .away-team.col-sm-3.col-xs-10
+          span.club-logo
+            img.img-responsive ng-src='{{ clubLogo(data.game.away_team) }}' alt="Responsive image"
+          span.team-name[] {{ data.game.away_team.name }}
+
+      .form-group.clearfix
+        .col-md-4.col-sm-4.col-xs-12
+          label for="home_score"  Home team score
+          input#home_score.form-control type="number" name='home_score' ng-keydown='checkInts($event)' ng-model='data.home_score' min="0" max="15" step="1" ng-pattern='/^[0-9]*$/' placeholder="0"
+          div ng-show='form.$submitted || form.home_score.$touched'
+            .error[ng-show='form.home_score.$error.number || form.home_score.$error.min || form.home_score.$error.max || form.home_score.$error.pattern']
+              | Please enter a number between 0 and 15
+
+        .col-md-4.col-sm-4.col-xs-12
+          label for="away_score"  Away team score
+          input#away_score.form-control type="number" name='away_score' ng-keydown='checkInts($event)' ng-model='data.away_score' min="0" max="15" step="1" ng-pattern='/^[0-9]*$/' placeholder="0"
+          div ng-show='form.$submitted || form.away_score.$touched'
+            .error[ng-show='form.away_score.$error.number || form.away_score.$error.min || form.away_score.$error.max || form.away_score.$error.pattern']
+              | Please enter a number between 0 and 15
+
+    .row ng-if="isCoach()"
+      .form-group.clearfix
+        .col-md-4.col-sm-4.col-xs-12
+          label Formation
+
+          select.form-control ng-model='data.formation'
+            option value='3-4-3' 3-4-3
+            option value='3-5-2 Wingbacks' 3-5-2 Wingbacks
+            option value='4-2-3-1' 4-2-3-1
+            option value='4-3-2-1' 4-3-2-1
+            option value='4-3-3' 4-3-3
+            option value='4-4-1-1' 4-4-1-1
+            option value='4-4-2' 4-4-2
+            option value='4-4-2 Diamond' 4-4-2 Diamond
+            option value='4-5-1' 4-5-1
+            option value='5-5-0' 5-5-0
+
+    .row
+      .form-group.clearfix
+        .col-md-4.col-sm-4.col-xs-12 ng-if="!isCoach()"
+          label for="numeric1"  Minutes played
+          input#numeric1.form-control type="number" name='minutes_played' ng-keydown='checkInts($event)' ng-model='data.minutes_played' min="0" max="90" step="1" placeholder="0"
+          div ng-show='form.$submitted || form.minutes_played.$touched'
+            .error[ng-show='form.minutes_played.$error.number || form.minutes_played.$error.min || form.minutes_played.$error.max']
+              | Please enter a number between 0 and 90
+
+        .col-md-4.col-sm-4.col-xs-12 ng-if="!isGoalkeeper() && !isCoach()"
+          label for="numeric1"  Goals scored
+          input#numeric1.form-control type="number" name='goals' ng-keydown='checkInts($event)' ng-model='data.goals' min="0" max="15" step="1" ng-pattern='/^[0-9]*$/' placeholder="0"
+          div ng-show='form.$submitted || form.goals.$touched'
+            .error[ng-show='form.goals.$error.number || form.goals.$error.min || form.goals.$error.max || form.goals.$error.pattern']
+              | Please enter a number between 0 and 15
+
+        .col-md-4.col-sm-4.col-xs-12 ng-if="!isGoalkeeper() && !isCoach()"
+          label for="numeric3"  Assists
+          input#numeric3.form-control type="number" name='assists' ng-keydown='checkInts($event)' ng-model='data.specialized.assists' min="0" max="15" step="1" ng-pattern='/^[0-9]*$/' placeholder="0"
+          div ng-show='form.$submitted || form.assists.$touched'
+            .error[ng-show='form.assists.$error.number || form.assists.$error.min || form.assists.$error.max || form.assists.$error.pattern']
+              | Please enter a number between 0 and 15
+
+        .col-md-4.col-sm-6.col-xs-12 ng-if="isGoalkeeper() && !isCoach()"
+          label for="penaltySaves"  Penalties saved
+          input#penaltySaves.form-control type="number" name='penaltySaves' ng-keydown='checkInts($event)' ng-model='data.specialized.penalty_saves' min="0" max="5" step="1" ng-pattern='/^[0-9]*$/' placeholder="0"
+          div ng-show='form.$submitted || form.penaltySaves.$touched'
+            .error[ng-show='form.penaltySaves.$error.number || form.penaltySaves.$error.min || form.penaltySaves.$error.max|| form.penaltySaves.$error.pattern']
+              | Please enter a number between 0 and 5
+    .row
+      .form-group.clearfix
+        .col-md-4.col-sm-6.col-xs-12
+          label for="yellowCards"  Yellow cards
+          input#yellowCards.form-control type="number" name='yellow' ng-keydown='checkInts($event)' ng-model='data.specialized.yellow_cards' min="0" max="{{ max_yellow }}" step="1" ng-pattern='/^[0-9]*$/' placeholder="0"
+          div ng-show='form.$submitted || form.yellow.$touched'
+            .error[ng-show='form.yellow.$error.number || form.yellow.$error.min || form.yellow.$error.max|| form.yellow.$error.pattern']
+              | Please enter a number between 0 and {{ max_yellow }}
+        .col-md-4.col-sm-6.col-xs-12
+          label for="redCards"  Red cards
+          input#redCards.form-control type="number" name='red' ng-keydown='checkInts($event)' ng-model='data.specialized.red_cards' min="0" max="{{ max_red }}" step="1" ng-pattern='/^[0-9]*$/' placeholder="0"
+          div ng-show='form.$submitted || form.red.$touched'
+            .error[ng-show='form.red.$error.number || form.red.$error.min || form.red.$error.max || form.red.$error.pattern']
+              | Please enter a number between 0 and {{ max_red }}
+
+
+    .row
+      .form-group.clearfix
+        .col-md-12.rating-dropdown
+          label
+            | Rate your performance
+            span.gray-label<[] (private to you)
+          span.dropdown[dropdown]
+            button.btn.btn-default.dropdown-toggle[dropdown-toggle]
+              span ng-show='data.rating === null' Select star rating
+              rating ng-model='data.rating' readonly="true" ng-show='data.rating !== null'
+              span.caret<
+            ul.dropdown-menu[dropdown-menu]
+              li
+                rating ng-click='setRating(5)' ng-model='rating5' readonly="true"
+              li
+                rating ng-click='setRating(4)' ng-model='rating4' readonly="true"
+              li
+                rating ng-click='setRating(3)' ng-model='rating3' readonly="true"
+              li
+                rating ng-click='setRating(2)' ng-model='rating2' readonly="true"
+              li
+                rating ng-click='setRating(1)' ng-model='rating1' readonly="true"
+
+
+    .row
+      .form-group.clearfix
+        .col-sm-6.col-xs-12
+          label for="photoLink"  Link to game photos
+          input#photoLink.form-control type="url" name='photoLink' ng-model='data.photo_link' placeholder="Instagram, Facebook, etc."
+          div ng-show='form.$submitted || form.photoLink.$touched'
+            .error[ng-show='form.photoLink.$error.url']
+              | Please enter a valid URL
+
+        .col-sm-6.col-xs-12
+          label for="videoLink"  Link to game video
+          input#videoLink.form-control type="url" name='videoLink' ng-model='data.video_link' placeholder="YouTube, Vimeo, Facebook, etc."
+          div ng-show='form.$submitted || form.videoLink.$touched'
+            .error[ng-show='form.videoLink.$error.url']
+              | Please enter a valid URL
+
+    .row
+      .form-group.clearfix
+        .col-md-12
+          label
+            | Match notes
+            span.gray-label<[] (private to you)
+          textarea name='notes' ng-model='data.notes' rows=5 style='width:100%' placeholder=''
+
+  /.row
+      .form-group.clearfix
+        .col-md-6.col-sm-6
+          label for="optionsBoots"  What boots did you wear?
+          select#optionsBoots.form-control
+            option value="1"  Boot 1
+            option value="2"  Boot 2
+            option value="3"  Boot 3
+  .modal-footer
+    button.btn.btn-default type="button" ng-click='cancel()' Close
+    button.btn.btn-primary type="submit" ng-click='save()' Save changes

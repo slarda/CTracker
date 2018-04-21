@@ -1,0 +1,228 @@
+div ng-controller='DashboardCtrl'
+  div ng-include="'dashboard/_navigation.html'"
+
+  section#primary-content
+    .container-fluid
+      #warning
+
+      .btn-group.btn-group-sm role="group"
+        button.btn.btn-default.dropdown-toggle.active aria-expanded="false" data-toggle="dropdown" type="button"
+          | {{ currentSeason }}
+          span.arrow_carrot-down< aria-hidden='true'
+        ul.dropdown-menu role="menu"
+          li ng-repeat='game in prior_games | getValidSeasons'
+            a ng-click='setCurrentSeason(game)' {{ game }}
+
+      // Competition name
+      .row
+        section.section-header.col-lg-12
+          h4.section-title.pull-left.text-uppercase
+            strong
+              | COMPETITION:
+            span.pipe
+            span.normal-weight-font
+              | {{ ::user.team.league.name }}
+
+
+      //  Team fixture
+      .row.fixture
+        .col-xs-12
+          .panel
+            .faux-table-container
+              .row
+                .col-lg-12.faux-table-header
+                  .row
+                    .col-sm-1.col-xs-3.text-center
+                      label Round
+                    .col-sm-11
+                      label Date
+                .col-lg-12.faux-table-body
+
+
+                  .single-item.row ng-repeat='game in prior_games.slice().reverse() | filterBySeason:currentSeason'
+                    .roundNum.col-sm-1.col-xs-12
+                      span.badge
+                        span.text
+                          | Round
+                        | {{ ::game.round }}
+                    .col-md-3.col-sm-3.col-xs-12
+                      span.date
+                        span.icon_calendar
+                        |  {{ ::game.start_date_s }}
+                      address
+                        strong
+                          | {{ ::game.venue.address1 }}
+                    .home-team.col-sm-3.col-xs-10
+                      span.club-logo
+                        a data-team='{{ game.home_team.id }}' ng-href='#/clubs/{{ ::game.home_team.club.id }}'
+                          img.img-responsive ng-src='{{ clubLogo(game.home_team) }}' alt="Responsive image"
+                      span.team-name
+                        a data-team='{{ game.home_team.id }}' ng-href='#/clubs/{{ ::game.home_team.club.id }}' {{ ::game.home_team.name }}
+
+                    .final-score.col-sm-2.text-center.col-xs-2 ng-if="game.state != 'final_score'"
+                      span.vs
+                        | VS
+
+                    .final-score.col-sm-2.text-center.col-xs-2 ng-if="game.state == 'final_score'"
+                      span
+                        span.score ng-class='homeWinner(game)' {{ game.home_team_score }}
+                        span.score ng-class='awayWinner(game)' {{ game.away_team_score }}
+
+                    .away-team.col-sm-3.col-xs-10
+                      span.club-logo
+                        a data-team='{{ game.away_team.id }}' ng-href='#/clubs/{{ ::game.away_team.club.id }}'
+                          img.img-responsive ng-src='{{ clubLogo(game.away_team) }}' alt="Responsive image"
+                      span.team-name
+                        a data-team='{{ game.away_team.id }}' ng-href='#/clubs/{{ ::game.away_team.club.id }}' {{ ::game.away_team.name }}
+
+                    .clearfix
+                    // TODO: Refactor to a component (angular.js 1.5) or directive
+                    .faux-table-footer.row ng-if="isMobile" style='padding-top: 20px'
+                      .col-md-12
+                        span ng-if='didntPlayGame(game.player_stat)'
+                          b DNP&nbsp;&nbsp;
+
+                        span ng-if='game.player_stat.played_game'
+                          span ng-if='isCoach()'
+                            | {{ showFormation(game.player_stat) }}&nbsp;&nbsp;
+
+                          span ng-if='game.player_stat.minutes_played && !isCoach()'
+                            i.fa.fa-clock-o title='Minutes Played'
+                            | &nbsp;{{ game.player_stat.minutes_played }}'&nbsp;&nbsp;
+
+                          span.rating-dropdown
+                            rating ng-model='game.player_stat.rating' readonly='true' ng-show='game.player_stat.rating'
+                            span ng-if='game.player_stat.rating' &nbsp;&nbsp;
+
+                          span ng-if='game.player_stat.goals'
+                            span.cticon.cticon-soccer-ball.game-stats-goals title='Goals'
+                            | {{ game.player_stat.goals }}&nbsp;&nbsp;
+                          span ng-if='game.player_stat.own_goals'
+                            | OG: {{ game.player_stat.own_goals }}&nbsp;&nbsp;
+                          span ng-if='game.player_stat.specialized.penalty_saves'
+                            span.cticon.cticon-goal-save.game-stats-penalties title='Penalty Saves'
+                            | &nbsp;{{ game.player_stat.specialized.penalty_saves }}&nbsp;&nbsp;
+                          span ng-if='game.player_stat.specialized.assists'
+                            span.cticon.cticon-strategy2.game-stats-assists title='Assists'
+                            | &nbsp;{{ game.player_stat.specialized.assists }}&nbsp;&nbsp;
+                          /span ng-if='game.player_stat.specialized.yellow_cards || game.player_stat.specialized.red_cards'
+                            | &nbsp;&nbsp;
+
+                          span ng-if='game.player_stat.specialized.yellow_cards' ng-repeat='n in getArray(game.player_stat.specialized.yellow_cards) track by $index'
+                            .player-stats.game-stats-cards
+                              .stat-card-yellow
+                                .card
+                                  span.foreground
+                                  span.background
+                          span ng-if='game.player_stat.specialized.red_cards' ng-repeat='n in getArray(game.player_stat.specialized.red_cards) track by $index'
+                            .player-stats.game-stats-cards
+                              .stat-card-red
+                                .card
+                                  span.foreground
+                                  span.background
+
+                          span ng-if='containsImage(game.player_stat.game_links)'
+                            | &nbsp;&nbsp;
+                            img src='/img/image-icon.png' width=18 height=18
+
+                          span ng-if='containsVideo(game.player_stat.game_links)'
+                            | &nbsp;&nbsp;
+                            img src='/img/video-icon.png' width=18 height=18
+
+                    .faux-table-footer.row
+                      .col-sm-12
+                        ul.actions
+                          li
+                            a.btn.btn-default.btn-sm ng-click='gameUrl(game,user)'
+                              | Game details
+                              span.arrow_carrot-right aria-hidden="true"
+                          li ng-if='user.current'
+                            a.btn.btn-sm ng-click='openIndividualGameData(game,user)' ng-class='game.btn_class'
+                              | {{ game.btn_text }}
+                              span.arrow_carrot-right aria-hidden="true"
+
+                          li ng-if="!isMobile"
+                            span ng-if='didntPlayGame(game.player_stat)'
+                              b DNP&nbsp;&nbsp;
+
+                            span ng-if='game.player_stat.played_game'
+                              span ng-if='isCoach()'
+                                | {{ showFormation(game.player_stat) }}&nbsp;&nbsp;
+
+                              span ng-if='game.player_stat.minutes_played && !isCoach()'
+                                i.fa.fa-clock-o title='Minutes Played'
+                                | &nbsp;{{ game.player_stat.minutes_played }}'&nbsp;&nbsp;
+
+                              span.rating-dropdown
+                                rating ng-model='game.player_stat.rating' readonly='true' ng-show='game.player_stat.rating'
+                              span &nbsp;&nbsp;
+
+                              span ng-if='game.player_stat.goals'
+                                span.cticon.cticon-soccer-ball.game-stats-goals title='Goals'
+                                | {{ game.player_stat.goals }}&nbsp;&nbsp;&nbsp;&nbsp;
+                              span ng-if='game.player_stat.own_goals'
+                                | OG: {{ game.player_stat.own_goals }}&nbsp;&nbsp;&nbsp;&nbsp;
+                              span ng-if='game.player_stat.specialized.penalty_saves'
+                                span.cticon.cticon-goal-save.game-stats-penalties title='Penalty Saves'
+                                | &nbsp;{{ game.player_stat.specialized.penalty_saves }}&nbsp;&nbsp;
+                              span ng-if='game.player_stat.specialized.assists'
+                                span.cticon.cticon-strategy2.game-stats-assists title='Assists'
+                                | &nbsp;{{ game.player_stat.specialized.assists }}&nbsp;&nbsp;
+                              span ng-if='game.player_stat.specialized.yellow_cards || game.player_stat.specialized.red_cards'
+                                | &nbsp;&nbsp;
+                              span ng-if='game.player_stat.specialized.yellow_cards' ng-repeat='n in getArray(game.player_stat.specialized.yellow_cards) track by $index'
+                                .player-stats.game-stats-cards
+                                  .stat-card-yellow
+                                    .card
+                                      span.foreground
+                                      span.background
+                              span ng-if='game.player_stat.specialized.red_cards' ng-repeat='n in getArray(game.player_stat.specialized.red_cards) track by $index'
+                                .player-stats.game-stats-cards
+                                  .stat-card-red
+                                    .card
+                                      span.foreground
+                                      span.background
+
+                              span ng-if='containsImage(game.player_stat.game_links)'
+                                | &nbsp;&nbsp;
+                                img src='/img/image-icon.png' width=18 height=18
+
+                              span ng-if='containsVideo(game.player_stat.game_links)'
+                                | &nbsp;&nbsp;
+                                img src='/img/video-icon.png' width=18 height=18
+
+                  .row ng-class="{ 'is-active' : $first }" ng-repeat='game in user.team.future_games | filterBySeason:currentSeason'
+                      .roundNum.col-sm-1.col-xs-12
+                        span.badge
+                          span.text
+                            | Round
+                          | {{ ::game.round }}
+                      .col-md-3.col-sm-3.col-xs-12
+                        span.date
+                          span.icon_calendar
+                          |  {{ ::game.start_date_s }}
+                        address
+                          strong
+                            | {{ ::game.venue.address1 }}
+                          /br
+                          | {{ ::addressComponents(game.venue) }}
+                          a.hand-pointer< ng-click='openMapForGame(game)' map
+                      .home-team.col-sm-3.col-xs-10
+                        span.club-logo
+                          a data-team='{{ game.home_team.id }}' ng-href='#/clubs/{{ ::game.home_team.club.id }}'
+                            img.img-responsive ng-src="{{ clubLogo(game.home_team) }}" alt="Responsive image"
+                        span.team-name
+                          a data-team='{{ game.home_team.id }}' ng-href='#/clubs/{{ ::game.home_team.club.id }}' {{ game.home_team.name }}
+
+                      .final-score.col-sm-2.text-center.col-xs-2
+                        span.vs
+                          | VS
+
+                      .away-team.col-sm-3.col-xs-10
+                        span.club-logo
+                          a data-team='{{ game.away_team.id }}' ng-href='#/clubs/{{ ::game.away_team.club.id }}'
+                            img.img-responsive ng-src="{{ clubLogo(game.away_team) }}" alt="Responsive image"
+                        span.team-name
+                          a data-team='{{ game.away_team.id }}' ng-href='#/clubs/{{ ::game.away_team.club.id }}' {{ game.away_team.name }}
+
+    div ng-include="'dashboard/_footer.html'"

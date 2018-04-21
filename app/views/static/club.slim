@@ -1,0 +1,446 @@
+doctype 5
+html lang="en"
+	head
+    	/! Meta, title, CSS, favicons, etc.
+		meta charset="utf-8" /
+		meta content="IE=edge" http-equiv="X-UA-Compatible" /
+		meta content="width=device-width, initial-scale=1" name="viewport" /
+    	title My Champ Tracker
+    	
+    	link href="css/animate.min.css" media="screen" rel="stylesheet" type="text/css" /
+    	link href="//fonts.googleapis.com/css?family=Roboto:100,300,400,500,700" rel="stylesheet" type="text/css" /
+    	link href="css/custom.css" media="screen" rel="stylesheet" type="text/css" /
+    	/! included everything for development only, customise later
+    	script src="js/modernizr.custom.36994.js"
+    	script src="https://maps.googleapis.com/maps/api/js"
+	body
+		header#application-header.navbar.navbar-fixed-top
+			.branding
+				button.navbar-toggle.collapsed data-target=".navbar-collapse" data-toggle="collapse" type="button" 
+					span.sr-only Toggle navigation
+					span.icon-bar.line1
+					span.icon-bar.line2
+					span.icon-bar.line3
+
+				a.navmenu-brand href="#"
+					img src="img/sample-branding-2x.png" class="img-responsive" alt="Brand name"
+			.header-content.clearfix
+				h1.section-title.pull-left 
+					a.nav-prev.btn.btn-default.btn-large href="#" aria-label="Previous"
+						span.glyphicon.glyphicon-chevron-left
+					|  My club
+	          	
+
+				ul.player-menu.nav.navbar-nav.navbar-right
+					li.dropdown.user-profile
+						a.dropdown-toggle data-toggle="dropdown" href="#"
+							| Evan 
+							span Kraloglou
+							span.arrow_carrot-down aria-hidden="true"
+							span.player-photo
+								img src="img/sample-player-1-sm.jpg" class="img-responsive pull-right img-circle" alt="player name" width="50" /
+						ul.dropdown-menu.dropdown-persist role="menu"
+							li
+							    a href="#" 
+									span.glyphicon.glyphicon-cog aria-hidden="true" 
+									|  Account Settings
+							li
+								a href="#" 
+									span.glyphicon.glyphicon-off aria-hidden="true" 
+									|  Logout
+
+		aside#sidebar-left.navmenu.navmenu-default.navbar-collapse aria-expanded="true"
+
+			nav#navbar role="navigation"
+				ul.nav.navbar-nav
+					li.active
+						a href="#" 
+							span class="icon_datareport"
+							| Dashboard
+					li
+						a href="#"
+							span class="icon_documents_alt"
+							| News
+					li
+						a href="#"
+							span class="icon_datareport"
+							| Results
+					li
+						a href="#"
+							span class="icon_question_alt2"
+							| Hints &amp; tips
+					li
+						a href="#"
+							span class="icon_heart_alt"
+							| Health
+					li
+						a href="#"
+							span class="icon_calendar"
+							| Calendar
+					li
+						a href="#"
+							span class="icon_easel"
+							| Performance
+					li
+						a href="#"
+							span class="icon_ribbon_alt"
+							| My Achievements
+					li
+						a href="#"
+							span class="icon_star_alt"
+							| Training Goals
+					li.menu-divider
+					li
+						a href="#"
+							span class="icon_cog"
+							| Settings
+					li
+						a href="#"
+							span class="icon_profile"
+							| Profile
+					li
+						a href="#"
+							span class="arrow_carrot-right"
+							| View Feature Tour
+    	section#primary-content
+			.container-fluid
+
+				// Club information
+				.row.equal-heights
+
+					.col-md-6.col-sm-6
+						.club-info.panel.panel-default.equal-height
+							
+							.club-info-header.text-center
+								h2.club-name Oakleigh Cannons FC
+								p
+									a.text-uppercase.badge.badge-red href="http://www.oakleighcannonsfc.com.au/" 
+										span.icon_link
+										|  View web site
+								a.club-logo.center-block href="#" title="View the Oakleigh Cannons FC web site"
+									img.img-circle src="img/club-logos/sample-club-logo-3.png" class="img-responsive" alt="Club name"
+
+							.panel-body
+								.row
+									section.col-lg-6.col-md-12.col-sm-12
+										h5.section-title.text-uppercase
+											| About the club
+										p
+											| The Oakleigh Cannons FC was established in 1972. Initially it was the creation of a few young Soccer enthusiasts who funded the establishment of the club themselves.
+										p
+											a href="#" Read more...
+									.col-lg-6.col-md-12.col-sm-12
+										section
+											h5.section-title.text-uppercase
+												| Senior Teams
+												= ' '
+												span.pipe
+												= ' '
+												a href="#"
+													| 12 Teams
+											ul.team-list
+												li
+													a href="#" Oakleigh Senior Mens
+												li
+													a href="#" Oakleigh Senior Mens
+										br/
+										section
+											h5.section-title.text-uppercase
+												| Follow us on
+											.social-platforms
+												ul
+													li.facebook
+														a href="#"
+															span.social_facebook_square
+															span.sr-only Facebook
+													li.twitter
+														a href="#"
+															span.social_twitter_square
+															span.sr-only Twitter
+													li.google-plus
+														a href="#"
+															span.social_googleplus_square
+															span.sr-only GooglePlus
+
+
+					.col-md-6.col-sm-6
+						.panel.panel-default.equal-height
+							.panel-heading.clearfix
+								h3.panel-title 
+									strong
+										| Team list
+
+							.panel-body
+								.row.team-stats
+									.col-md-12
+										table.table.table-hover
+											tbody
+												tr.no-top-border
+													th
+														a href="#"
+															| PS4 NPL
+													td
+														a href="#"
+															| Fixture
+													td
+														a href="#"
+															| Results
+													td
+														a href="#"
+															| Ladder
+												tr
+													th
+														a href="#"
+															| PS4 NPL 18 East
+													td
+														a href="#"
+															| Fixture
+													td
+														a href="#"
+															| Results
+													td
+														a href="#"
+															| Ladder
+												tr
+													th
+														a href="#"
+															| PS4 NPL 16 East
+													td
+														a href="#"
+															| Fixture
+													td
+														a href="#"
+															| Results
+													td
+														a href="#"
+															| Ladder
+												tr
+													th
+														a href="#"
+															| PS4 NPL 15 East
+													td
+														a href="#"
+															| Fixture
+													td
+														a href="#"
+															| Results
+													td
+														a href="#"
+															| Ladder
+												tr
+													th
+														a href="#"
+															| PS4 NPL 14 East
+													td
+														a href="#"
+															| Fixture
+													td
+														a href="#"
+															| Results
+													td
+														a href="#"
+															| Ladder
+												tr
+													th
+														a href="#"
+															| PS4 NPL 13 East
+													td
+														a href="#"
+															| Fixture
+													td
+														a href="#"
+															| Results
+													td
+														a href="#"
+															| Ladder
+												tr
+													th
+														a href="#"
+															| PS4 NPL 12 East
+													td
+														a href="#"
+															| Fixture
+													td
+														a href="#"
+															| Results
+													td
+														a href="#"
+															| Ladder
+												tr
+													th
+														a href="#"
+															| PS4 NPL 20's
+													td
+														a href="#"
+															| Fixture
+													td
+														a href="#"
+															| Results
+													td
+														a href="#"
+															| Ladder
+				
+							.panel-footer
+								p.text-center
+									a.btn.btn-default href="#" data-toggle="modal" data-target="#clubsModal"
+										| Show all teams						
+
+				.row
+					.col-lg-12
+						.home-ground.panel.panel-default
+							.panel-body
+								.row
+									.home-ground-map.col-lg-8.col-md-8.col-xs-12.pull-right.np
+										img.img-responsive src="http://placehold.it/1280x1024/d9d9d9/fff"
+									.home-ground-info.col-lg-4.col-md-4.col-sm-12.col-xs-12.pull-left.text-center.np
+										.circle.circle-lg.circle-md.text-center
+											span.cticon.cticon-location-marker
+										h5.section-title.text-uppercase.text-center Home ground
+										hr/
+										section.home-ground-details
+											address
+												strong Jack Edwards reserve
+												br/
+												| Edward Street, Oakleigh, Victoria, 3166
+							
+
+
+
+		
+
+		/! Sample modal
+		#clubsModal.modal.fade aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" 
+			.modal-dialog.modal-md
+		    	.modal-content
+		      		.modal-header
+		        		button.close aria-label="Close" data-dismiss="modal" type="button" 
+		          			span aria-hidden="true" &times;
+		          		h4#myModalLabel.modal-title 
+		          			| All teams - Oakleigh Cannons FC
+		          	.modal-body
+			      		table.table.table-hover
+			      			tbody
+			      				tr.no-top-border
+			      					th
+			      						a href="#"
+			      							| PS4 NPL
+			      					td
+			      						a href="#"
+			      							| Fixture
+			      					td
+			      						a href="#"
+			      							| Results
+			      					td
+			      						a href="#"
+			      							| Ladder
+			      				tr
+			      					th
+			      						a href="#"
+			      							| PS4 NPL 18 East
+			      					td
+			      						a href="#"
+			      							| Fixture
+			      					td
+			      						a href="#"
+			      							| Results
+			      					td
+			      						a href="#"
+			      							| Ladder
+			      				tr
+			      					th
+			      						a href="#"
+			      							| PS4 NPL 16 East
+			      					td
+			      						a href="#"
+			      							| Fixture
+			      					td
+			      						a href="#"
+			      							| Results
+			      					td
+			      						a href="#"
+			      							| Ladder
+			      				tr
+			      					th
+			      						a href="#"
+			      							| PS4 NPL 15 East
+			      					td
+			      						a href="#"
+			      							| Fixture
+			      					td
+			      						a href="#"
+			      							| Results
+			      					td
+			      						a href="#"
+			      							| Ladder
+			      				tr
+			      					th
+			      						a href="#"
+			      							| PS4 NPL 14 East
+			      					td
+			      						a href="#"
+			      							| Fixture
+			      					td
+			      						a href="#"
+			      							| Results
+			      					td
+			      						a href="#"
+			      							| Ladder
+			      				tr
+			      					th
+			      						a href="#"
+			      							| PS4 NPL 13 East
+			      					td
+			      						a href="#"
+			      							| Fixture
+			      					td
+			      						a href="#"
+			      							| Results
+			      					td
+			      						a href="#"
+			      							| Ladder
+			      				tr
+			      					th
+			      						a href="#"
+			      							| PS4 NPL 12 East
+			      					td
+			      						a href="#"
+			      							| Fixture
+			      					td
+			      						a href="#"
+			      							| Results
+			      					td
+			      						a href="#"
+			      							| Ladder
+			      				tr
+			      					th
+			      						a href="#"
+			      							| PS4 NPL 20's
+			      					td
+			      						a href="#"
+			      							| Fixture
+			      					td
+			      						a href="#"
+			      							| Results
+			      					td
+			      						a href="#"
+			      							| Ladder
+			      	.modal-footer
+	      			    button.btn.btn-default data-dismiss="modal" type="button"  Close
+		      			
+
+
+
+		/ footer.footer
+		/ 	.container.fluid
+		/ 		.row
+		/ 			.col-md-6.col-sm-6.text-center
+		/ 				p Here's my footer
+		/ 			.col-md-6.col-sm-6.text-center
+		/ 				P Here's my footer
+		/! overlay for main navigation
+		.nav-content-overlay
+		
+		script src="//code.jquery.com/jquery-1.11.2.min.js"
+		script src="js/bootstrap.min.js"
+		script src="js/jquery.easypiechart.min.js"
+		script src="js/scripts.js"

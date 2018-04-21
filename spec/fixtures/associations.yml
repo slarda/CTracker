@@ -1,0 +1,11 @@
+ffv:
+  name: Football Federation Victoria
+  description: The mighty Football Federation Victoria
+  url: http://www.footballfedvic.com.au/
+  location: Melbourne, Australia
+
+two:
+  name: MyString
+  description: MyText
+  url: MyString
+  location: MyString

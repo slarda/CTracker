@@ -1,0 +1,94 @@
+AllCops:
+  DisplayCopNames: true
+  # RunRailsCops: true
+  DisplayStyleGuide: true
+  Exclude:
+    - '.git/**/*'
+    - 'script/**/*'
+    - 'db/**/*'
+
+Style/HashSyntax:
+  Enabled: false
+
+Style/DotPosition:
+  EnforcedStyle: trailing
+
+Style/Documentation:
+  Enabled: false
+
+Style/MultilineOperationIndentation:
+  EnforcedStyle: indented
+
+Style/FormatString:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Metrics/MethodLength:
+  Max: 20
+
+Metrics/AbcSize:
+  Max: 30
+
+Metrics/LineLength:
+  Max: 120
+
+# This is temporary, in order to work around a bug with Rubocop.
+Style/FirstParameterIndentation:
+  Enabled: false
+
+# Indent private and protected methods
+Style/AccessModifierIndentation:
+  Enabled: false
+  #EnforcedStyle: Rails
+
+# 'and', 'or' and 'not' are easier to read
+Style/AndOr:
+  Enabled: false
+
+Style/Not:
+  Enabled: false
+
+# Always use double quotes
+Style/StringLiterals:
+  #EnforcedStyle: double_quotes
+  Enabled: true
+
+Style/AlignParameters:
+  EnforcedStyle: with_first_parameter
+  Enabled: true
+
+
+#Metrics/ClassLength:
+#  Enabled: false
+#
+#Metrics/ModuleLength:
+#  Enabled: false
+#
+#Metrics/MethodLength:
+#  Enabled: false
+#
+#Metrics/CyclomaticComplexity:
+#  Enabled: false
+#
+#Metrics/PerceivedComplexity:
+#  Enabled: false
+#
+#Metrics/AbcSize:
+#  Enabled: false
+#
+#Metrics/BlockNesting:
+#  Enabled: false
+#
+#Style/DoubleNegation:
+#  Enabled: false
+#
+#Metrics/ParameterLists:
+#  Enabled: false
+#
+#Rails/Validation:
+#  Enabled: false
+#
+#Rails/TimeZone:
+#  Enabled: false

@@ -1,0 +1,106 @@
+// news
+
+article {
+	&.news-feature,
+	&.news-item {
+		@include transition( 0.3s cubic-bezier(0.625, 0.125, 0.305, 0.875) );
+		@include transform( translateZ( 0 ) );
+		&:hover {
+			@include transform( translateY( -6px ) );
+			.news-content {
+				a {
+					color: $black;
+					text-decoration: none;
+					border-bottom: none;
+				}
+			}
+		}
+		&:active {
+			@include transition( 0.2s ease );
+			@include transform( scale( 0.98 ) );
+		}
+		picture {
+			img {
+				@include border-radius( $defaultRadius $defaultRadius 0 0 );
+			}
+		}
+	}
+	&.video-item {
+		picture {
+			a {
+				display: block;
+				position: relative;
+				&:before {
+					width: 56px;
+					height: 56px;
+					border: 4px solid $white;
+					background: $black;
+					content: '\45';
+					font-family: 'ElegantIcons';
+					color: $white;
+					position: absolute;
+					left: 50%;
+					top: 50%;
+					opacity: 0.7;
+					text-align: center;
+					line-height: 50px;
+					font-size: 40px;
+					z-index: 10;
+					@include transition( 0.3s ease );
+					@include border-radius( 50px );
+					@include transform( translateX( -50% ) translateY( -50% ) );
+				}
+			}
+		}
+		&:hover {
+			picture {
+				a {
+					&:before {
+						top: 48%;
+						opacity: 0.9;
+					}
+				}
+			}
+		}
+	}
+	.news-content {
+		padding: 5px $defaultPadding/2 $defaultPadding/2;
+		.title {
+			a {
+				color: #515151;
+				text-decoration: none;
+				border: none;
+				@include transition( 0.3s ease );
+			}
+		}
+		.meta {
+			padding: 10px $defaultMargin/2 $defaultMargin/2;
+			margin-left: -15px;
+			margin-right: -15px;
+			border-top: 1px solid $borderGrey;
+			font-size: 12px;
+			color: $mediumGrey;
+			li {
+				position: relative;
+				margin: 0;
+				padding: 0;
+				+ li {
+					&:before {
+						display: inline-block;
+						content: '/';
+						margin: 0 5px;
+						color: $lightGrey;
+						font-size: 16px;
+						vertical-align: middle;
+					}
+				}
+			}
+		}
+	}
+}
+
+.media {
+	img {
+		width: $img-width-sm2;
+	}
+}

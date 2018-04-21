@@ -1,0 +1,226 @@
+doctype 5
+html lang="en"
+	head
+    	/! Meta, title, CSS, favicons, etc.
+		meta charset="utf-8" /
+		meta content="IE=edge" http-equiv="X-UA-Compatible" /
+		meta content="width=device-width, initial-scale=1" name="viewport" /
+    	title My Champ Tracker
+
+        = stylesheet_link_tag 'application', media: 'all'
+        /link href="css/animate.min.css" media="screen" rel="stylesheet" type="text/css" /
+        link href="//fonts.googleapis.com/css?family=Roboto:100,300,400,500,700" rel="stylesheet" type="text/css" /
+        /link href="css/custom.css" media="screen" rel="stylesheet" type="text/css" /
+        /! included everything for development only, customise later
+        /script src="js/modernizr.custom.36994.js"
+	body
+		header#application-header.navbar.navbar-fixed-top
+			.branding
+				button.navbar-toggle.collapsed data-target=".navbar-collapse" data-toggle="collapse" type="button" 
+					span.sr-only Toggle navigation
+					span.icon-bar.line1
+					span.icon-bar.line2
+					span.icon-bar.line3
+
+				a.navmenu-brand href="#"
+					img src="/img/tmp/sample-branding-2x.png" class="img-responsive" alt="Brand name"
+			.header-content.clearfix
+				h1.section-title.pull-left Dashboard
+	          	ul.player-menu.nav.navbar-nav.navbar-right
+					li.dropdown
+						a.dropdown-toggle aria-expanded="true" data-toggle="dropdown" href="#"
+							| Evan 
+							span Kraloglou
+							span.arrow_carrot-down aria-hidden="true"
+							span.player-photo
+								img src="/img/tmp/sample-player-1-sm.jpg" class="img-responsive pull-right img-circle" alt="player name" /
+							ul.dropdown-menu.dropdown-persist role="menu"
+								li
+								    a href="#" 
+										span.glyphicon.glyphicon-cog aria-hidden="true" Account Settings
+								li
+									a href="#" 
+										span.glyphicon.glyphicon-off aria-hidden="true" Logout
+		aside#sidebar-left.navmenu.navmenu-default.navbar-collapse aria-expanded="true"
+
+			nav#navbar role="navigation"
+				ul.nav.navbar-nav
+					li.active
+						a href="#" 
+							span class="icon_datareport"
+							| Dashboard
+					li
+						a href="#"
+							span class="icon_documents_alt"
+							| News
+					li
+						a href="#"
+							span class="icon_datareport"
+							| Results
+					li
+						a href="#"
+							span class="icon_question_alt2"
+							| Hints &amp; tips
+					li
+						a href="#"
+							span class="icon_heart_alt"
+							| Health
+					li
+						a href="#"
+							span class="icon_calendar"
+							| Calendar
+					li
+						a href="#"
+							span class="icon_easel"
+							| Performance
+					li
+						a href="#"
+							span class="icon_ribbon_alt"
+							| My Achievements
+					li
+						a href="#"
+							span class="icon_star_alt"
+							| Training Goals
+					li.menu-divider
+					li
+						a href="#"
+							span class="icon_cog"
+							| Settings
+					li
+						a href="#"
+							span class="icon_profile"
+							| Profile
+					li
+						a href="#"
+							span class="arrow_carrot-right"
+							| View Feature Tour
+    	section#primary-content
+			.container-fluid
+				// Main player profile
+				.player-profile.row
+					section.section-header.col-lg-12
+						h4 
+							| my profile
+							span.pipe
+							a href="#"
+								| edit profile
+								span class="glyphicon glyphicon-pencil"
+					.col-md-12
+						.panel
+							.panel-body.np
+								// player profile image
+								.profile-photo.col-lg-5th-1.np
+									img src="/img/tmp/sample-player-1-md.jpg" class="img-responsive"
+								.profile-data.col-lg-5th-4
+									.row
+										.col-lg-5th-2
+											// club logo col ( 2 fifths )
+											// logo is 100 x 100px
+											img src="/img/tmp/club-logos/sample-club-logo-1.png" class="img-responsive" alt="Club name"
+											// club name / jersey # / team name col
+
+											// personal info table ( 3 fifths )
+										.col-lg-5th-3.np
+											.panel
+												.panel-body.np
+													// table goes here
+													table.table
+														tr 
+															td
+																b Label 
+																| data
+															td
+																b Label 
+																| data
+														tr 
+															td
+																b Label 
+																| data
+															td
+																b Label 
+																| data
+														tr 
+															td
+																b Label 
+																| data
+															td
+																b Label 
+																| data
+														tr 
+															td
+																b Label 
+																| data
+															td
+																b Label 
+																| data
+
+				// Main player stats
+				.player-stats.row
+					section.section-header.col-lg-12
+						h4 my stats
+					.stat-games-played.col-lg-5th-1.col-md-5th-1.col-sm-6
+						// games played - actual stat TBD
+						.panel
+							| Games played - TODO
+
+					.stat-wld.col-lg-5th-1.col-md-5th-1.col-sm-6
+						// W / L / D - actual stat TBD
+						.panel
+							| GW / L / D - TODO
+					.stat-goals.col-lg-5th-1.col-md-5th-1.col-sm-6
+						// goals - actual stat TBD
+						.panel
+							| Goals scored - TODO
+					.stat-assists.col-lg-5th-1.col-md-5th-1.col-sm-6
+						// assists - actual stat TBD
+						.panel
+							| Assists - TODO
+					.stat-group.col-lg-5th-1.col-md-5th-1.col-sm-12.col-xs-12
+						// yellow and red cards
+						.row
+							.stat-card-yellow.col-lg-12.col-md-12.col-sm-6.col-xs-12
+								.panel
+									| Yellow cards - TODO
+							.stat-card-red.col-lg-12.col-md-12.col-sm-6.col-xs-12
+								.panel
+									| Red cards - TODO
+
+				.game-info.row
+					.col-md-6
+						.panel.panel-default
+							.panel-heading
+								| Panel heading
+							.panel-body
+								| Here's a plain Jane panel
+							.panel-footer
+								button.btn.btn-default type="button" role="button" Default button
+								button.btn.btn-primary type="button" role="button" class="pull-right" Primary button
+					.col-md-6
+						.panel.panel-default
+							.panel-heading
+								| Panel heading
+							.panel-body
+								h3 TODO - Equal height columns
+								p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam mollitia aut eaque nihil eos rem suscipit error id nesciunt saepe? Deserunt aspernatur, iusto facere sequi doloribus accusantium porro odio alias.
+							.panel-footer
+								| Panel footer
+
+		footer.footer
+			.container.fluid
+				.row
+					.col-md-6.col-sm-6.text-center
+						p Here's my footer
+					.col-md-6.col-sm-6.text-center
+						P Here's my footer
+		/! overlay for main navigation
+		.nav-content-overlay
+
+
+        = javascript_include_tag 'application'
+
+        /script src="//code.jquery.com/jquery-1.11.2.min.js"
+
+        /script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"
+
+        /script src="js/bootstrap.min.js"
+        /script src="js/scripts.js"

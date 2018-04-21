@@ -1,0 +1,11 @@
+- flash.each do |name, msg|
+  = content_tag :div, msg, class: name
+
+h5 Note: only upload new equipment (existing equipment is not overridden)
+
+form action='/equipment/csv_upload' method='POST' enctype='multipart/form-data'
+  input type="hidden" name="authenticity_token" value="#{form_authenticity_token}"
+  input type='file' name='file'
+  input type='submit'
+
+

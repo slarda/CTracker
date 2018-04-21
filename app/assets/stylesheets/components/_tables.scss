@@ -1,0 +1,48 @@
+// table styling
+
+.table {
+	tbody {
+		> tr {
+			&.info {
+				th,
+				td {
+					background: tint( $ct_lightBlue, 94% );
+					@include transition( 0.3s ease );
+				}
+				&:hover {
+					th,
+					td {
+						background: tint( $ct_lightBlue,80% );
+					}
+				}
+			}
+			&.no-top-border {
+				th,
+				td {
+					border-top: none;
+				}
+			}
+		}
+	}
+	> thead > tr > th, 
+	> thead > tr > td,
+	> tbody > tr > th,
+	> tbody > tr > td, 
+	> tfoot > tr > th,
+	> tfoot > tr > td {
+		padding-top: 10px;
+		padding-bottom: 10px;
+		border-color: $lightGrey;
+	}
+}	
+
+.table-hover {
+	> tbody {
+		> tr {
+			@include transition( 0.3s ease );
+			&:hover {
+				background-color: $almostWhite;
+			}
+		}
+	}
+}

@@ -1,0 +1,51 @@
+p
+  ' Hello
+  = @user.first_name
+  '&nbsp;and welcome to ChampTracker!
+
+p
+  b> Admin Link:
+  a href="http://app.champtracker.com/admin/users/#{@user.id}" http://app.champtracker.com/admin/users/#{@user.id}
+p
+p
+  b> Name:
+  | #{@user.first_name} #{@user.middle_name} #{@user.last_name}
+p
+  b> Involvement:
+  = @user.role
+p
+  b> Gender:
+  = @user.gender
+p
+  b> DOB:
+  = @user.dob
+p
+  b> Email:
+  = @user.email
+
+p
+p
+  b> Country:
+  = @user.nationality
+
+p
+  b> Club Name:
+  = @user.entered_club_name
+p
+  b> Team Name:
+  = @user.entered_team_name
+p
+  b> League Name:
+  = @user.entered_league_name
+p
+  b> Website:
+  = @user.entered_website
+p
+  b> Other Info:
+  = @user.entered_additional_info
+p
+p
+  b> Agreed to terms:
+  = @user.agree_terms
+p
+p - The ChampTracker Team

@@ -1,0 +1,87 @@
+aside#sidebar-left.navmenu.navmenu-default aria-expanded="true" collapse='navCollapsed' ng-class="toggleSidebarClass(navCollapsed)"
+  nav#navbar role="navigation"
+    ul.nav.navbar-nav
+      li ng-class="{'active' : page == 'dashboard' }"
+        a ng-href='#/users/{{ ::current_user.id }}/dashboard'
+          span class="icon_datareport"
+          | Dashboard
+      li ng-class="{'active' : page == 'schedule' }"
+        a ng-href='#/users/{{ ::current_user.id }}/schedule'
+          span class="icon_calendar"
+          | Schedule
+
+      li ng-class="{'active' : page == 'standings' }"
+        a ng-href='#/users/{{ ::current_user.id }}/standings'
+          span class="icon_ribbon_alt"
+          | Standings
+      li ng-class="{'active' : page == 'health_and_wellbeing' }"
+        a href='http://blog.champtracker.com/health-and-wellbeing/'
+          span class="icon_heart_alt"
+          | Health &amp; Wellbeing
+      li ng-class="{'active' : page == 'training_and_performance' }"
+        a href='http://blog.champtracker.com/training-and-performance/'
+          span class="icon_easel"
+          | Training &amp; Performance
+      /li ng-class="{'active' : false }"
+        a
+          span class="icon_documents_alt"
+          | Blog
+      li.menu-divider
+      li ng-class="{'active' : page == 'player_profiles' }"
+        a ng-href='#/users/{{ ::current_user.id }}/player_profiles/personal'
+          span class="icon_profile"
+          | Profile
+      li
+        a href='http://blog.champtracker.com/contact-us/'
+          span class="icon_question_alt2"
+          | Feedback
+      li
+        a href='http://blog.champtracker.com/contact-us/'
+          span class="icon_question_alt2"
+          | Contact Us
+
+      li
+        a href='/logout'
+          span.glyphicon.glyphicon-off style='font-size:24px;margin-right:16px'
+          | Logout
+
+header#application-header.navbar.navbar-fixed-top role='navigation'
+  .branding
+    /button.navbar-toggle.pull-left ng-click="navCollapsed = !navCollapsed" ng-class="toggleButtonClass(navCollapsed)"
+    button.navbar-toggle.pull-left ng-init="navCollapsed = true" ng-click="navCollapsed = !navCollapsed" ng-class="toggleButtonClass(navCollapsed)"
+      span.sr-only Toggle navigation
+      span.icon-bar.line1
+      span.icon-bar.line2
+      span.icon-bar.line3
+    a.navmenu-brand ng-href='#/users/{{ ::current_user.id }}/dashboard'
+      img src="/img/CT-logo-2x.png" class="img-responsive" alt="Champ Tracker logo"
+  .header-content.clearfix
+
+    h1.section-title.pull-left
+      a.nav-prev.btn.btn-default.btn-large ng-click="backClicked()" aria-label="Previous" ng-show='back_button'
+        span.glyphicon.glyphicon-chevron-left
+      |  {{ ::page_title }}
+
+    .collapse.navbar-collapse ng-class="!navCollapsed && 'in'"
+      ul.player-menu.nav.navbar-nav.navbar-right ng-show='current_user.id'
+        li.dropdown.user-profile dropdown=true
+          a.dropdown-toggle data-toggle="dropdown" href="#" dropdown-toggle=true
+            | {{ ::current_user.first_name }}
+            span<[] {{ ::current_user.last_name }}
+            span.arrow_carrot-down aria-hidden="true"
+
+            span.player-photo
+              img.img-responsive.pull-right.img-circle ng-src="{{ ::current_user.avatar.url }}" alt="player name" width="50" /
+          ul.dropdown-menu.dropdown-persist role="menu"
+            li
+              a href='#/users/{{ ::current_user.id }}/dashboard'
+                span.glyphicon.glyphicon-dashboard aria-hidden="true"
+                |  Dashboard
+            li
+              a href="/logout"
+                span.glyphicon.glyphicon-off aria-hidden="true"
+                |  Logout
+
+      ng-include src="'player_profiles/_avatar.html'"
+      .pull-right.login-button ng-show='user_logged_out'
+        a.btn.btn-primary href="/user_sessions/new" Signup or Login

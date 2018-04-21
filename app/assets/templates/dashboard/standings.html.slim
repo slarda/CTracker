@@ -1,0 +1,11 @@
+div ng-controller='DashboardCtrl'
+
+  div ng-include="'dashboard/_navigation.html'"
+
+  section#primary-content
+    .container-fluid
+      #warning
+
+      div ng-include="'dashboard/_standings.html'"
+
+    div ng-include="'dashboard/_footer.html'"

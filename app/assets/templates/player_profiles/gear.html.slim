@@ -1,0 +1,159 @@
+div ng-controller='PlayerProfileCtrl'
+  div ng-include="'dashboard/_navigation.html'"
+
+  section#primary-content
+    ng-include src="'player_profiles/_menu.html'"
+
+    .container-fluid
+      #warning
+
+      // Player profile
+      .user-profile.row
+        .col-md-12
+          .panel.panel-default
+            .panel-body
+              // Form with multiple tabs here
+              form#user-profile-form role="form" novalidate="" ng-submit='update(user)'
+
+                tabset#hide-tab-headings
+                  tab active='active_tab_locker'
+                    .row
+                      .col-sm-12
+                        label Your Boots
+                    .row ng-repeat="gear in user.player_equipments | equipmentType:'boots'"
+                      .col-sm-12
+                        ol.breadcrumb
+                          li.col-xs-3.inline-no-float
+                            img.img-responsive ng-src="{{ gearPhoto(gear) }}" width="96" alt="{{ gear.brand}} - {{ gear.model }}"
+                          li.no-breadcrumb.col-xs-7.inline-no-float
+                            /a ng-click="showGear('boots')"
+                            | {{ gear.brand }} {{ gear.model }}
+                          button type="button" class="close" aria-label="Close" ng-click="removeGear(gear)"
+                            span aria-hidden="true" &times;
+                    .row
+                      .col-sm-12
+                        .form-group
+                          a.btn ng-click="showGear('boots')" ng-class="moreGear('boots')"
+                            | {{ more_boots }}
+                            '
+                            span.icon_plus_alt
+
+                    div ng-if='isGoalkeeper()'
+                      .row
+                        .col-sm-12
+                          label Your Gloves
+                      .row ng-repeat="gear in user.player_equipments | equipmentType:'gloves'"
+                        .col-sm-12
+                          ol.breadcrumb
+                            li.col-xs-3.inline-no-float
+                              img.img-responsive ng-src="{{ gearPhoto(gear) }}" width="96" alt="{{ gear.brand}} - {{ gear.model }}"
+                            li.no-breadcrumb.col-xs-7.inline-no-float
+                              /a ng-click="showGear('gloves')"
+                              | {{ gear.brand }} {{ gear.model }}
+                            button type="button" class="close" aria-label="Close" ng-click="removeGear(gear)"
+                              span aria-hidden="true" &times;
+                      .row
+                        .col-sm-12
+                          .form-group
+                            a.btn ng-click="showGear('gloves')" ng-class="moreGear('gloves')"
+                              | {{ more_gloves }}
+                              '
+                              span.icon_plus_alt
+
+                    .row
+                      .col-sm-12
+                        label Your Shin Pads
+                    .row ng-repeat="gear in user.player_equipments | equipmentType:'shinpads'"
+                      .col-sm-12
+                        ol.breadcrumb
+                          li.col-xs-3.inline-no-float
+                            img.img-responsive ng-src="{{ gearPhoto(gear) }}" width="96" alt="{{ gear.brand}} - {{ gear.model }}"
+                          li.no-breadcrumb.col-xs-7.inline-no-float
+                            /a ng-click="showGear('shinpads')"
+                            | {{ gear.brand }} {{ gear.model }}
+                          button type="button" class="close" aria-label="Close" ng-click="removeGear(gear)"
+                            span aria-hidden="true" &times;
+                    .row
+                      .col-sm-12
+                        .form-group
+                          a.btn ng-click="showGear('shinpads')" ng-class="moreGear('shinpads')"
+                            | {{ more_shin_pads }}
+                            '
+                            span.icon_plus_alt
+
+                  // this is the element inside the panel where things get added / edited
+                  tab active='active_tab_add_edit'
+
+                  // this is the element inside the panel where gear gets added / edited
+                  tab active='active_tab_add_edit_gear'
+                    simple-carousel.carousel#carousel-02 shown='carousel_slide'
+                      .slide.add-edit-element data-interval="" data-ride="carousel"
+                        ol.breadcrumb.user-selections
+                          li
+                            a ng-click='showGear(kind)'
+                              | {{ capitalize(kind) }}
+                          li
+                            a ng-click='selectBrand(kind,brand)'
+                              | {{ brand_name }}
+
+                        .carousel-inner
+
+                          .item.active
+                            h4
+                              ' Select Brand&nbsp;&nbsp;
+                              a.cant-see href='http://blog.champtracker.com/missing-gear/' Can't see my gear's brand
+                            .list-group
+                              a.list-group-item ng-repeat='brand in brands' ng-click='selectBrand(kind,brand)'
+                                / data-slide-up-to="1"
+                                img.club-logo ng-src="{{ brandPhoto(brand) }}" alt="{{ brand.name }}"
+                                | {{ ::brand.name }}
+                                span.arrow_carrot-right.pull-right
+
+                          .item
+                            h4
+                              ' Select {{ capitalize(kind) }}&nbsp;&nbsp;
+                              a.cant-see href='http://blog.champtracker.com/missing-gear/' Can't see my gear
+                            .list-group.clearfix
+                              a.list-group-item ng-click='backClicked()'
+                                span.prev.arrow_carrot-left
+                                '
+                                | Back
+
+                              a.list-group-item ng-repeat="model in equipment | uniqueOnAttribute:'model'" ng-click='toggleSelection(model)' ng-class='model.selectedClass'
+                                img ng-src="{{ gearPhoto(model) }}" alt="{{ model.model }}"
+                                span.dummy-centred
+                                span.model-name[] {{ ::model.model }}
+                                span.arrow_carrot-right.pull-right
+
+                          .item
+                            h4 Select a model
+                            .list-group
+                              a.list-group-item data-slide-up-to="1" data-target="#carousel-02"
+                                span.prev.arrow_carrot-left
+                                '
+                                | Back
+                              - for i in (1..10)
+                                a.list-group-item href="#"
+                                  |  Team name #{i}
+
+                / Global form tab
+                .form-footer
+                  .row
+                    .col-sm-12.col-md-12.clearfix.text-align-right
+
+                      a.btn.btn-primary.pull-right role="button" ng-disabled='add_edit_button_disabled' ng-click='addSelectedGear(selected)'
+                        /data-loading-text="Adding/updating..."
+                        span.icon_plus aria-hidden="true"
+                        /span.opaque ng-show='saving' Saving...
+                        span.opaque-inverted[] {{ ::add_edit_button_text }}
+
+                      button.btn.btn-default.pull-right role="button" ng-click='cancelGear()' ng-show='add_gear_visible' type="submit" Cancel
+
+                      a.pull-right.cant-see.in-footer href='http://blog.champtracker.com/missing-gear/' {{ cant_see }}
+
+                      /alert.fade-in-out.pull-right ng-show='saving_notice' type='success' {{ alert }}
+
+                    .col-sm-0.col-lg-4.hidden-xs.hidden-sm.hidden-md
+                      | &nbsp;
+
+    div ng-include="'dashboard/_footer.html'"

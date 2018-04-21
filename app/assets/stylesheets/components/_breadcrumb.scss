@@ -1,0 +1,38 @@
+// breadcrumb styling
+
+.breadcrumb {
+	background: none;
+	border: 1px solid $borderGrey;
+	@include clearfix;
+	@include border-radius( $defaultRadius );
+	> li {
+		+ li {
+			&:before {
+				display: none;
+				@media screen and ( min-width: $screen-sm-min ) {
+					display: inline-block;
+					font-family: ElegantIcons;
+					content: '\35';
+				}
+			}
+		}
+		img {
+			vertical-align: middle;
+		}
+	}
+	.club-logo,
+	.brand-logo {
+		display: block;
+		max-width: $img-width-sm;
+		vertical-align: middle;
+		margin-right: 10px;
+		@media screen and ( min-width: $screen-sm-min ) {
+			display: inline-block;
+			margin: 0;
+			padding: 10px;
+		}
+		@media screen and ( min-width: $screen-md-min ) {
+			max-width: $img-width-sm2;
+		}
+	}
+}

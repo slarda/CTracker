@@ -1,0 +1,9 @@
+// club logo styling
+
+.club-logo {
+	padding: 3px;
+	
+	@media screen and ( min-width: $screen-md-min ) {
+		padding: 15px;
+	}
+}

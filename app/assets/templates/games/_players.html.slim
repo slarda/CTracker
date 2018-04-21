@@ -1,0 +1,25 @@
+div
+  span
+    a ng-click='showHomeTeam(true)' ng-show='!homeTeam' &lt;
+  span
+    img ng-src='{{ clubLogo(team) }}' width=50 height=50
+  span
+    a ng-click='showHomeTeam(false)' ng-show='homeTeam' &gt;
+
+div[] {{ ::teamName(team) }}
+
+table.table.table-condensed
+  thead
+    tr
+      th Pos
+      th Player
+      th Stat
+      th Stat
+
+  tbody
+    tr ng-repeat='player in team.players'
+      td[] {{ ::player.initials }}
+      td[] {{ ::player.full_name }}
+      td
+      td
+

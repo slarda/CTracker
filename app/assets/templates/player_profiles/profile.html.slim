@@ -1,0 +1,99 @@
+div ng-controller='PlayerProfileCtrl'
+  div ng-include="'dashboard/_navigation.html'"
+
+  section#primary-content
+    ng-include src="'player_profiles/_menu.html'"
+
+    .container-fluid
+      #warning
+
+      // Player profile
+      .user-profile.row
+        .col-md-12
+          .panel.panel-default
+            .panel-body
+              // Form with multiple tabs here
+              form#user-profile-form role="form" novalidate="" ng-submit='update(user)'
+                .tab-content
+
+
+                  / Playing profile tab
+                  #pane-playing-profile role="tabpanel"
+                    .row
+                      .col-sm-8.col-md-8.col-lg-8
+                        .form-group.radio-group
+                          label.block Position
+                          label.radio-inline.control-label ng-repeat='position in positions'
+                            input type="radio" name="positionOptions" ng-model='user.position_id' ng-value='position.id'
+                            span[] {{ ::position.position }}
+
+
+                    .row ng-if="!isCoach()"
+                      .col-xs-6.col-sm-6.col-md-3.col-lg-3
+                        .form-group
+                          label.control-label for="jersey-number" Jersey number
+                          input.form-control#jersey-number ng-model='user.active_sport_profile.player_no' name="jersey-number" /
+                      .col-xs-6.col-sm-6.col-md-4.col-lg-4
+                        .form-group.radio-group
+                          label.control-label.block Natural foot
+                          label.radio-inline.control-label
+                            input#foot-left type="radio" ng-model='user.player_profile.handedness' name="NaturalFootOptions" value="left_foot" checked=""
+                            span Left
+                          label.radio-inline.control-label
+                            input#foot-right type="radio" ng-model='user.player_profile.handedness' name="NaturalFootOptions" value="right_foot"
+                            span Right
+
+                    .row
+                      .col-sm-12.col-md-8.col-lg-6
+                        .form-group
+                          label.control-label for="career-highlights" Career highlights / bio
+                          textarea.form-control name="" cols="30" rows="10" ng-model='user.player_profile.biography'
+
+                    .row
+                      .col-sm-12.col-md-8.col-lg-6
+                        .form-group
+                          label.control-label for="career-highlights" Highlights Video
+                          input.form-control type="text" name="" ng-model='user.player_profile.highlights_video'
+
+                    .row
+                      .col-sm-6.col-md-6.col-lg-6
+                        .form-group
+                          label.control-label for="passport1" Passport
+                          input.form-control type="text" name="" ng-model='user.player_profile.passport1'
+                    .row
+                      .col-sm-6.col-md-6.col-lg-6
+                        .form-group
+                          label.control-label for="passport2" Passport 2
+                          input.form-control type="text" name="" ng-model='user.player_profile.passport2'
+
+                    .row
+                      .col-sm-12
+                        label Your team
+                        ol.no-padding
+                          li.col-xs-3.inline-no-float
+                            img.club-logo.img-responsive src="{{ clubLogo(user) }}" alt="Club name"
+                          .col-xs-8.inline-no-float.club-breadcrumb
+                            li
+                              | {{ ::user.club.name }}
+                            li
+                              | {{ ::user.team.name }}
+
+
+
+                  / Global form tab
+                  .form-footer
+                    .row
+                      .col-sm-12.col-md-12.clearfix.text-align-right
+
+                        button.btn.btn-primary.pull-right type="submit" role="button"
+                          /data-loading-text="Saving..."
+                          span.icon_drive aria-hidden="true"
+                          /span.opaque ng-show='saving' Saving...
+                          span.opaque-inverted Save profile
+
+                        alert.fade-in-out.pull-right ng-show='saving_notice' type='success' {{ alert }}
+
+                      .col-sm-0.col-lg-4.hidden-xs.hidden-sm.hidden-md
+                        | &nbsp;
+
+    div ng-include="'dashboard/_footer.html'"

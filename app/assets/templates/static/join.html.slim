@@ -1,0 +1,159 @@
+div ng-controller='PlayerProfileCtrl'
+  div ng-include="'dashboard/_empty-navigation.html'"
+
+  section#primary-content
+    ng-include src="'player_profiles/_reg-menu.html'"
+
+    .container-fluid
+      #warning
+
+      // Player profile
+      .user-profile.row
+        .col-md-12
+          .panel.panel-default
+            .panel-body
+              // Form with multiple tabs here
+              form#user-profile-form role="form" novalidate="" ng-submit='create(user)'
+                .tab-content
+
+                  / Personal info tab
+                  div ng-if="join_screen == 1"
+                    #pane-personal-info.tab-pane.active.fade.in role="tabpanel"
+
+                      fieldset
+                        .row
+                          .col-sm-4.col-md-6.col-lg-4
+                            .form-group
+                              label.control-label for="first-name" First name
+                              input#first-name.form-control type="text" ng-model='user.first_name' name="first-name" required="required" /
+                          .col-sm-4.col-md-6.col-lg-4
+                            .form-group
+                              label for="last-name" Last name
+                              input#last-name.form-control type="text" ng-model='user.last_name' name="last-name" required="required" /
+
+                        .row
+                          .col-sm-4.col-md-6.col-lg-4
+                            .form-group
+                              label.control-label for="middle-name"
+                                | Middle name
+                                span.optional-field<
+                                  | (Optional)
+                              input#middle-name.form-control type="text" ng-model='user.middle_name' name="middle-name"  /
+                          .col-sm-4.col-md-6.col-lg-4
+                            .form-group
+                              label.control-label for="involvement"
+                                | Involvement
+                              select#involvement.form-control ng-model='user.role' required=""
+                                option value='player' I'm a player
+                                option value='coach' I'm a coach
+                                option value='parent_of' My kid plays
+
+                        .row
+                          .col-sm-4.col-md-4.col-lg-4
+
+                            .form-group.radio-group
+                              label.control-label Gender
+                              label.radio-inline.control-label
+                                input#gender-female type="radio" name="genderOptions" ng-model='user.gender' value="female"
+                                span Female
+                              label.radio-inline.control-label
+                                input#gender-male type="radio" name="genderOptions" ng-model='user.gender' value="male"
+                                span Male
+
+                        .row
+                          .col-sm-4.col-md-4.col-lg-4
+                            .form-group
+                              label.control-label for="dob" Date of birth
+                              input#dob.form-control type="date" ng-model='user.dob' placeholder="yyyy-mm-dd" min="1900-08-14" name="dob" required="required" /
+                      fieldset
+                        legend Account details
+                        .row
+                          .col-sm-4.col-md-6.col-lg-4
+                            .form-group
+                              label.control-label for="email-address" Email address
+                              input#email-address.form-control type="email" name="email-address" ng-model='user.email' /
+                          .col-sm-4.col-md-6.col-lg-4
+                            .form-group
+                              label.control-label for="current-password" Password
+                              input#current-password.form-control type="password" ng-model='user.password' name="current-password" value="" /
+
+                    / Global form tab
+                    .form-footer
+                      .row
+                        .col-sm-12.col-md-12.clearfix.text-align-right
+
+                          a.btn.btn-primary.pull-right ng-click='joinScreen(2)'
+                            span.opaque-inverted Select your team &gt;
+
+                        .col-sm-0.col-lg-4.hidden-xs.hidden-sm.hidden-md
+                          | &nbsp;
+
+                  div ng-if="join_screen == 2"
+                    #pane-personal-info.tab-pane.active.fade.in role="tabpanel"
+                      fieldset
+
+                        .row
+                          .col-sm-4.col-md-6.col-lg-4
+                            .form-group
+                              label.control-label Country
+                              country-select#birthplace.form-control ng-model='user.nationality'
+
+                        .row
+                          .col-sm-4.col-md-6.col-lg-4
+                            .form-group
+                              label.control-label for="club-name"
+                                | Your club's name
+                              input#club-name.form-control type="text" ng-model='user.club_name' /
+                          .col-sm-4.col-md-6.col-lg-4
+                            .form-group
+                              label.control-label for="team-name"
+                                | Your team's name
+                              input#team-name.form-control type="text" ng-model='user.team_name' /
+
+                        .row
+                          .col-sm-4.col-md-6.col-lg-4
+                            .form-group
+                              label.control-label for="league-name"
+                                | League you play in
+                              input#league-name.form-control type="text" ng-model='user.league_name' /
+                          .col-sm-4.col-md-6.col-lg-4
+                            .form-group
+                              label.control-label for="website-link"
+                                | Website link to league to help us (optional)
+                              input#website-link.form-control type="text" ng-model='user.website_link' /
+
+                        .row
+                          .col-sm-8
+                            .form-group
+                              label.control-label for="additional-info"
+                                | Any other information you would like to provide
+                              textarea#additional-info.form-control ng-model='user.additional_info' /
+
+                        .row
+                          .col-sm-12.col-md-12.col-lg-12
+                            .checkbox
+                              label
+                                input#agree-terms type="checkbox" name="agree-terms" ng-model='user.agree_terms' /
+                                span
+                                  | I agree to the ChampTracker
+                                  a<> href='#/join' Terms and Conditions
+                                  | and
+                                  a<> href='#/join' Privacy Policy
+
+                    / Global form tab
+                    .form-footer
+                      .row
+                        .col-sm-12.col-md-12.clearfix.text-align-right
+
+                          button.btn.btn-primary.pull-right type="submit" role="button"
+                            span.opaque-inverted Register
+
+                          a.btn.btn-default.pull-right ng-click='joinScreen(1)'
+                            span.opaque-inverted &lt; Back
+
+                          alert.fade-in-out.pull-right ng-show='saving_notice' type='success' {{ alert }}
+
+                        .col-sm-0.col-lg-4.hidden-xs.hidden-sm.hidden-md
+                          | &nbsp;
+
+    div ng-include="'dashboard/_footer.html'"

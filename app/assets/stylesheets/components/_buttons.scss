@@ -1,0 +1,142 @@
+// buttons
+
+
+.btn {
+	border-width: 2px;
+	padding: 9px 15px 8px 15px;
+	@include border-radius( $defaultRadius );
+	@include transition( 0.25s linear );
+	&.btn-sm {
+		padding: 3px 10px;
+		border-width: 1px;
+	}
+	&.btn-xs {
+		padding: 3px 8px;
+	}
+}
+
+.btn-lg {
+	&.rounded {
+		@include border-radius( 50% 0 );
+	}
+}
+.btn-default {
+	border-width: 2px;
+	border-color: $defaultBtnBorder;
+	color: $ct_primaryRed;
+	&:hover,
+	&:active,
+	&:focus {
+		color: $ct_primaryRed;
+		border-color: $ct_primaryRed;
+		background: $white;
+	}
+}
+.btn-primary {
+	border: 2px solid transparent;
+	background: $ct_primaryRed;
+	&:hover,
+	&:active,
+	&:focus {
+		border-color: transparent;
+		background: darken( $ct_primaryRed, 12% );
+	}
+
+	&.btn-light-blue {
+		background: $ct_lightBlue;
+		&:hover,
+		&:active,
+		&:focus {
+			background: darken( $ct_lightBlue, 12% );
+		}
+	}
+	&.btn-pink {
+		background: $ct_pink;
+		&:hover,
+		&:active,
+		&:focus {
+			background: darken( $ct_pink, 12% );
+		}
+	}
+}
+
+// set disabled states for primary button both and as part of a disabled fieldset
+// btn attribute set to disabled
+.btn-primary {
+	&.disabled,
+	&[disabled] {
+		background-color: $mediumGrey;
+		border-color: transparent;
+		&:hover,
+		&:focus,
+		&:active,
+		&.focus,
+		&.active {
+			background-color: $mediumGrey;
+  			border-color: transparent;
+		}
+	}
+}
+
+// fieldset set to disabled with button inside
+fieldset {
+	&[disabled] {
+		.btn-primary {
+			background-color: $mediumGrey;
+  			border-color: transparent;
+			&:hover,
+			&:focus,
+			&:active,
+			&.focus,
+			&.active {
+				background-color: $mediumGrey;
+	  			border-color: transparent;
+			}
+		}
+	}
+}
+
+
+// button group styles
+.btn-group {
+	border-color: $ct_primaryRed;
+
+	.btn {
+		color: $ct_primaryRed;
+		border-color: $ct_primaryRed;
+		padding-left: 20px;
+		padding-right: 20px;
+		&:hover {
+			border-color: darken( $ct_primaryRed, 12% );
+			background: $white;
+		}
+		&.active {
+			background: $ct_primaryRed;
+			color: $white;
+			box-shadow: none;
+			&:hover {
+				background: darken( $ct_primaryRed, 12% );
+			}
+		}
+		&[data-toggle="dropdown"] {
+			&.btn-primary {
+				color: $white;
+				&:focus,
+				&:active,
+				&:hover {
+					background: darken( $ct_primaryRed, 12% );
+					border-color: darken( $ct_primaryRed, 12% );
+				}
+			}
+			.glyphicon {
+				font-size: 9px;
+			}
+		}
+	}
+}
+
+.btn-group-sm {
+	.btn {
+		min-height: 30px;
+	}
+}

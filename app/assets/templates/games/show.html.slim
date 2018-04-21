@@ -1,0 +1,94 @@
+div ng-controller='GameCtrl'
+
+  div ng-include="'dashboard/_navigation.html'"
+  div ng-include="'dashboard/_topbar.html'"
+  div ng-include="'dashboard/_menu.html'"
+
+  section#primary-content
+    .container-fluid
+
+      .row.game-info
+        .col-md-6.col-sm-6
+          .next-game.panel.panel-default
+            .panel-heading.clearfix
+
+              h3.panel-title.pull-left[] Round {{ ::game.round }}
+              .share-element.pull-right ng-class="{'is-active': share_visible2}"
+                ul.share-action
+                  li.text-uppercase
+                    a ng-click='toggleShare2()'
+                      | Share
+                      span.glyphicon.glyphicon-share-alt aria-hidden="true"
+                ul.sharing-options
+                  li.facebook
+                    a href="#"
+                      span.social_facebook_square
+                      span.sr-only Facebook
+                  li.twitter
+                    a href="#"
+                      span.social_twitter_square
+                      span.sr-only Twitter
+                  li.google-plus
+                    a href="#"
+                      span.social_googleplus_square
+                      span.sr-only Facebook
+
+            .panel-body
+
+              h4.game-date
+                span.text-center
+                  span.icon_calendar
+                  | {{ ::game.start_date_s }}
+              .row.teams
+                .col-md-6.col-sm-6.col-xs-6.text-center
+                  a.club-logo href="#"
+                    img.img-rounded.img-responsive ng-src='{{ clubLogo(game.home_team) }}'
+
+                span.vs vs
+                  span
+
+                .col-md-6.col-sm-6.col-xs-6.text-center
+                  a.club-logo.home-team href="#"
+                    img.img-rounded.img-responsive ng-src='{{ clubLogo(game.away_team) }}'
+
+              .row
+                .col-md-6.col-sm-6.col-xs-6.text-center
+                  h4.club-name
+                    a href="#" {{ game.home_team.augmented_club_name }}
+                .col-md-6.col-sm-6.col-xs-6.text-center
+                  h4.club-name
+                    a href="#" {{ game.away_team.augmented_club_name }}
+
+              .team-stats.row
+                .col-md-6.col-sm-6.col-xs-6.text-center
+                  ul.last-5 ng-show='previous_meetings.team1.length > 0'
+                    li.text-uppercase LAST {{ ::previous_meetings.team1.length }}:
+                    li ng-class='res.klass' ng-repeat='res in previous_meetings.team1' tooltip-placement="top" tooltip="{{ ::res.date }}" title="{{ ::res.date }}" {{ ::res.result }}
+
+                .col-md-6.col-sm-6.col-xs-6.text-center
+                  ul.last-5 ng-show='previous_meetings.team2.length > 0'
+                    li.text-uppercase LAST  {{ ::previous_meetings.team2.length }}:
+                    li ng-class='res.klass' ng-repeat='res in previous_meetings.team2' tooltip-placement="top" tooltip="{{ ::res.date }}" title="{{ ::res.date }}" {{ ::res.result }}
+              hr
+
+              .row
+                section.game-location.col-lg-6.col-md-6.col-sm-6
+                  h5.section-title.text-center.text-uppercase
+                    | game location
+                  address
+                    span.cticon.cticon-location-marker
+                    span.text-left
+                      div[] {{ ::game.venue.address1 }}
+                      div[] {{ ::game.venue.address2 }}
+                      div[] {{ ::game.venue.suburb }} {{ ::game.venue.state }} {{ ::game.venue.zipcode }}
+                  h5.text-center.text-uppercase
+                    a ng-click='openMap(game)' data-backdrop="static" View map
+
+                section.weather-forecast.col-lg-6.col-md-6.col-sm-6
+                  h5.section-title.text-center.text-uppercase weather forecast
+                .col-md-12
+                  hr
+
+    div ng-include="'dashboard/_footer.html'"
+
+

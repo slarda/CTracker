@@ -1,0 +1,155 @@
+div ng-controller='ClubCtrl'
+  div ng-include="'dashboard/_navigation.html'"
+
+  section#primary-content
+    .container-fluid
+
+      // Club information
+      .row vertilize-container=true
+
+        .col-md-6.col-sm-6
+          .club-info.panel.panel-default vertilize=true
+
+            .club-info-header.text-center
+              h2.club-name[] {{ ::club.name }}
+              p ng-show='club.location.website'
+                a.text-uppercase.badge.badge-red ng-href="{{ ::club.location.website }}" target='_blank'
+                  span.icon_link
+                  |  View web site
+              a.club-logo.center-block ng-href="{{ ::club.location.website }}" target='_blank' title="View the {{ ::club.name }} web site"
+                img.img-circle width=160 height=160 ng-src='{{ clubLogo(club) }}' class="img-responsive" alt="Club name"
+
+            .panel-body
+              .row ng-if='club.assoc'
+                .col-sm-12
+                  h5
+                    span.text-uppercase Member of
+                    a< ng-href='{{ club.assoc.url }}' target='_blank' {{ club.assoc.name }}
+
+                /.col-sm-6
+                  a ng-href='{{ club.assoc.url }}' target='_blank'
+                    img style='max-width:52px' ng-src='{{ club.assoc.logo.logo.thumb.url }}'
+
+              .row
+                .col-md-12.col-sm-12
+                  /h5.section-title.text-uppercase
+                    | About the club
+                  p ng-if='!fullDescription' ng-bind-html='trustedDescription(club,true)'
+                  p ng-if='fullDescription' ng-bind-html='trustedDescription(club,false)'
+                  p ng-if='!fullDescription' ng-show='club.description.length > 150'
+                    /a ng-click='showFullDescription()' Read more...
+
+
+
+                .col-md-6.col-sm-12 ng-show='club.location.email'
+                  h5.section-title.text-uppercase
+                    span.icon_mail
+                    = ' '
+                    | Email
+                  small
+                    p.text-small
+                      a ng-href="mailto:{{ ::club.location.email }}" target='_blank' {{ ::club.location.email}}
+                .col-md-6.col-sm-12 ng-show='club.location.phone1 || club.location.phone2 || club.location.phone3'
+                  h5.section-title.text-uppercase
+                    span.icon_phone
+                    = ' '
+                    | Telephone
+                  small
+                    p ng-show='club.location.phone1' {{ ::club.location.phone1 }}
+                    p ng-show='club.location.phone2' {{ ::club.location.phone2 }}
+                    p ng-show='club.location.phone3' {{ ::club.location.phone3 }}
+
+                .col-lg-6.col-md-12.col-sm-12
+                  section ng-show='club.facebook || club.twitter || club.google_plus || club.youtube'
+                    h5.section-title.text-uppercase
+                      | Follow us on
+                    .social-platforms
+                      ul
+                        li.facebook ng-show='club.facebook'
+                          a ng-href='http://www.facebook.com/{{ ::club.facebook }}' target='_blank'
+                            span.social_facebook_square
+                            span.sr-only Facebook
+                        li.twitter ng-show='club.twitter'
+                          a ng-href='http://www.twitter.com/{{ ::club.twitter }}' target='_blank'
+                            span.social_twitter_square
+                            span.sr-only Twitter
+                        li.google-plus ng-show='club.google_plus'
+                          a ng-href='http://plus.google.com/{{ ::club.google_plus }}' target='_blank'
+                            span.social_googleplus_square
+                            span.sr-only GooglePlus
+                        li.instagram ng-show='club.instagram'
+                          a ng-href='http://instagram.com/{{ ::club.instagram }}' target='_blank'
+                            span.social_instagram_square
+                            span.sr-only Instagram
+                        li.youtube ng-show='club.youtube'
+                          a ng-href='http://youtube.com/{{ ::club.youtube}}' target='_blank'
+                            span.social_youtube_square
+                            span.sr-only Youtube
+
+            .panel-more-details.hidden
+              h3 More about the Club
+              p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur, libero! Omnis accusantium eum, possimus corrupti cumque itaque ratione tempora eius mollitia porro minus illo eligendi molestias deserunt earum, nesciunt autem?
+              hr
+              p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus beatae sed delectus cum repellendus. Facilis sequi, placeat itaque molestias similique voluptates sed consequuntur repellendus soluta autem asperiores totam! Doloribus, laudantium.
+
+        .col-md-6.col-sm-6
+          .panel.panel-default vertilize=true
+            .panel-heading.clearfix
+              h3.panel-title
+                strong
+                  | Team list - {{ current_year }}
+
+            .panel-body
+              .row.team-stats
+                .col-md-12
+                  table.table.table-hover
+                    tbody
+                      tr ng-class="{'no-top-border': $first}" ng-repeat='team in teams'
+                        th
+                          | {{ team.augmented_league_name }}
+                        td
+                          a.hand-pointer ng-click='teamUrl(team)' Schedule
+
+            .panel-footer
+              p.text-center
+                a.btn.btn-default ng-click='showAllTeams()' data-toggle="modal" data-target="#clubsModal" ng-show='club.teams.length > 8'
+                  | Show all teams
+
+      .row
+        .col-lg-12
+          .home-ground.panel.panel-default
+            .panel-body
+              .row
+                .home-ground-map.col-lg-8.col-md-8.col-xs-12.pull-right.np ng-show='map_shown'
+                  ui-gmap-google-map center='map.center' zoom='map.zoom' style='width:1280px;height:1024px'
+                    ui-gmap-marker idKey='1' coords='map.marker'
+                .home-ground-info.col-lg-4.col-md-4.col-sm-12.col-xs-12.pull-left.text-center
+                  .circle.circle-lg.circle-md.center-block
+                    span.cticon.cticon-location-marker
+                  h5.section-title.text-uppercase.text-center Home ground
+                  hr
+                  section.home-ground-details
+                    address
+                      strong[] {{ ::club.location.address1 }}
+                      br
+                      div ng-show='club.location.address2.length > 0' {{ ::club.location.address2 }}
+                      div ng-show='club.location.address3.length > 0' {{ ::club.location.address3 }}
+                      div[] {{ ::club.location.suburb }}, {{ ::club.location.state }}, {{ ::club.location.zipcode }}
+
+
+                  p
+                    a.btn.btn-default ng-href="{{ searchAddress(club) }}" target='_blank'
+                      | Get directions
+
+
+      .row
+        .col-sm-6.text-center
+          .panel.panel-default ng-if='club.facebook'
+            .panel-body
+              .fb-page data-href="{{ facebookPageUrl(club) }}" data-tabs="timeline" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"
+              /facebook-embed page-id='{{ club.facebook }}' name='{{ club.name }}'
+        .col-sm-6.text-center
+          .panel.panel-default ng-if='club.twitter && club.twitter_widget'
+            .panel-body
+              twitter-embed twitter-id='{{ club.twitter }}' widget-id='{{ club.twitter_widget }}'
+    div ng-include="'dashboard/_footer.html'"

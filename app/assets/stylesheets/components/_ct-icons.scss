@@ -1,0 +1,144 @@
+@font-face {
+	font-family: 'ct-icon-font';
+	src:asset-url('fonts/ct-icon-font.eot?d2z26c');
+	src:asset-url('fonts/ct-icon-font.eot?#iefixd2z26c') format('embedded-opentype'),
+        asset-url('fonts/ct-icon-font.woff?d2z26c') format('woff'),
+        asset-url('fonts/ct-icon-font.ttf?d2z26c') format('truetype'),
+        asset-url('fonts/ct-icon-font.svg?d2z26c#ct-icon-font') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+.cticon {
+	font-family: 'ct-icon-font';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.cticon-soccer-ball:before {
+	content: "\e600";
+}
+
+.cticon-corner1:before {
+	content: "\e601";
+}
+
+.cticon-goal-save:before {
+	content: "\e602";
+}
+
+.cticon-run-ball:before {
+	content: "\e603";
+}
+
+.cticon-goal1:before {
+	content: "\e604";
+}
+
+.cticon-goal2:before {
+	content: "\e605";
+}
+
+.cticon-clipboard1:before {
+	content: "\e606";
+}
+
+.cticon-soccer-pitch:before {
+	content: "\e607";
+}
+
+.cticon-strategy1:before {
+	content: "\e608";
+}
+
+.cticon-strategy2:before {
+	content: "\e609";
+}
+
+.cticon-boot1:before {
+	content: "\e60a";
+}
+
+.cticon-boot2:before {
+	content: "\e60b";
+}
+
+.cticon-shorts:before {
+	content: "\e60c";
+}
+
+.cticon-location-marker:before {
+	content: "\e61d";
+}
+
+.cticon-sun:before {
+	content: "\e60d";
+}
+
+.cticon-cloud-sun:before {
+	content: "\e60e";
+}
+
+.cticon-cloud-rain-sun:before {
+	content: "\e61c";
+}
+
+.cticon-cloud:before {
+	content: "\e60f";
+}
+
+.cticon-cloud-drizzle:before {
+	content: "\e610";
+}
+
+.cticon-cloud-rain:before {
+	content: "\e611";
+}
+
+.cticon-cloud-lightning:before {
+	content: "\e612";
+}
+
+.cticon-cloud-snow:before {
+	content: "\e613";
+}
+
+.cticon-cloud-snow-alt:before {
+	content: "\e614";
+}
+
+.cticon-wind:before {
+	content: "\e615";
+}
+
+.cticon-degrees-celcius:before {
+	content: "\e616";
+}
+
+.cticon-compass:before {
+	content: "\e617";
+}
+
+.cticon-compass-north:before {
+	content: "\e618";
+}
+
+.cticon-compass-east:before {
+	content: "\e619";
+}
+
+.cticon-compass-south:before {
+	content: "\e61a";
+}
+
+.cticon-compass-west:before {
+	content: "\e61b";
+}

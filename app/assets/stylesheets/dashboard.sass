@@ -1,0 +1,325 @@
+
+//@import url(http://fonts.googleapis.com/css?family=Raleway:600,400)
+
+$yellow: #ffd300
+$red: red
+$red-shade: #d00
+$blue: #4198B8
+
+.angular-google-map-container
+  height: 400px
+
+//body
+  //font-family: 'Raleway', sans-serif, sans
+
+.not-ready
+  display: none
+
+.pri
+  position: relative !important
+
+.tac
+  text-align: center
+
+.light-gray
+  color: #ddd
+
+.gray
+  color: #999
+
+.red
+  color: $red
+
+//.small
+  font-size: 7px
+
+.btn-red
+  color: #d43f3a
+  border: solid 1px darken($btn-danger-bg, 5%)
+
+  &:hover
+    color: white
+    background-color: #d9534f
+    border: solid 1px darken($btn-danger-bg, 7%)
+
+  &.rounded
+    border-radius: 10px
+
+  &.dbl
+    border-width: 2px
+
+hr.shrunk
+  margin-top: 10px
+  margin-bottom: 10px
+
+
+.five-col
+  width: 20%
+  float: left
+  position: relative
+  min-height: 1px
+  padding-left: 15px
+  padding-right: 15px
+
+.app-topbar
+  min-height: 64px
+  padding-left: 10px
+  padding-right: 10px
+
+  h1
+    font-size: 28px
+
+  .avatar
+    text-align: right
+
+    h2
+      display: inline
+      margin-top: 0px
+      padding-top: 0px
+      font-size: 14px
+
+    img
+      width: 50px
+      height: 50px
+      border: solid 1px white
+      border-radius: 25px
+
+  .underhang
+    span a
+      font-size: 12px
+      color: black
+
+.app-avatar
+  text-align: center
+  position: absolute
+  top: 0
+  left: 0
+  right: 0
+
+  .centred
+    background-color: #eee
+    color: #222
+    padding: 10px
+    width: 400px
+    margin-left: auto
+    margin-right: auto
+
+
+//.dsh-dashboard
+  background-color: #f2f4f6
+  padding: 20px
+
+  h3
+    font-size: 12px
+    font-weight: bold
+    text-transform: uppercase
+
+  .edit
+
+    a
+      color: #f66
+      border-bottom: dotted 1px #f66
+      font-size: 12px
+
+      &:hover
+        text-decoration: none
+
+    i
+      color: #f22
+
+  .shadow
+    background-color: white
+    border: solid 1px #ddd
+    box-shadow: 3px 3px 3px #ddd
+    padding: 5px
+
+    .avatar, .club
+      width: 100px
+      height: 100px
+
+    .user-details
+      display: inline-block
+
+    &.stats
+      min-height: 140px
+
+    &.half-stats
+      min-height: 65px
+      //vertical-align: middle
+      //margin: 20px 10px
+      border-radius: 2px
+
+      &.yellow
+        border-left: solid 3px $yellow
+
+      &.red
+        border-left: solid 3px $red
+
+      .no-pad
+        padding: 0
+
+      &.first
+        margin-bottom: 10px
+
+  .player-details
+    font-size: 11px
+    //padding: 0
+
+    .boxed
+      border: solid 1px #eee
+      height: 28px
+      vertical-align: middle
+      padding: 5px
+
+    .col-sm-6
+      padding: 0px
+
+  .card-count
+    font-size: 24px
+    font-weight: bold
+    line-height: 50px
+
+
+  .card-highlight
+    display: inline-block
+    width: 60px
+    text-align: center
+    text-transform: uppercase
+    color: white
+    padding: 2px 5px
+    border: solid 1px white
+    border-radius: 8px
+    font-size: 10px
+    margin: 16px 0
+
+    &.yellow
+      background-color: $yellow
+
+    &.red
+      background-color: $red
+
+  .share
+    color: red
+
+    a
+      color: red
+      text-transform: uppercase
+      font-weight: bold
+      font-size: 10px
+      border-bottom: dotted 1px $red
+
+      &:hover
+        text-decoration: none
+
+
+  .games
+
+    .row.max-line
+      line-height: 100px
+
+    .logo
+      width: 100px
+      height: 100px
+
+    .score
+      font-size: 36px
+      font-weight: bold
+
+    .vs
+      color: white
+      background-color: $btn-danger-bg
+      display: inline-block
+      width: 25px
+      height: 25px
+      margin: 30px
+      padding: 0
+      overflow: visible
+      border: 0 solid rgba(0,0,0,1)
+      line-height: 25px
+      -o-text-overflow: clip
+      text-overflow: clip
+      -webkit-transform: rotateZ(-45deg) scaleX(1) scaleY(1) scaleZ(1)
+      transform: rotateZ(-45deg) scaleX(1) scaleY(1) scaleZ(1)
+      -webkit-transform-origin: 0 100% 0
+      transform-origin: 0 100% 0
+
+      .text
+        transform: rotateZ(45deg) scaleX(1) scaleY(1) scaleZ(1)
+
+    .map
+      padding-top: 5px
+      text-align: center
+
+      a
+        text-transform: uppercase
+        color: $blue
+        font-size: 11px
+        border-bottom: dotted 1px $blue
+
+        &:hover
+          text-decoration: none
+
+
+
+    .ap
+
+// OFF CANVAS CONTROL //////////////////////////////////////////////////////////////////////////////////////////////////
+// Off Canvas: http://getbootstrap.com/examples/offcanvas/
+
+@media screen and (max-width: 767px)
+  .row-offcanvas
+    position: relative
+    -webkit-transition: all .25s ease-out
+    -o-transition: all .25s ease-out
+    transition: all .25s ease-out
+
+  .row-offcanvas-right
+    right: 0
+
+  .row-offcanvas-left
+    left: 0
+
+  .row-offcanvas-right .sidebar-offcanvas
+    right: -50% // 6 columns
+
+  .row-offcanvas-left .sidebar-offcanvas
+    left: -50% // 6 columns
+
+  .row-offcanvas-right.active
+    right: 50% // 6 columns
+
+  .row-offcanvas-left.active
+    left: 50%  // 6 columns
+
+  .sidebar-offcanvas
+    position: absolute
+    top: 0
+    width: 50% // 6 columns
+
+
+
+// TEMPORARY STUFF ////////////////////////////////////////////////////////////////////////////////////////////////////
+// Home vs Away games
+img.away
+  border: solid 1px $red
+
+.pr
+  position: relative
+
+// Angular.js default animations
+//.ng-enter, .ng-leave
+  //-webkit-transition: 0.5s linear all
+  //transition: 0.5s linear all
+
+.top-hide
+  top: -0px
+  position: relative
+
+  &.ng-hide
+    top: -100px
+
+  &.ng-hide-add, &.ng-hide-remove
+    // this is required as of 1.3x to properly
+       apply all styling in a show/hide animation
+    transition: 0.5s linear all
+

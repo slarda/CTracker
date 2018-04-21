@@ -1,0 +1,72 @@
+// standings
+
+.standings {
+	table {
+		margin-bottom: 0;
+		thead,
+		tbody {
+			th,
+			td {
+				text-align: center;
+				&:first-child {
+					max-width: 50px;
+				}
+				&:first-child,
+				&.team-name {
+					border-right: 1px solid $lightGrey;
+				}
+
+				&:nth-child( 3 ) {
+					text-align: center;
+				}
+			}
+			.team-name {
+				padding-left: 10px;
+				text-align: left;
+				min-width: 180px;
+				// font-weight: 600;
+				> a {
+					white-space: normal;
+				}
+			}
+		}
+		thead {
+			/* background: $ct_lightBlue;
+			color: $white;
+			th {
+				border-color: $white !important;
+			} */
+			label {
+				display: none;
+			}
+			small {
+				display: block;
+				font-size: 12px;
+			}
+			@media screen and ( min-width: $screen-lg-min ) {
+				label {
+					display: block;
+				}
+				small {
+					display: none;
+				}
+			}
+		}
+		tbody {
+			//tr:nth-child(5) {
+			//	th,td {
+			//		border-color: $ct_green $lightGrey transparent transparent;
+			//	}
+			//}
+
+			a {
+				color: $ct_lightBlue;
+			}
+		}
+	}
+	.table-responsive {
+		margin: 0;
+		border: none;
+	}
+
+}

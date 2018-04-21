@@ -1,0 +1,142 @@
+// navigation
+
+#navbar {
+	padding-top: $headerHeight + $defaultPadding / 2;
+	position: relative;
+	height: 100% !important;
+	.navbar-nav {
+		width: 100%;
+		margin: 0;
+		> li {
+			float: none;
+			width: 100%;
+			> a {
+				display: block;
+				color: $lightGrey;
+				text-transform: uppercase;
+				font-weight: 500;
+				@include transition( 0.3s ease );
+				&:hover,
+				&:active,
+				&:focus {
+					color: $white;
+					background: $navItemHover;
+					padding-left: 25px;
+					[class*="icon_"],
+					[class^="icon_"] {
+						color: $ct_primaryRed;
+						margin-right: 12px;
+					}
+				}
+				[class*="icon_"],
+				[class^="icon_"] {
+					font-size: 24px;
+					margin-right: 16px;
+					vertical-align: middle;
+					@include transition( 0.3s ease );
+				}
+			}
+			&.active {
+				a {
+					color: $white;
+					background: $navItemCurrent;
+					&:before {
+						content: '';
+						display: block;
+						position: absolute;
+						left: 0;
+						top: 0;
+						bottom: 0;
+						z-index: 5;
+						width: 3px;
+						background: $ct_primaryRed;
+					}
+				}
+			}
+			&.menu-divider {
+				border: none;
+				height: 2px;
+				background: $navItemCurrent;
+				width: 100%;
+				margin: 22px 0;
+				padding: 0;
+			}
+		}
+	}
+}
+
+.navbar-toggle {
+	position: absolute;
+	left: 5px;
+	margin: 0;
+	z-index: index( $elements, navigationToggle );
+	display: block;
+	border: none;
+	outline: none;
+	@include vertical-align;
+
+	@media screen and ( min-width: $screen-md-min + 1 ) {
+		display: none;
+	}
+	&.collapsed {
+		.line1,
+		.line2,
+		.line3 {
+			top: 0;
+			opacity: 1;
+			-webkit-backface-visibility: hidden;
+			-webkit-perspective: 1000;
+			// @include transform( translate3d(0,0,0) );
+			@include transition( all 0.2s ease 0 );
+			@include transform( translateZ( 0 ) );
+		}
+	}
+	&:hover {
+		opacity: 0.9;
+	}
+	.icon-bar {
+		background: $white;
+		position: relative;
+		@include transition( all 0.3s ease-in-out );
+	}
+	.line1 {
+		// top: 6px;
+		@include transform( translateY( 6px ) rotate( 45deg ) );
+	}
+	.line2 {
+		opacity: 0;
+		@include transform( scale( 0 ) );
+	}
+	.line3 {
+		// top: -6px;
+		@include transform( translateY( -6px ) rotate( -45deg ) );
+	}
+
+}
+
+.nav-content-overlay {
+	content: '';
+	background: $whiteOverlay;
+	opacity: 0;
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: -1;
+	@include transition( 0.1s linear );
+	@include transition-delay( 0 );
+}
+
+body {
+	&.nav-open {
+		overflow: hidden;
+		.nav-content-overlay {
+			display: block;
+			opacity: 1;
+			z-index: index($elements, sidebarOverlayOpen);
+		}
+	}
+}

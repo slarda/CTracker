@@ -1,0 +1,28 @@
+- flash.each do |name, msg|
+  = content_tag :div, msg, class: [name, 'alert-warning']
+
+/ng-view
+
+div Champ Tracker
+ul
+  li
+    a href='/#/loading' Loading Screen
+  li
+    a href="#{users_path(format: :json)}" Users
+  li
+    a href="#{associations_path(format: :json)}" Associations
+  li
+    a href="#{association_clubs_path(1, format: :json)}" Association 1 Clubs
+  li
+    a href="#{club_teams_path(1, format: :json)}" Association 1 Club 1 Teams
+  li
+    a href="#{team_path(1, format: :json)}" Association 1 Club 1 Team 1
+
+p
+  ' Logged in:
+  = current_user ? current_user.email : '(anonymous)'
+ul
+  li
+    = link_to 'Login', login_path
+  li
+    = link_to 'Logout', logout_path

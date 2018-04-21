@@ -1,0 +1,23 @@
+#clubsModal
+  .modal-header
+    button.close aria-label="Close" type="button" ng-click='cancel()'
+      span aria-hidden="true" &times;
+    h4#myModalLabel.modal-title
+      | All teams - {{ club.name }}
+  .modal-body
+    table.table.table-hover
+      tbody
+        tr.no-top-border ng-class="{'no-top-border': $first}" ng-repeat='team in teams'
+          th
+            /a href="#"
+            | {{ team.augmented_league_name }}
+          td
+            a ng-click='selectTeam(team)' Schedule
+          /td
+            a href="#"
+              | Results
+          /td
+            a href="#"
+              | Ladder
+  .modal-footer
+    button.btn.btn-primary ng-click='cancel()' type='button' Close

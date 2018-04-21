@@ -1,0 +1,44 @@
+// club info
+
+.club-info {
+	.club-info-header {
+		color: $white;
+		max-height: 180px;
+		background: url( '../img/grass-bg.jpg' ) no-repeat;
+		background-size: cover;
+		padding-top: 25px;
+		margin: 0 0 25px;
+		@media screen and ( min-width: $screen-sm-min ) {
+			max-height: 220px;
+		}
+		.club-name {
+			margin: 0 0 20px;
+			font-size: 18px;
+			@include text-shadow( 0 0 4px rgba( $black, 0.4 ) );
+			@media screen and ( min-width: $screen-sm-min ) {
+				font-size: 24px;
+			}
+			@media screen and ( min-width: $screen-lg-min ) {
+				font-size: 30px;
+			}
+		}
+		.club-logo {
+			width: 100px;
+			height: 100px;
+			padding: 12px;
+			background-color: $white;
+			margin-top: 24px;
+			@include border-radius( 50% );
+			@include box-shadow( 0 3px 5px rgba( $black, 0.1 ) );
+			@media screen and ( min-width: $screen-sm-min ) {
+				width: 120px;
+				height: 120px;
+				padding: 15px;
+			}
+		}
+
+	}
+	.share-element {
+		@include horizontal-list;
+	}
+}

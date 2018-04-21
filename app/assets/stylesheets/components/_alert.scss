@@ -1,0 +1,72 @@
+// alerts
+
+.alert {
+	border: none;
+	position: relative;
+	&.alert-success,
+	&.alert-warning,
+	&.alert-danger {
+		border: none;
+		color: $white;
+		padding-top: 10px;
+		padding-bottom: 10px;
+		padding-left: 32px;
+		&:before {
+			opacity: 0;
+			content: '';
+			position: absolute;
+			left: 10px;
+			top: 10px;
+			font-family: 'ElegantIcons';
+			font-size: 16px;
+			margin-top: -2px;
+			@include transition( 0.3s ease );
+			@include transform( translateY( 10px ) );
+			@include animation( slideUp forwards );
+		}
+	}
+	.close {
+		color: $white;
+		text-shadow: none;
+		opacity: 0.7;
+		margin-top: -1px;
+		@include transition( 0.3s ease );
+		&:hover {
+			opacity: 1;
+		}
+	}
+	
+	&.alert-success {
+		background: $alert_success;
+		&:before {
+			content: '\52';
+			position: absolute;
+			left: 10px;
+			top: 10px;
+			font-family: 'ElegantIcons';
+			font-size: 16px;
+			margin-top: -2px;
+		}
+	}
+	&.alert-warning,
+	&.alert-danger {
+		&:before {
+			content: '\72';
+		}
+	}
+
+	&.alert-warning {
+		background: $alert_warning;
+	}
+	&.alert-danger {
+		// background: $ct_primaryRed;
+		background: $alert_danger;
+	}
+}
+
+@include keyframes( slideUp ) {
+	100% {
+		opacity: 1;
+		@include transform( translateY( 0 ) );
+	}
+}

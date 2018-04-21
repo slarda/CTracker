@@ -1,0 +1,96 @@
+// variables
+
+// colours
+$ct_primaryRed: #ed3837;
+$ct_lightBlue: #00a5d7;
+$ct_pink: #ec4180;
+$ct_green: #a2d425;
+$ct_teale: #59bfbf;
+$ct_orange: #f8bf34;
+
+$yellowCard: #f8bf34;
+$redCard: $ct_primaryRed;
+
+// tones
+$black: #000;
+$white: #fff;
+$charcoal: #333;
+$mediumGrey: #7f7f7f;
+$lightGrey: #eaeaea;
+$almostWhite: #f2f4f6;
+
+$defaultBtnBorder: tint($black, 82%);
+
+// Alert colours
+$alert_success: darken( $ct_green, 10% );
+$alert_warning: darken( $ct_orange, 15% );
+$alert_danger: #AD0D20; //darken( $ct_primaryRed, 12% );
+
+
+$borderGrey: tint($black, 90%);				// used for border colour ( #e5e5e5 )
+$linkUnderline: rgba( $ct_primaryRed, 0.2 );
+
+
+// Social media colours
+$facebookColour: #1c4e9b;
+$twitterColour: #00b0ed;
+$googlePlusColour: #dd4129;
+$youtubeColour: #dd4129;
+$linkedinColour: #1A84BC;
+$tumblrColour: #36465D;
+$snapchatColour: #FFFC00;
+
+
+$navBackground: #1b1e24;
+$navItemCurrent: rgba( $black, 0.3 );
+$navItemHover: rgba( $black, 0.12 );
+
+
+$baseFontColour: $charcoal;
+
+
+// element heights
+$navbarWidth:  260px;
+$headerHeight: 100px;
+
+
+// modal vars
+$overlayOpacity: 0.8;
+$blackOverlay: rgba( $black, $overlayOpacity );
+$whiteOverlay: rgba( $white, $overlayOpacity );
+$offWhiteOverlay: rgba( $almostWhite, $overlayOpacity );
+
+
+// Awesome z-index management
+// usage: z-index: index($elements, elementName);
+$elements: sidebarOverlayClosed,content,radioSelected,contentFooter,card,card-bg,scores-vs,footer,sidebarOverlayOpen,leftSidebar,applicationHeader,navigationToggle,navBarToggle,modalOverlay,modal;
+
+$defaultRadius: 3px;
+
+$defaultPadding: 30px;
+$defaultMargin: $defaultPadding;
+$buffer: $defaultPadding;
+$contentPaddingMobile: $defaultPadding / 2;
+$contentPaddingTablet: $defaultPadding;
+$contentPaddingDesktop: $defaultPadding * 2;
+
+// animation related voodoo
+$defaultTransitionTiming: 0.3s;
+
+
+// modal properties
+
+//** Modal backdrop background color
+$modal-backdrop-bg:           $white !default;
+//** Modal backdrop opacity
+$modal-backdrop-opacity:      .7 !default;
+
+// redefine bootstrap vars
+$link-color: $ct_lightBlue;
+
+$img-width-xs: 32px;
+$img-width-sm: 64px;
+$img-width-sm2: 96px;
+$img-width-md: 128px;
+$img-width-lg: 256px;
+$img-width-xl: 640px;

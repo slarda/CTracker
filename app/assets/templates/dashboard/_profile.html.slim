@@ -1,0 +1,147 @@
+// Main player profile
+.row
+  section.section-header.col-lg-12.clearfix
+    h4.section-title.pull-left.text-uppercase
+      | {{ ::user.first_name }} {{ ::user.last_name }}
+      span.pipe
+      | {{ ::user.active_sport }}
+      span ng-if='user.current'
+        span.pipe
+        a.edit ng-href='#/users/{{ ::user.id }}/player_profiles/personal' ng-if="user.current_user?"
+          label edit profile
+          /span.glyphicon.glyphicon-pencil
+.player-profile.row
+  .col-md-12
+    .panel
+      .panel-body
+        // player profile image
+        .profile-photo.col-lg-5th-1.col-md-12.col-sm-12.col-xs-12
+          img ng-src='{{ ::user.avatar.url }}' class="img-responsive"
+          // span.verified ng-if="user.verified == 'was_verified'" verified
+          span.grey-back
+          span.player-number[] {{ user.active_sport_profile.player_no }}
+          span.player-type[] &nbsp;{{ positions(user) }}
+
+        .profile-data.col-lg-5th-4
+          .row
+
+            .col-md-8.col-sm-12
+              div.player-name
+                | {{ ::user.first_name }} {{ ::user.middle_name }} {{ ::user.last_name }}
+              div.player-number-position
+                span.player-number[] \#{{ user.active_sport_profile.player_no }}
+                span.player-type[] &nbsp;{{ positions(user) }}
+
+              div.player-detail.row
+                .col-md-6
+                  table.table.text-left
+                    tr
+                      td DOB
+                      td
+                        b>[] {{user.dob | date}}
+                    tr
+                      td
+                        span[] Born
+                      td
+                        b>[] {{ showProfileData(4) }}
+                    tr
+                      td
+                        span> Age
+                      td
+                        b>[] {{ playerAge(user) }}
+                    tr
+                      td
+                        span>[] Height
+                      td
+                        b[] {{ showProfileData(2) }}
+                    tr
+                      td
+                        span>[] Weight
+                      td
+                        b[] {{ showProfileData(3) }}
+
+                    tr
+                      td ng-if="user.player_profile.passport1"
+                        span>[] Passport
+                      td ng-if="user.player_profile.passport1"
+                        b[] {{ user.player_profile.passport1 }}
+
+                .col-md-6
+                  table.table.text-left
+                    tr
+                      td Career games
+                      td
+                        b>[] {{ all_stats.games }}
+                    tr
+                      td Career goals
+                      td
+                        b>[] {{ all_stats.goals }}
+                    tr
+                      td
+                        Career Assists
+                      td
+                        b>[] {{ all_stats.assists }}
+                    tr
+                      td
+                        Career W/L/D
+                      td
+                        b[] {{ all_stats.win }} / {{ all_stats.lose }} / {{ all_stats.draw }}
+                    tr
+                      td
+                        span[] Natural Foot
+                      td
+                        b[] {{ showProfileData(5) }}
+                    tr
+                      td ng-if="user.player_profile.passport2"
+                        span>[] Passport 2
+                      td ng-if="user.player_profile.passport2"
+                        b[] {{ user.player_profile.passport2 }}
+
+              
+              div ng-show='user.facebook || user.twitter || user.google_plus || user.youtube || user.linkedin || user.snapchat || user.tumblr'
+                div
+                  div.social-platforms
+                    span.follow-me-on
+                      b FOLLOW
+                    ul
+                      li.facebook
+                        a.hand-pointer ng-href="http://www.facebook.com/{{ user.facebook }}" ng-show="user.facebook" target='_blank'
+                          span.social_facebook_square
+                      li.instagram
+                        a.hand-pointer ng-href="http://www.instagram.com/{{ user.instagram }}" ng-show="user.instagram" target='_blank'
+                          span.social_instagram_square
+                      li.twitter
+                        a.hand-pointer ng-href="http://www.twitter.com/{{ user.twitter }}" ng-show="user.twitter" target='_blank'
+                          span.social_twitter_square
+                      li.youtube
+                        a.hand-pointer ng-href="http://www.youtube.com/{{ user.youtube }}" ng-show="user.youtube" target='_blank'
+                          span.social_youtube_square
+                      li.linkedin
+                        a.hand-pointer ng-href="http://www.linkedin.com/in/{{ user.linkedin }}" ng-show="user.linkedin" target='_blank'
+                          span.social_linkedin_square
+                      li.snapchat
+                        a.hand-pointer ng-href="http://www.snapchat.com/add/{{ user.snapchat }}" ng-show="user.snapchat" target='_blank'
+                          span.social_snapchat_square
+                      li.tumblr
+                        a.hand-pointer ng-href="http://www.tumblr.com/blog/{{ user.tumblr }}" ng-show="user.tumblr" target='_blank'
+                          span.social_tumblr_square
+
+            // club logo col ( 2 fifths )
+            // logo is 100 x 100px
+            .col-md-4.col-sm-12.text-center
+              a.club-logo ng-href='#/clubs/{{ ::user.club_id }}'
+                img ng-src="{{ ::user.club.logo.url }}" class="img-responsive" alt="{{ ::user.club.name }}"
+
+
+              // club logo / name / team
+              h4
+                a ng-href='#/clubs/{{ ::user.club_id }}' {{ user.team.name }}
+              h5.team-name
+                a ng-href='#/clubs/{{ ::user.club_id }}' {{ user.team.league.name }}
+
+              div.row.edit-details ng-if='user.current'
+                span.pipe
+                a.edit ng-href='#/users/{{ ::user.id }}/player_profiles/personal'
+                  span.fa.fa-pencil-square-o
+                  span EDIT DETAILS
+

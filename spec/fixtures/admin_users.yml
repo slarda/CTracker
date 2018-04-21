@@ -1,0 +1,5 @@
+admin_nigel:
+  email: nigel@greenshoresdigital.com
+  #salt: salt
+  encrypted_password: <%= User.encrypt('rabbit37', 'salt') %>
+

@@ -1,0 +1,45 @@
+// home ground information panel
+
+.home-ground {
+	@media screen and ( minw: $screen-sm-min ) {
+		max-height: 410px;
+	}
+	
+	.panel-body {
+		padding: 0;
+	}
+	.home-ground-info,
+	.home-ground-map {
+		// padding: 0 20px;
+		// margin: -20px -25px;
+	}
+	.home-ground-map {
+		padding: 0 $contentPaddingMobile;
+		@media screen and ( min-width: $screen-md-min ) {
+			padding: 0 $contentPaddingMobile 0 0; // 0 15px 0 0
+		}
+	}
+	.home-ground-info {
+		padding: 60px 0 30px 15px;
+		@media screen and ( min-width: $screen-sm-min ) {
+			padding-bottom: 0;
+		}
+		.circle {
+			width: 120px;
+			height: 120px;
+			background: $charcoal;
+			@include border-radius( 50% );
+			.cticon {
+				color: $white;
+				font-size: 48px;
+				line-height: 120px;
+			}
+		}
+		.home-ground-details {
+			padding: 0 $contentPaddingMobile; //0 15px
+			@media screen and ( min-width: $screen-sm-min ) {
+				padding: 0 20px;
+			}
+		}
+	}
+}

@@ -1,0 +1,76 @@
+div
+  img> ng-src='{{ clubLogo(game.home_team) }}' width=50 height=50
+  img ng-src='{{ clubLogo(game.away_team) }}' width=50 height=50
+  div
+    span>[] {{ ::teamName(game.home_team) }}
+    span[] {{ ::teamName(game.away_team) }}
+
+  .row
+    .col-sm-3[] {{ ::game.specialized.home_yellow_cards }}
+    .col-sm-4 YELLOW CARDS
+    .col-sm-3[] {{ ::game.specialized.away_yellow_cards }}
+
+  .row
+    .col-sm-3[] {{ ::game.specialized.home_red_cards }}
+    .col-sm-4 RED CARDS
+    .col-sm-3[] {{ ::game.specialized.away_red_cards }}
+
+  div
+    b SCORING SUMMARY
+  .row
+    .col-sm-1 9'
+    .col-sm-3
+      img width=50 height=50
+    .col-sm-8
+      div
+        b Team name
+      div
+        ' Scorer name
+
+  .row
+    .col-sm-1 77'
+    .col-sm-3
+      img width=50 height=50
+    .col-sm-8
+      div
+        b Team name
+      div
+        ' Scorer name
+
+  .row
+    .col-sm-1 85'
+    .col-sm-3
+      img width=50 height=50
+    .col-sm-8
+      div
+        b Team name
+      div
+        ' Scorer name
+
+  div
+    b PENALTIES / DISCIPLINE
+
+  .row
+    .col-sm-1 32'
+    .col-sm-3
+      img width=50 height=50
+    .col-sm-7
+      div
+        b Team name
+      div
+        ' Penality recipient
+    .col-sm-1
+      i.fa.fa-flag style='color:rgb(203,203,13);font-size:20px;background-color:rgb(244,244,199)'
+
+
+  .row
+    .col-sm-1 36'
+    .col-sm-3
+      img width=50 height=50
+    .col-sm-7
+      div
+        b Team name
+      div
+        ' Penality recipient
+    .col-sm-1
+      i.fa.fa-flag style='color:red;font-size:20px'

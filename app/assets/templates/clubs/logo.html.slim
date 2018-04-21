@@ -1,0 +1,8 @@
+div ng-controller='ClubCtrl'
+  div style='width:200px;margin-left:auto;margin-right:auto'
+    div
+      ' {{ ::club.name }}
+    div
+      img ng-src='{{ clubLogo(club) }}'
+    div
+      input type='file' name='logo' nv-file-select=true uploader='uploader'

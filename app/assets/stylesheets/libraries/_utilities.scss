@@ -1,0 +1,69 @@
+// utility classes
+
+.equal, 
+.equal > div[class*='col-'] {  
+    @include flexbox((
+    	display: flex,
+    	flex-direction: row
+  	));
+    flex: 1 1;
+}
+
+.np {
+	padding: 0 !important;
+}
+
+.nm {
+	margin: 0;
+}
+
+.vcenter {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+}
+
+/* columns of same height styles */
+.row-same-height {
+    display: table;
+    width: 100%;
+}
+.col-xs-height {
+    display: table-cell;
+    float: none !important;
+}
+
+.img-width-xs {
+    max-width: 32px;
+}
+.img-width-sm {
+    max-width: 64px;
+}
+.img-width-md {
+    max-width: 128px;
+}
+.img-width-lg {
+    max-width: 256px;
+}
+.img-width-xl {
+    max-width: 640px;
+}
+
+@media (min-width: 768px) {
+    .col-sm-height {
+        display: table-cell;
+        float: none !important;
+    }
+}
+@media (min-width: 992px) {
+    .col-md-height {
+        display: table-cell;
+        float: none !important;
+    }
+}
+@media (min-width: 1200px) {
+    .col-lg-height {
+        display: table-cell;
+        float: none !important;
+    }
+}

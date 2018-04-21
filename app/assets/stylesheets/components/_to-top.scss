@@ -1,0 +1,14 @@
+// link back to top of page
+
+.to-top {
+	width: 32px;
+	height: 32px;
+	background: rgba( $black, 0.8 );
+	@include border-radius( 50% );
+	@media screen and ( min-width: $screen-sm-min ) {
+		display: none;
+	}
+	&:after {
+		content: '';
+	}
+}

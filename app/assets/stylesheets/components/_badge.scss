@@ -1,0 +1,8 @@
+// badges
+
+.badge {
+	background: $charcoal;
+	&.badge-red {
+		background: $ct_primaryRed;
+	}
+}

@@ -1,0 +1,474 @@
+doctype 5
+html lang="en"
+	head
+    	/! Meta, title, CSS, favicons, etc.
+		meta charset="utf-8" /
+		meta content="IE=edge" http-equiv="X-UA-Compatible" /
+		meta content="width=device-width, initial-scale=1" name="viewport" /
+    	title My Champ Tracker
+    	
+    	link href="css/animate.min.css" media="screen" rel="stylesheet" type="text/css" /
+    	link href="http://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700" rel="stylesheet" type="text/css" /
+    	link href="css/custom.css" media="screen" rel="stylesheet" type="text/css" /
+    	/! included everything for development only, customise later
+    	script src="js/modernizr.custom.36994.js"
+    	script src="https://maps.googleapis.com/maps/api/js"
+	body
+		header#application-header.navbar.navbar-fixed-top
+			.branding
+				button.navbar-toggle.collapsed data-target=".navbar-collapse" data-toggle="collapse" type="button" 
+					span.sr-only Toggle navigation
+					span.icon-bar.line1
+					span.icon-bar.line2
+					span.icon-bar.line3
+
+				a.navmenu-brand href="#"
+					img src="img/sample-branding-2x.png" class="img-responsive" alt="Brand name"
+			.header-content.clearfix
+				h1.section-title.pull-left 
+					a.nav-prev.btn.btn-default.btn-large href="#" aria-label="Previous"
+						span.glyphicon.glyphicon-chevron-left
+					|  My fixture
+	          	
+
+				ul.player-menu.nav.navbar-nav.navbar-right
+					li.dropdown.user-profile
+						a.dropdown-toggle data-toggle="dropdown" href="#"
+							| Evan 
+							span Kraloglou
+							span.arrow_carrot-down aria-hidden="true"
+							span.player-photo
+								img src="img/sample-player-1-sm.jpg" class="img-responsive pull-right img-circle" alt="player name" width="50" /
+						ul.dropdown-menu.dropdown-persist role="menu"
+							li
+							    a href="#" 
+									span.glyphicon.glyphicon-cog aria-hidden="true" 
+									|  Account Settings
+							li
+								a href="#" 
+									span.glyphicon.glyphicon-off aria-hidden="true" 
+									|  Logout
+
+		aside#sidebar-left.navmenu.navmenu-default.navbar-collapse aria-expanded="true"
+
+			nav#navbar role="navigation"
+				ul.nav.navbar-nav
+					li.active
+						a href="#" 
+							span class="icon_datareport"
+							| Dashboard
+					li
+						a href="#"
+							span class="icon_documents_alt"
+							| News
+					li
+						a href="#"
+							span class="icon_datareport"
+							| Results
+					li
+						a href="#"
+							span class="icon_question_alt2"
+							| Hints &amp; tips
+					li
+						a href="#"
+							span class="icon_heart_alt"
+							| Health
+					li
+						a href="#"
+							span class="icon_calendar"
+							| Calendar
+					li
+						a href="#"
+							span class="icon_easel"
+							| Performance
+					li
+						a href="#"
+							span class="icon_ribbon_alt"
+							| My Achievements
+					li
+						a href="#"
+							span class="icon_star_alt"
+							| Training Goals
+					li.menu-divider
+					li
+						a href="#"
+							span class="icon_cog"
+							| Settings
+					li
+						a href="#"
+							span class="icon_profile"
+							| Profile
+					li
+						a href="#"
+							span class="arrow_carrot-right"
+							| View Feature Tour
+    	section#primary-content
+			.container-fluid
+
+				// Competition name
+				.row
+					section.section-header.col-lg-12
+						h4.section-title.pull-left.text-uppercase
+							strong
+								| COMPETITION:
+							span.pipe
+							span.normal-weight-font
+								| PS4 NPL
+					
+
+				//  Team fixture
+				.row.fixture
+					.col-xs-12
+						.panel
+							.faux-table-container
+								.row
+									.col-lg-12.faux-table-header
+										.row
+											.col-sm-1.col-xs-3.text-center
+												label Round
+											.col-sm-11
+												label Date
+									.col-lg-12.faux-table-body
+
+										// ROW 1
+										.single-item.row
+											.roundNum.col-sm-1.col-xs-12
+												span.badge
+													span.text
+														| Round
+													| 1
+											.col-md-3.col-sm-3.col-xs-12
+												span.date
+													span.icon_calendar 
+													|  Sun, 1 Mar @ 11:30am
+												address
+													strong
+														| Jack Edwards Reserve
+											.home-team.col-sm-3.col-xs-10
+												span.logo
+													img.img-responsive src="img/club-logos/sample-club-logo-3.png" alt="Responsive image"
+												span.team-name
+													| Oakleigh Cannons FC
+											.final-score.col-sm-2.text-center.col-xs-2
+												span
+													span.score.winner 2
+													span.score 1
+											.away-team.col-sm-3.col-xs-10
+												span.logo
+													img.img-responsive src="img/club-logos/sample-club-logo-1.png" alt="Responsive image"
+												span.team-name
+													| Golburn Valley Suns
+											.faux-table-footer.row
+												.col-md-12
+													ul.actions
+														li
+															a.btn.btn-default.btn-sm href="#"
+																| Match details
+																span.arrow_carrot-right aria-hidden="true"
+														li
+															a.btn.btn-primary.btn-sm href="#"
+																| Add stats 
+																span.arrow_carrot-right aria-hidden="true"
+
+
+										// ROW 2
+										.fixture-item.row
+											.roundNum.col-sm-1.col-xs-12
+												span.badge
+													span.text
+														| Round
+													| 2
+											.col-md-3.col-sm-3.col-xs-12
+												span.date
+													span.icon_calendar 
+													|  Sun, 1 Mar @ 11:30am
+												address
+													strong
+														| Jack Edwards Reserve
+											.home-team.col-sm-3.col-xs-10
+												span.logo
+													img.img-responsive src="img/club-logos/sample-club-logo-2.png" alt="Responsive image"
+												span.team-name
+													| Oakleigh Cannons FC
+											.final-score.col-sm-2.text-center.col-xs-2
+												span
+													span.score.winner 2
+													span.score 1
+											.away-team.col-sm-3.col-xs-10
+												span.logo
+													img.img-responsive src="img/club-logos/sample-club-logo-3.png" alt="Responsive image"
+												span.team-name
+													| Goulburn Valley Suns
+											.faux-table-footer.row
+												.col-md-12
+													ul.actions
+														li
+															a.btn.btn-default.btn-sm href="#"
+																| match details
+																span.arrow_carrot-right aria-hidden="true"
+														li
+															a.btn.btn-default.btn-sm href="#"
+																| edit stats 
+																span.arrow_carrot-right aria-hidden="true"
+
+										// ROW 3
+										.fixture-item.row
+											.roundNum.col-sm-1.col-xs-12
+												span.badge
+													span.text
+														| Round
+													| 3
+											.col-md-3.col-sm-3.col-xs-12
+												span.date
+													span.icon_calendar 
+													|  Sun, 1 Mar @ 11:30am
+												address
+													strong
+														| Jack Edwards Reserve
+											.home-team.col-sm-3.col-xs-10
+												span.logo
+													img.img-responsive src="img/club-logos/sample-club-logo-3.png" alt="Responsive image"
+												span.team-name
+													| Oakleigh Cannons FC
+											.final-score.col-sm-2.text-center.col-xs-2
+												span
+													span.score 0
+													span.score 0
+											.away-team.col-sm-3.col-xs-10
+												span.logo
+													img.img-responsive src="img/club-logos/sample-club-logo-5.png" alt="Responsive image"
+												span.team-name
+													| Avondale FC
+											.faux-table-footer.row
+												.col-md-12
+													ul.actions
+														li
+															a.btn.btn-default.btn-sm href="#"
+																| match details
+																span.arrow_carrot-right aria-hidden="true"
+														li
+															a.btn.btn-default.btn-sm href="#"
+																| edit stats 
+																span.arrow_carrot-right aria-hidden="true"
+
+										// ROW 4
+										.fixture-item.row
+											.roundNum.col-sm-1.col-xs-12
+												span.badge
+													span.text
+														| Round
+													| 4
+											.col-md-3.col-sm-3.col-xs-12
+												span.date
+													span.icon_calendar 
+													|  Sun, 1 Mar @ 11:30am
+												address
+													strong
+														| Jack Edwards Reserve
+											.home-team.col-sm-3.col-xs-10
+												span.logo
+													img.img-responsive src="img/club-logos/sample-club-logo-2.png" alt="Responsive image"
+												span.team-name
+													| Oakleigh Cannons FC
+											.final-score.col-sm-2.text-center.col-xs-2
+												span
+													span.score.winner 2
+													span.score 1
+											.away-team.col-sm-3.col-xs-10
+												span.logo
+													img.img-responsive src="img/club-logos/sample-club-logo-3.png" alt="Responsive image"
+												span.team-name
+													| Goulburn Valley Suns
+											.faux-table-footer.row
+												.col-md-12
+													ul.actions
+														li
+															a.btn.btn-default.btn-sm href="#"
+																| match details
+																span.arrow_carrot-right aria-hidden="true"
+														li
+															a.btn.btn-default.btn-sm href="#"
+																| edit stats 
+																span.arrow_carrot-right aria-hidden="true"
+
+										// ROW 5
+										.row.is-active
+											.roundNum.col-sm-1.col-xs-12
+												span.badge
+													span.text
+														| Round
+													| 3
+											.col-md-3.col-sm-3.col-xs-12
+												span.date
+													span.icon_calendar 
+													|  Sun, 1 Mar @ 11:30am
+												address
+													strong
+														| Jack Edwards Reserve
+													br/
+													| Edward Street, Oakleigh VIC, 3166 - 
+													a href="#" map
+											.home-team.col-sm-3.col-xs-10
+												span.logo
+													img.img-responsive src="img/club-logos/sample-club-logo-3.png" alt="Responsive image"
+												span.team-name
+													| Oakleigh Cannons FC
+											.final-score.col-sm-2.text-center.col-xs-2
+												span.vs
+													| VS
+											.away-team.col-sm-3.col-xs-10
+												span.logo
+													img.img-responsive src="img/club-logos/sample-club-logo-4.png" alt="Responsive image"
+												span.team-name
+													| North Geelong Warriors
+
+										// ROW 6
+										.row
+											.roundNum.col-sm-1.col-xs-12
+												span.badge
+													span.text
+														| Round
+													| 4
+											.col-md-3.col-sm-3.col-xs-12
+												span.date
+													span.icon_calendar 
+													|  Sun, 8 Mar @ 11:30am
+												address
+													strong
+														| Jack Edwards Reserve
+													br/
+													| Edward Street, Oakleigh VIC, 3166 - 
+													a href="#" map
+											.home-team.col-sm-3.col-xs-10
+												span.logo
+													img.img-responsive src="img/club-logos/sample-club-logo-1.png" alt="Responsive image"
+												span.team-name
+													| Golburn Valley Suns
+											.final-score.col-sm-2.text-center.col-xs-2
+												span.vs
+													| VS
+											.away-team.col-sm-3.col-xs-10
+												span.logo
+													img.img-responsive src="img/club-logos/sample-club-logo-3.png" alt="Responsive image"
+												span.team-name
+													| Oakleigh Cannons FC
+
+				// table version
+				// Competition name
+				/ .row
+				/ 	section.section-header.col-lg-12
+				/ 		h4.section-title.pull-left.text-uppercase
+				/ 			strong
+				/ 				| COMPETITION:
+				/ 			span.pipe
+				/ 			span.normal-weight-font
+				/ 				| PS4 NPL
+					
+
+				//  Team fixture
+				/ .row.fixture-table
+				/ 	.col-xs-12
+				/ 		.panel
+				/ 			table.table
+				/ 				thead
+				/ 					tr
+				/ 						th.text-center colspan="5"
+				/ 							p
+				/ 								span.badge
+				/ 									span.text
+				/ 										| Round 
+				/ 									|  1
+				/ 								span.date 
+				/ 									span.icon_calendar 
+				/ 									|  Sun, 1 Mar @ 11:30am
+
+				/ 							address
+				/ 								strong
+				/ 									| Jack Edwards Reserve
+				/ 								br/
+				/ 								| Edward Street, Oakleigh VIC, 3166 - 
+				/ 								a href="#" map
+											
+
+				/ 				tbody
+				/ 					tr
+				/ 						td.team-name.text-center Oakleigh Cannons FC
+				/ 						td.team-logo
+				/ 							img.img-responsive src="img/club-logos/sample-club-logo-3.png" alt="Responsive image"
+				/ 						td.text-center
+				/ 							span.badge
+				/ 								span.score.winner 2
+				/ 								|  : 
+				/ 								span.score 1
+				/ 						td.team-logo
+				/ 							img.img-responsive src="img/club-logos/sample-club-logo-1.png" alt="Responsive image"
+				/ 						td.team-name.text-center Goulburn Valley Suns
+
+				/ 			table.table
+				/ 				thead
+				/ 					tr
+				/ 						th.text-center colspan="5"
+				/ 							p
+				/ 								span.badge
+				/ 									span.text
+				/ 										| Round 
+				/ 									|  2
+				/ 								span.date 
+				/ 									span.icon_calendar 
+				/ 									|  Sun, 1 Mar @ 11:30am
+
+				/ 							address
+				/ 								strong
+				/ 									| Jack Edwards Reserve
+				/ 								br/
+				/ 								| Edward Street, Oakleigh VIC, 3166 - 
+				/ 								a href="#" map
+											
+
+				/ 				tbody
+				/ 					tr
+				/ 						td.team-name.text-center Oakleigh Cannons FC
+				/ 						td.team-logo
+				/ 							img.img-responsive src="img/club-logos/sample-club-logo-3.png" alt="Responsive image"
+				/ 						td.text-center
+				/ 							span.badge
+				/ 								span.score.winner 2
+				/ 								|  : 
+				/ 								span.score 1
+				/ 						td.team-logo
+				/ 							img.img-responsive src="img/club-logos/sample-club-logo-1.png" alt="Responsive image"
+				/ 						td.team-name.text-center Goulburn Valley Suns
+
+		
+
+		/! Sample modal
+		#sampleModal.modal.fade aria-hidden="true" aria-labelledby="myLargeModalLabel" role="dialog" tabindex="-1" 
+			.modal-dialog.modal-lg
+		    	.modal-content
+		      		.modal-header
+		        		button.close aria-label="Close" data-dismiss="modal" type="button" 
+		          			span aria-hidden="true" &times;
+		          		h4#myModalLabel.modal-title Sample modal title
+		      		.modal-body
+		      			p
+		      			| Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae quam nulla aperiam repellendus iure doloribus. Excepturi reiciendis minima, earum, sapiente sed mollitia totam expedita ut ad ea vel itaque doloremque.
+		      		.modal-footer
+		      			.btn.btn-primary.pull-right
+		      			| Do something
+
+
+
+		/ footer.footer
+		/ 	.container.fluid
+		/ 		.row
+		/ 			.col-md-6.col-sm-6.text-center
+		/ 				p Here's my footer
+		/ 			.col-md-6.col-sm-6.text-center
+		/ 				P Here's my footer
+		/! overlay for main navigation
+		.nav-content-overlay
+		
+		script src="//code.jquery.com/jquery-1.11.2.min.js"
+		script src="js/bootstrap.min.js"
+		script src="js/jquery.easypiechart.min.js"
+		script src="js/scripts.js"

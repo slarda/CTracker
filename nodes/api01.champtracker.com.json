@@ -1,0 +1,159 @@
+{
+  "run_list": [
+
+    "recipe[apt]",
+    "recipe[sudo]",
+    "recipe[git]",
+    "recipe[postgresql]",
+    "recipe[postgresql::contrib]",
+    "recipe[postgresql::server]",
+    "recipe[nginx]",
+    "recipe[nginx::apps]",
+    "recipe[monit]",
+    "recipe[monit::ssh]",
+    "recipe[monit::nginx]",
+    "recipe[monit::postgresql]",
+    "recipe[rvm::user]",
+    "recipe[chef-rails]"
+
+    //"recipe[build-essential]",
+    //"recipe[ohai]",
+    //"recipe[runit]",
+    //"recipe[redis::install_from_package]",
+    //"recipe[redis::client]",
+    //"recipe[monit::redis-server]",
+
+  ],
+  "automatic": {
+    "ipaddress": "api01.champtracker.com"
+  },
+
+  "authorization": {
+    "sudo": {
+      "groups"      : ["deploy", "admin"],
+      "users"       : ["deploy", "ubuntu"],
+      "passwordless": true
+    }
+  },
+
+  "postgresql": {
+    "contrib": {
+      "extensions": ["pg_stat_statements"]
+    },
+    // "config": {
+    //   "shared_buffers": "125MB",
+    //   "shared_preload_libraries": "pg_stat_statements"
+    // },
+    "password"      : {
+      "postgres": "TQsVy7AeBvUN2P"
+    }
+  },
+
+  "nginx": {
+    "user"          : "deploy",
+    "distribution"  : "trusty",
+    "components"    : ["main"],
+    "worker_rlimit_nofile": 30000,
+
+    // Here you should define all the apps you want nginx to serve for you in the server.
+    "apps": {
+      // Example for an application served by Unicorn server
+      "champtracker": {
+        "listen"     : [80],
+        "server_name": "app.champtracker.com",
+        "public_path": "/var/www/champtracker/current/public",
+//        "upstreams"  : [
+//          {
+//            "name"    : "test.champtracker.com",
+//            "servers" : [
+//              "unix:/var/www/champtracker/shared/pids/champtracker.com.sock max_fails=3 fail_timeout=1s"
+//            ]
+//          }
+//        ],
+        "locations": [
+          {
+            "path": "/",
+            "passenger_enabled": "on",
+            "rails_env": "staging"
+//            "directives": [
+//              "proxy_set_header X-Forwarded-Proto $scheme;",
+//              "proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;",
+//              "proxy_set_header X-Real-IP $remote_addr;",
+//              "proxy_set_header Host $host;",
+//              "proxy_redirect off;",
+//              "proxy_http_version 1.1;",
+//              "proxy_set_header Connection '';",
+//              "proxy_pass http://example.com;"
+//            ]
+          },
+          {
+            "path": "~ ^/(assets|fonts|system)/|favicon.ico|robots.txt",
+            "directives": [
+              "gzip_static on;",
+              "expires max;",
+              "add_header Cache-Control public;"
+            ]
+          }
+        ]
+      }
+
+      // Example for an application served by Thin server
+//      "example2.com": {
+//        "listen"     : [80],
+//        "server_name": "example2.com www.example2.com",
+//        "public_path": "/home/deploy/production.example2.com/current/public",
+//        "upstreams"  : [
+//          {
+//            "name"    : "example2.com",
+//            "servers" : [
+//              "0.0.0.0:3000 max_fails=3 fail_timeout=1s",
+//              "0.0.0.0:3001 max_fails=3 fail_timeout=1s"
+//            ]
+//          }
+//        ],
+//        "locations": [
+//          {
+//            "path": "/",
+//            "directives": [
+//              "proxy_set_header X-Forwarded-Proto $scheme;",
+//              "proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;",
+//              "proxy_set_header X-Real-IP $remote_addr;",
+//              "proxy_set_header Host $host;",
+//              "proxy_redirect off;",
+//              "proxy_http_version 1.1;",
+//              "proxy_set_header Connection '';",
+//              "proxy_pass http://example2.com;"
+//            ]
+//          },
+//          {
+//            "path": "~ ^/(assets|fonts|system)/|favicon.ico|robots.txt",
+//            "directives": [
+//              "gzip_static on;",
+//              "expires max;",
+//              "add_header Cache-Control public;"
+//            ]
+//          }
+//        ]
+//      }
+    }
+  },
+
+  "rvm" : {
+    "user_installs": [
+      {
+        "user"         : "deploy",
+        "default_ruby" : "ruby-2.1.5"
+      }
+    ]
+  },
+
+  "monit" : {
+    "notify_email"     : "nigel@greenshoresdigital.com",
+    "poll_period"      : "60",
+    "poll_start_delay" : "120"
+  },
+
+  "chef-rails": {
+    "packages": ["nodejs"]
+  }
+}

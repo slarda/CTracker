@@ -1,0 +1,10 @@
+div
+  #warning.alert.alert-warning style='position:relative;margin-left:10%;margin-right:10%;left:0;right:0'
+div ng-controller='DashboardCtrl'
+  div style='width:200px;margin-left:auto;margin-right:auto'
+    div
+      ' {{ ::user.name }}
+    div
+      img.img-circle ng-src="{{ ::user.avatar.url }}" alt="player name" width="50" /
+    div
+      input type='file' name='logo' nv-file-select=true uploader='uploader'

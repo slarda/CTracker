@@ -1,0 +1,9 @@
+senior_mens:
+  name: Senior Mens
+  description: Team consisting of any males over the age of 35
+  assoc: ffv
+
+two:
+  name: MyString
+  description: MyText
+  assoc: ffv

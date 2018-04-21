@@ -1,0 +1,23 @@
+// game location
+
+.game-location {
+	
+	.section-title {
+		margin-top: 0;
+	}
+	.cticon {
+		font-size: 48px;
+		display: inline;
+		vertical-align: text-top;
+		color: $ct_primaryRed;
+		margin-right: 5px;
+	}
+	address {
+		margin-top: 33px;
+		text-align: center;
+		span {
+			display: inline-block;
+			vertical-align: top;
+		}
+	}
+}

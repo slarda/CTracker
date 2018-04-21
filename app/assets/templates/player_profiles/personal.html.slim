@@ -1,0 +1,131 @@
+div ng-controller='PlayerProfileCtrl'
+  div ng-include="'dashboard/_navigation.html'"
+
+  section#primary-content
+    ng-include src="'player_profiles/_menu.html'"
+
+    .container-fluid
+      #warning
+
+      // Player profile
+      .user-profile.row
+        .col-md-12
+          .panel.panel-default
+            .panel-body
+              // Form with multiple tabs here
+              form#user-profile-form role="form" novalidate="" ng-submit='update(user)'
+                .tab-content
+
+                  / Personal info tab
+                  #pane-personal-info.tab-pane.active.fade.in role="tabpanel"
+
+                    fieldset
+                      .row
+                        .col-sm-4.col-md-6.col-lg-4
+                          .form-group
+                            label.control-label for="first-name" First name
+                            input#first-name.form-control type="text" ng-model='user.first_name' name="first-name" required="required" /
+                        .col-sm-4.col-md-6.col-lg-4
+                          .form-group
+                            label for="last-name" Last name
+                            input#last-name.form-control type="text" ng-model='user.last_name' name="last-name" required="required" /
+
+                      .row
+                        .col-sm-4.col-md-6.col-lg-4
+                          .form-group
+                            label.control-label for="middle-name"
+                              | Middle name
+                              span.optional-field<
+                                | (Optional)
+                            input#middle-name.form-control type="text" ng-model='user.middle_name' name="middle-name"  /
+                        .col-sm-4.col-md-6.col-lg-4
+                          .form-group
+                            label.control-label for="nickname"
+                              | Nickname
+                              span.optional-field<
+                                | (Optional)
+                            input#nickname.form-control type="text" ng-model='user.nickname' name="nickname" required="" /
+
+                      .row
+                        .col-sm-4.col-md-4.col-lg-4
+                          .form-group
+                            label.control-label for="dob" Date of birth
+                            / Business rule required for max date given minimum age of allowable user registration
+                            input#dob.form-control type="date" ng-model='user.dob' placeholder="yyyy-mm-dd" min="1900-08-14" max="1999-01-01" name="dob" required="required" /
+                        .col-sm-4.col-md-6.col-lg-4
+                          .form-group
+                            label.control-label for="dob" Born
+                            country-select#birthplace.form-control ng-model='user.nationality'
+
+                      .row
+                        .col-sm-4.col-md-4.col-lg-4
+
+                          .form-group.radio-group
+                            label.control-label Gender
+                            label.radio-inline.control-label
+                              input#gender-female type="radio" name="genderOptions" ng-model='user.gender' value="female"
+                              span Female
+                            label.radio-inline.control-label
+                              input#gender-male type="radio" name="genderOptions" ng-model='user.gender' value="male"
+                              span Male
+
+                        input type='hidden' ng-model='user.player_profile.id'
+                        .col-xs-6.col-sm-4.col-md-3.col-lg-2
+                          .form-group
+                            label for="height" Height
+                            .input-group
+                              input#height.form-control type="number" ng-model='user.player_profile.height_cm' min="1" max="300" aria-describedby="unit-height-cm" /
+                              span#unit-height-cm.input-group-addon
+                                | cm
+
+                        .col-xs-6.col-sm-4.col-md-3.col-lg-2
+                          .form-group
+                            label.control-label for="weight" Weight
+                            .input-group
+                              input#weight.form-control type="number" ng-model='user.player_profile.weight_kg' min="10" max="300" aria-describedby="unit-weight-kg" /
+                              span#unit-weight-kg.input-group-addon
+                                | kg
+
+                    fieldset
+                      legend Account details
+                      .row
+                        .col-sm-4.col-md-6.col-lg-4
+                          .form-group
+                            label.control-label for="email-adress" Email address
+                            input#email-adress.form-control type="email" name="email-address" ng-model='user.email' disabled=true /
+                            /required="required"
+                            span.help-block
+                              | Please
+                              a< href="http://blog.champtracker.com/contact-us/" contact us
+                              |  to update your email address or password.
+                              /| Change of email address will require re-verification
+                        .col-sm-4.col-md-6.col-lg-4
+                          .form-group
+                            label.control-label for="email-adress" Password
+                            input#current-password.form-control type="password" name="current-password" disabled=true value="123456" /
+                            /required="required"
+
+                  / Global form tab
+                  .form-footer
+                    .row
+                      .col-sm-12.col-md-12.clearfix.text-align-right
+
+                        button.btn.btn-primary.pull-right type="submit" role="button"
+                          /data-loading-text="Saving..."
+                          span.icon_drive aria-hidden="true"
+                          /span.opaque ng-show='saving' Saving...
+                          span.opaque-inverted Save profile
+
+                        /button.btn.btn-primary.pull-right type="submit" role="button" data-loading-text="Adding/updating..."
+                          span.icon_plus aria-hidden="true"
+                          |  Add / update something
+
+                        /button.btn.btn-default.pull-right type="submit" role="button"
+                          |  Cancel
+
+                        alert.fade-in-out.pull-right ng-show='saving_notice' type='success' {{ alert }}
+
+                      .col-sm-0.col-lg-4.hidden-xs.hidden-sm.hidden-md
+                        | &nbsp;
+
+    div ng-include="'dashboard/_footer.html'"

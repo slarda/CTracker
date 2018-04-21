@@ -1,0 +1,58 @@
+// Left sidebar (containing navigation)
+
+#sidebar-left {
+    position: fixed;
+	width: $navbarWidth;
+    background: $navBackground;
+    top: 0;
+    bottom: 0;
+    color: $white;
+    padding: 0 0 15px;
+    // TODO: fix with more elegant solution rather than !important
+    // Bootstrap's default behavior is to toggle nav height with js
+    height: 100% !important;
+    overflow-y: auto;
+
+    z-index: index( $elements, leftSidebar );
+    left: -$navbarWidth;
+    @include transform( translateX( -$navbarWidth ) );
+    @include transition( 0.3s ease-in-out );
+    @include transition-delay( 0 );
+    @media screen and ( min-width: $screen-md-min ) {
+        @include transform( none );
+    }
+    &.in {
+        @include box-shadow( 0 0 6px rgba( 0,0,0,0.16 ) );
+        left: 0;
+    }
+}
+
+.csstransforms {
+    #sidebar-left {
+        left: auto;
+        @include transform( translateX( -$navbarWidth ) );
+        &.in {
+            @include transform( translateX( 0 ) );
+        }
+    }
+}
+
+.csstransforms3d {
+    #sidebar-left {
+        left: auto;
+        @include transform( translateX( 0 ) );
+        @include transform( translate3d( -$navbarWidth,0,0 ) );
+        &.in {
+            @include transform( translate3d( 0,0,0 ) );
+        }
+    }
+}
+
+.csstransforms,
+.csstransforms3d {
+    #sidebar-left {
+        @media screen and ( min-width: $screen-md-min ) {
+            @include transform( none );
+        }
+    }
+}

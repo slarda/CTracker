@@ -1,0 +1,15 @@
+oakleigh_senior_mens:
+  name: Oakleigh Senior Men's
+  description: Senior Men's at Oakleigh
+  location: Oakleigh Park Reserve
+  assoc: ffv
+  club: oakleigh_cannons_fc
+  division: senior_mens
+
+two:
+  name: MyString
+  description: MyText
+  location: MyString
+  assoc: ffv
+  club: oakleigh_cannons_fc
+  division: senior_mens

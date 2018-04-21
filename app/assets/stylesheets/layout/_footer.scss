@@ -1,0 +1,49 @@
+// footer layout
+
+.footer {
+	font-size: 12px;
+    // padding: 10px;
+    margin-top: $defaultMargin;
+    margin-bottom: 15px;
+    padding-top: $defaultMargin;
+    border-top: 1px solid $borderGrey;
+    z-index: index($elements, contentFooter);
+    color: $mediumGrey;
+   /*  @media screen and ( min-width: $screen-md-min ) {
+       padding: 10px 15px 10px 260px;
+       // position: fixed;
+       left: 0;
+       right: 0;
+       bottom: 0;
+       background: rgba( $white, 0.8 );
+       margin: 0;
+       @inclue box-shadow( 0 0 6px rgba( $black, 0.2 ) );
+   } */
+    > .container-fluid {
+        padding: 0 $contentPaddingMobile;
+        
+        @media screen and ( min-width: $screen-md-min ) {
+            max-width: 1170px;
+            padding: 0 $contentPaddingDesktop;
+            margin: 0;
+        }
+    }
+    a {
+        color: $ct_lightBlue;
+        &:hover {
+            color: $black;
+        }
+    }
+    p {
+    	margin: 8px 0;
+        @media screen and ( min-width: $screen-md-min ) {
+            margin: 0;
+        }
+    }
+    .copyright {
+        text-align: left;
+        @media screen and ( min-width: $screen-md-min ) {
+            text-align: right;
+        }
+    }
+}

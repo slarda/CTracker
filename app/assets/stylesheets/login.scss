@@ -1,0 +1,35 @@
+//@import "compass";
+@import "compass";
+
+// LIBRARIES
+@import "libraries/variables";
+@import "libraries/mixins";
+
+
+// 3rd PARTY VENDOR
+@import 'bootstrap-sprockets';
+@import 'bootstrap';
+@import "bootstrap/component-animations";
+
+@import "reset";								// load after bootstrap to re-use some of their variables (i.e. for responsive breakpoint vars)
+
+
+// MAIN LAYOUTS
+@import "layout/forms";
+
+
+// COMPONENT SPECIFIC STYLES
+// icons
+// @import "components/elegant-icons";
+// @import "components/ct-icons";
+
+
+@import "components/alert";						// alert styles
+@import "components/buttons";					// include button group styling
+@import "components/panels";
+// @import "components/modals";					
+@import "components/typography";
+
+// @import "libraries/utilities";
+
+@import "sections/login";						// Login page specific styles

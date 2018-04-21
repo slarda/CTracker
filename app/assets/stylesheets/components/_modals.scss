@@ -1,0 +1,37 @@
+// additional styling for modals
+
+.modal {
+	.modal-backdrop {
+
+	}
+	.modal-content {
+		border: none;
+		overflow: hidden;
+		@include border-radius( $defaultRadius * 2 );
+		@include box-shadow( 0 3px 12px rgba( $black,0.22) );
+	}
+	.modal-header {
+		color: $white;
+		background: $ct_lightBlue;
+		border: none;
+		
+		.close {
+			text-shadow: none;
+			font-size: 32px;
+			color: $white;
+			font-weight: 200;
+			opacity: 1;
+			margin-top: -4px;
+		}
+	}
+}
+[data-modal-type="map"] {
+	.modal-body {
+		padding: 0;
+		width: 100%;
+		height: 600px;
+	}
+}
+#map-canvas {
+	height: 100% !important;
+}

@@ -1,0 +1,13 @@
+div#map-modal
+  .modal-header
+    button.close aria-label="Close" type="button" ng-click='cancel()'
+      span aria-hidden="true" &times;
+    h4.modal-title Where am I playing?
+  .modal-body.np
+    .alert.alert-warning ng-show='unknown_address' Sorry, we couldn’t find a location for this game. Please check with your team manager.
+    ui-gmap-google-map ng-if='render' center='map.center' zoom='map.zoom'
+      ui-gmap-marker idKey='1' coords='map.marker'
+  .modal-footer
+    a.btn.btn-default ng-href="{{ ::searchAddress(game) }}" target='_blank'
+      | Get directions
+    button.btn.btn-primary ng-click='cancel()' Close

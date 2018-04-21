@@ -1,0 +1,38 @@
+div#media-section-modal
+  .modal-header
+    button.close aria-label="Close" type="button" ng-click='cancel()'
+      span aria-hidden="true" &times;
+    h4#myModalLabel.modal-title Enter Media Data
+
+  form.modal-body name='form' stop-event='touchend'
+    .row 
+      .form-group.clearfix
+        .col-md-12.col-xs-12
+          label for="title" title
+          input#title.form-control type="text" name='title' ng-model='media.title' placeholder="Title"
+          div ng-show='form.$submitted || form.title.$touched'
+            .error[ng-show='form.media.$error.text']
+              | Please enter title
+
+        .col-md-6.col-sm-6.col-xs-12
+          label for="image_url"  Image URL
+          input#image_url.form-control type="text" name='image_url' ng-model='media.image_url' placeholder="Image URL"
+          div ng-show='form.$submitted || form.image_url.$touched'
+            .error[ng-show='form.image_url.$error.text']
+              | Please enter Image URL
+
+        .col-md-6.col-sm-6.col-xs-12
+          label for="external_link"  External Link
+          input#external_link.form-control type="text" name='external_link' ng-model='media.external_link' placeholder="External Link"
+          div ng-show='form.$submitted || form.external_link.$touched'
+            .error[ng-show='form.external_link.$error.text']
+              | Please enter External Link
+
+
+        .col-md-12.col-sm-12.col-xs-12
+          label.control-label for="description" Description
+          textarea.form-control name="description" cols="30" rows="6" ng-model='media.description'
+
+  .modal-footer
+    button.btn.btn-default type="button" ng-click='cancel()' Close
+    button.btn.btn-primary type="submit" ng-click='save()' Save changes

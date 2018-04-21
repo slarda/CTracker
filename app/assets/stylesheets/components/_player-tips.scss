@@ -1,0 +1,29 @@
+// player tips
+
+.tip {
+	position: relative;
+	font-size: 12px;
+	line-height: 16px;
+	color: $ct_lightBlue;
+	width: 90%;
+	margin: 0 auto;
+	padding-left: 52px;
+	@include vertical-align;
+	span {
+		position: absolute;
+		left: 0;
+		top: 50%;
+		text-align: center;
+		text-transform: uppercase;
+		vertical-align: middle;
+		background: $ct_lightBlue;
+		width: 42px;
+		height: 42px;
+		margin-top: -21px;
+		display: inline-block;
+		line-height: 42px;
+		color: $white;
+		font-weight: 700;
+		@include border-radius( 50% );
+	}
+}

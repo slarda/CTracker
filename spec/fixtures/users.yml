@@ -1,0 +1,29 @@
+nigel:
+  first_name: Nigel
+  last_name: Sheridan-Smith
+  email: nigel@greenshoresdigital.com
+  gender: male
+  role: <%= User.roles[:fan] %>
+  salt: salt
+  crypted_password: <%= User.encrypt('rabbit37', 'salt') %>
+  agree_terms: true
+
+con:
+  first_name: Con
+  last_name: Harbis
+  email: conharbis@conharbis.com
+  gender: male
+  role: player
+  salt: salt
+  crypted_password: <%= User.encrypt('night89', 'salt') %>
+
+
+superadmin:
+  first_name: Super
+  last_name: Admin
+  email: admin@conharbis.com
+  gender: male
+  role: player
+  salt: salt
+  crypted_password: <%= User.encrypt('night89', 'salt') %>
+  super_admin: true

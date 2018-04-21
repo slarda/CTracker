@@ -1,0 +1,30 @@
+div#award-data-modal
+  .modal-header
+    button.close aria-label="Close" type="button" ng-click='cancel()'
+      span aria-hidden="true" &times;
+    h4#myModalLabel.modal-title Enter Award Data
+
+  form.modal-body name='form' stop-event='touchend'
+    .row 
+      .form-group.clearfix
+        .col-md-12.col-xs-12
+          label for="award" Award
+          input#award.form-control type="text" name='award' ng-model='award.award' placeholder="Award"
+          div ng-show='form.$submitted || form.award.$touched'
+            .error[ng-show='form.award.$error.text']
+              | Please enter award
+
+        .col-md-6.col-sm-6.col-xs-12
+          label for="year"  Year
+          input#year.form-control type="text" name='year' ng-model='award.year' ng-pattern='/^[0-9]*$/' placeholder="2017"
+          div ng-show='form.$submitted || form.year.$touched'
+            .error[ng-show='form.year.$error.text']
+              | Please enter year
+
+        .col-md-6.col-sm-6.col-xs-12
+          label for="team"  Team
+          select.form-control ng-model='award.team_id' ng-options="team.id as team.name + '(' + team.year + ')'  for team in user.teams"
+
+  .modal-footer
+    button.btn.btn-default type="button" ng-click='cancel()' Close
+    button.btn.btn-primary type="submit" ng-click='save()' Save changes

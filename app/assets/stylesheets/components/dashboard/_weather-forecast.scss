@@ -1,0 +1,32 @@
+// weather forecast
+
+.weather-forecast {
+	margin-top: 20px;
+	padding-top: 20px;
+	border-top: 1px solid $lightGrey;
+	@media screen and ( min-width: $screen-sm-min ) {
+		margin: 0;
+		border: none;
+		padding: 0;
+	}
+	.section-title {
+		margin-top: 0;
+	}
+	.temperature {
+		font-size: 56px;
+	}
+	.cticon {
+		font-size: 84px;
+		line-height: 1;
+		color: $ct_lightBlue;
+		vertical-align: text-bottom;
+	}
+	.span {
+		font-size: 48px;
+		display: inline;
+		vertical-align: text-top;
+	}
+	.forecast-description {
+		color: $ct_lightBlue;
+	}
+}

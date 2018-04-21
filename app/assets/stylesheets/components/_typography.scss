@@ -1,0 +1,32 @@
+// global typography styling
+
+// wins, losses and draw colours
+.win,
+.loss,
+.draw {
+	&:hover {
+		color: $white;
+	}
+}
+.win {
+	color: $ct_green;
+	&:hover {
+		background: $ct_green;
+	}
+}
+.loss {
+	color: $ct_primaryRed;
+	&:hover {
+		background: $ct_primaryRed;
+	}
+}
+.draw {
+	color: $ct_orange;
+	&:hover {
+		background: $ct_orange;
+	}
+}
+
+.normal-weight-font {
+	font-weight: normal;
+}

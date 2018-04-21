@@ -1,0 +1,11 @@
+home:
+  address1: PO Box 123
+  address2: "'The View'"
+  address3: 'Attn: Nigel'
+  phone1: 0403 930 963
+  phone2: 03 8000 0000
+  suburb: Preston
+  state: VIC
+  zipcode: 3072
+  country: Australia
+

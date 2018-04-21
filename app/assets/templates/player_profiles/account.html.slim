@@ -1,0 +1,13 @@
+div ng-controller='PlayerProfileCtrl'
+  div ng-include="'dashboard/_navigation.html'"
+  div ng-include="'dashboard/_topbar.html'"
+  div ng-include="'dashboard/_menu.html'"
+
+  section#primary-content
+    .container-fluid
+
+      ng-include src="'player_profiles/_menu.html'"
+
+      #warning
+
+      ng-include src="'player_profiles/_actions.html'"

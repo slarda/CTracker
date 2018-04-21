@@ -1,0 +1,95 @@
+
+.game-info.row vertilize-container=true
+  .col-md-6.col-sm-6
+    .previous-game.panel.panel-default vertilize=true
+      .panel-heading.clearfix
+        h3.panel-title.pull-left LAST GAME {{ prevRoundDetails(user.team) }}
+
+      .panel-body ng-show='!showLastGame(user)'
+        | There is no last game in the schedule. Maybe the season hasn't started so you haven't played a game yet?
+        |  If this isn't the case, please
+        a< href='http://blog.champtracker.com/contact-us/' contact us
+        | .
+
+      .panel-body ng-show='showLastGame(user)'
+        .row
+          div ng-repeat='link in game_data.game_links' ng-if='game_data.game_links.length > 0 && containsVideo(game_data.game_links)'
+            div ng-if='isYoutubeVideo(link)'
+              youtube-embed data-url="{{ link.url }}" width="100%"
+            div ng-if='isVimeoVideo(link)'
+              vimeo-embed data-url="{{ link.url }}" width="100%"
+            div ng-if='isFacebookVideo(link) && (isMobile || isTablet)'
+              a ng-href="{{ facebookVideoUrl(link) }}" target='_blank' {{ linkTitle(link) }}
+
+      .panel-footer ng-show='showLastGame(user)'
+        button.btn.pull-right type="button" role="button" ng-if='user.current' ng-click='openDashboardPageGameData(user.team.past_games[0],user)' ng-class='addOrEditClass' {{ addOrEditStats }}
+
+  .col-md-6.col-sm-6
+    .previous-game.panel.panel-default vertilize=true
+      .panel-heading.clearfix
+        h3.panel-title.pull-left LAST GAME {{ prevRoundDetails(user.team) }}
+        
+      .panel-body ng-show='!showLastGame(user)'
+        | There is no last game in the schedule. Maybe the season hasn't started so you haven't played a game yet?
+        |  If this isn't the case, please
+        a< href='http://blog.champtracker.com/contact-us/' contact us
+        | .
+
+      .panel-body ng-show='showLastGame(user)'
+        .row.team-stats
+          .col-md-12
+            table.table
+              tbody
+                tr ng-if='!isCoach()'
+                  th Minutes Played
+                  td[] {{ game_data.minutes_played }}
+                tr ng-if='isGoalkeeper()'
+                  th Penalties Saved
+                  td[] {{ game_data.specialized.penalty_saves }}
+                tr ng-if='!isGoalkeeper() && !isCoach()'
+                  th Goals Scored
+                  td[] {{ game_data.goals }}
+                /tr ng-if='isCoach()'
+                /  th Goals Scored
+                /  td[] {{ teamGoalsScored() }}
+                /tr ng-if='isCoach()'
+                /  th Goals Conceded
+                /  td[] {{ teamGoalsConceded() }}
+                tr ng-if='!isGoalkeeper() && !isCoach()'
+                  th Assists
+                  td[] {{ game_data.specialized.assists }}
+                tr
+                  th Yellow Cards
+                  td[] {{ game_data.specialized.yellow_cards }}
+                tr
+                  th Red Cards
+                  td[] {{ game_data.specialized.red_cards }}
+
+                tr ng-show='game_data.show_rating'
+                  th Performance Rating
+                  td.rating-dropdown
+                    rating ng-model='game_data.rating' readonly='true' ng-show='game_data.rating !== null'
+
+                tr ng-show='game_data.game_links.length > 0 && containsImage(game_data.game_links)'
+                  th Game Photos
+                  td
+                    div ng-repeat='link in game_data.game_links'
+                      a ng-href="{{ link.url }}" target='_blank' ng-if='isPhoto(link)' {{ linkTitle(link) }}
+
+                tr ng-show='game_data.game_links.length > 0 && containsVideo(game_data.game_links)'
+                  th Game Video
+                  td
+                    div ng-repeat='link in game_data.game_links' ng-if='isUnknownVideo(link)'
+                      a ng-href="{{ link.url }}" target='_blank' {{ linkTitle(link) }}
+
+                tr ng-repeat='link in game_data.game_links' ng-if='isFacebookVideo(link) && !isMobile && !isTablet'
+                  td colspan=2
+                    facebook-video-embed data-url="{{ link.url }}" width="100%"
+
+                tr ng-show='game_data.notes.length > 0'
+                  th colspan=2 Game Notes
+                tr
+                  td colspan=2 {{ game_data.notes }}
+
+      .panel-footer ng-show='showLastGame(user)'
+        button.btn.pull-right type="button" role="button" ng-if='user.current' ng-click='openDashboardPageGameData(user.team.past_games[0],user)' ng-class='addOrEditClass' {{ addOrEditStats }}

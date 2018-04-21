@@ -1,0 +1,40 @@
+.app-registration.login
+  nav.navbar.navbar-invert.navbar-fixed-top
+    .container-fluid
+      .navbar-header
+        button.navbar-toggle.collapsed type='button' data-toggle='collapse' data-target='#button-target' aria-expanded='false'
+          span.sr-only Toggle Navigation
+          span.icon-bar
+          span.icon-bar
+          span.icon-bar
+      /a.navbar-brand href='#' Brand
+      /div style='float:left'
+        a.nav-prev.btn.btn-default.btn-large aria-label="Previous" ng-click="backClicked()"
+          span.glyphicon.glyphicon-chevron-left
+      div style='text-align:center'
+        img src='/img/CT-logo-1x.png' width=250 height=50
+  .header
+    .heading Find Your Club
+  .body
+    div ng-controller='ClubListCtrl'
+      / style='position:absolute;bottom:0;left:0;right:0;height:50%;text-align:center;padding-top:20px'
+      #warning
+      #join-club-letters.container ng-show='!showClubs'
+        .sub-head By first letter
+        div
+          a.btn.btn-default.btn-sm.club-button> ng-repeat='letter in letters' ng-click='chooseLetter(letter)' {{ letter }}
+
+      /p &nbsp;
+      /p style='text-align:center'
+        button.btn.btn-primary ng-click='confirmClub()' ng-disabled='!clubSelected' Confirm club
+
+      #join-club-selector.container ng-show='showClubs'
+        ' {{ letter }}
+        .carousel-inner
+          .item.active
+            h4 Select Club
+            .list-group
+              a.list-group-item> ng-repeat='club in clubs' ng-click='confirmClub(club)'
+                | {{ club.name }}
+                span.arrow_carrot-right.pull-right
+
