@@ -238,7 +238,7 @@ GEM
     protractor-rails (0.0.18)
       colorize
       railties
-    rack (1.6.4)
+    rack (1.6.12)
     rack-cors (0.4.0)
     rack-protection (1.5.3)
       rack
